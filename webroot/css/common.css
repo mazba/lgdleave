@@ -1,0 +1,63 @@
+/*
+* mazba kamal
+*/
+
+.page-header.navbar {
+    background: #ffffff none repeat scroll 0 0;
+    border-bottom: 1px solid #e6e9f2;
+}
+.logo-default{
+    width: 62px;
+    margin-top: 4px!important;
+}
+#loader{
+    width: 100%;
+    height: 100%;
+    background: #9adad6;
+    position: fixed;
+    top: 1px;
+    opacity: .55;
+    display: none;
+}
+#loader img {
+    position: fixed;
+    top: 314px;
+    left: 737px;
+    z-index: 9999;
+}
+.new_action{
+    float: right;
+    margin: 7px 10px 0 10px;
+    /*text-shadow: 0 0 1px #000;*/
+    font-weight: bold;
+}
+/*box wrapper color*/
+.jomi_box{
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-bottom-color: #8DC541;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color: #8DC541;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #8DC541;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: -moz-use-text-color;
+    border-top-style: none;
+    border-top-width: 0;
+}
+.portlet.box.jomi_box > .portlet-title{
+    background-color: #8DC541;
+}
+.page-header.navbar .page-logo{
+    width: 380px;
+}
