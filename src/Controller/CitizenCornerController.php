@@ -23,10 +23,7 @@ class CitizenCornerController extends AppController
      */
     public function index()
     {
-        echo "Hello";
-        die();
-//        $this->set('citizenCorner', $this->paginate($this->CitizenCorner));
-//        $this->set('_serialize', ['citizenCorner']);
+        $this->viewBuilder()->layout('citizen_corner');
     }
 
     /**

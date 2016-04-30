@@ -82,8 +82,7 @@ public function index()
 
                 ]
             ]);
-//            echo "<pre>";
-//            print_r($user->toArray());die();
+
 
             if ($this->Users->save($user))
             {
@@ -96,7 +95,7 @@ public function index()
             }
         }
         $Designations = $this->Designations->find('list', ['conditions'=>['office_id'=>1,'status'=>1]]);
-        $OfficeUnits = $this->OfficeUnits->find('list', ['status'=>1]);
+        $OfficeUnits = $this->OfficeUnits->find('list', ['conditions'=>['office_id'=>1,'status'=>1]]);
 
         $userGroups = $this->Users->UserGroups->find('list', ['conditions'=>['status'=>1]]);
         $this->set(compact('user', 'Designations','OfficeUnits','userGroups'));
