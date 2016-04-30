@@ -80,7 +80,7 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                         <div class="tab-pane" id="tab_5_4">
-                            <div class="row list_designation" data-index_no="0">
+                            <div class="row " >
                                 <div class="designationWrapper">
                                     <div class="col-md-12 designation">
                                         <h3>Office Designation</h3>
@@ -96,28 +96,30 @@ $religions = \Cake\Core\Configure::read('religions');
                                             echo $this->Form->input('user_designations.0.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
                                             echo $this->Form->input('user_designations.0.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
                                             echo $this->Form->input('user_designations.0.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
+                                            echo $this->Form->hidden('user_designations.0.is_basic',['value'=>1]);
                                             ?>
                                         </div>
                                     </div>
 
 
-                                    <div class="col-md-12 single_list_designation">
+                                    <div class="col-md-12 single_list_designation list_designation" data-index_no="1">
                                         <h3>Unit Designation</h3>
                                         <hr/>
                                         <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                         <div class="col-md-6">
                                             <?php
 
-                                            echo $this->Form->input('user_designations.0.office_unit_id',['options'=>$OfficeUnits,'empty'=>'Select','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
-                                            echo $this->Form->input('user_designations.0.office_unit_designation_id',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
+                                            echo $this->Form->input('user_designations.1.office_unit_id',['options'=>$OfficeUnits,'empty'=>'Select','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
+                                            echo $this->Form->input('user_designations.1.office_unit_designation_id',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
 
                                             ?>
                                         </div>
                                         <div class="col-md-6">
                                             <?php
-                                            echo $this->Form->input('user_designations.0.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
-                                            echo $this->Form->input('user_designations.0.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
-                                            echo $this->Form->input('user_designations.0.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
+                                            echo $this->Form->input('user_designations.1.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
+
+                                            echo $this->Form->input('user_designations.1.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
+                                            echo $this->Form->input('user_designations.1.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
                                             ?>
                                         </div>
                                     </div>
@@ -164,29 +166,7 @@ $religions = \Cake\Core\Configure::read('religions');
             }
         });
 
-        $(document).on('click', '.is_basic', function()
-        {
-            var count = $(".is_basic:checked").length;
-            if(count>1)
-            {
-                alert('You can choose one designation as basic!');
-                $(this).attr('checked', false);
-            }
 
-            var obj = $(this).closest('.single_list_designation');
-            if($(this).prop('checked'))
-            {
-                obj.find('.designation_id').closest('.form-group').hide();
-                obj.find('.office_unit_designation_id').closest('.form-group').hide();
-                obj.find('.des_div').removeClass('hidden');
-            }
-            else
-            {
-                obj.find('.office_unit_id').closest('.form-group').show();
-                obj.find('.office_unit_designation_id').closest('.form-group').show();
-                obj.find('.des_div').addClass('hidden');
-            }
-        });
 
         $(document).on("focus",".datepicker", function()
         {
@@ -194,6 +174,7 @@ $religions = \Cake\Core\Configure::read('religions');
                 dateFormat: 'dd-mm-yy'
             });
         });
+
 
         // Designation Section Add More & Remove
         $(document).on('click', '.add_more_designation', function () {
@@ -237,10 +218,10 @@ $religions = \Cake\Core\Configure::read('religions');
             obj.closest('.single_list_designation').find('.office_unit_designation_id').html('<option><?php echo __('Select');?></option>');
             obj.closest('.single_list_designation').find('.designation_id').html('<option><?php echo __('Select');?></option>');
 
-            var office_id = obj.closest('.single_list_designation').find('.office').val();
+           // var office_id = obj.closest('.single_list_designation').find('.office').val();
             var office_unit_id = obj.val();
 
-            if(office_id>0)
+            if(office_unit_id>0)
             {
                 $.ajax({
                     url: '<?= $this->Url->build('/Users/ajax/get_unit_designation')?>',

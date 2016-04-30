@@ -29,7 +29,7 @@ class OfficeUnitDesignationsTable extends Table
         parent::initialize($config);
 
         $this->table('office_unit_designations');
-        $this->displayField('id');
+        $this->displayField('name_bn');
         $this->primaryKey('id');
 
         $this->belongsTo('ParentOfficeUnitDesignations', [
