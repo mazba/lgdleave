@@ -23,6 +23,14 @@ class CitizenCornerController extends AppController
      */
     public function index()
     {
+        $this->loadModel('ApplicantTypes');
+        $this->loadModel('AreaDivisions');
+        $this->loadModel('Applications');
+        $applications = $this->Applications;
+        $applicantTypes =  $this->ApplicantTypes->find('list', ['conditions'=>['status'=>1]]);
+        $divisions =  $this->AreaDivisions->find('list');
+
+        $this->set(compact('applicantTypes','divisions','applications'));
         $this->viewBuilder()->layout('citizen_corner');
     }
 
@@ -105,5 +113,33 @@ class CitizenCornerController extends AppController
             $this->Flash->error(__('The citizen corner could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function ajax($action=null){
+        if($action=='get_districts'){
+
+            $division_id = $this->request->data('division_id');
+
+            $this->loadModel('AreaDistricts');
+            $districts = $this->AreaDistricts->find('list', ['conditions'=>['area_division_id'=>$division_id,  'status'=>1]])->toArray();
+
+            $this->response->body(json_encode($districts));
+            return $this->response;
+        }
+
+        elseif($action=='get_upazilas')
+        {
+
+            $division_id = $this->request->data('division_id');
+            $district_id = $this->request->data('district_id');
+
+
+
+            $this->loadModel('AreaUpazilas');
+            $upazilas = $this->AreaUpazilas->find('list',['conditions'=>['area_district_id'=>$district_id,'status'=>1]])->toArray();
+
+            $this->response->body(json_encode($upazilas));
+            return $this->response;
+        }
     }
 }
