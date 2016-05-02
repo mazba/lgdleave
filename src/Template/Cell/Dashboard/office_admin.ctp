@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <?php
-                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'users'], ['class' => 'more']);
+//                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'users'], ['class' => 'more']);
                 ?>
             </div>
         </div>
@@ -25,14 +25,14 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $item_number; ?>
+                        <?php echo $application_number; ?>
                     </div>
                     <div class="desc">
-                        <?= __('Number Of Item') ?>
+                        <?= __('Total Number Of Applications') ?>
                     </div>
                 </div>
                 <?php
-                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'items'], ['class' => 'more']);
+//                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'items'], ['class' => 'more']);
                 ?>
             </div>
         </div>
@@ -46,7 +46,7 @@
                         <?php echo $assign_item_number; ?>
                     </div>
                     <div class="desc">
-                        <?= __('Assigned Items') ?>
+                        <?= __('Number of Pending Applicaions') ?>
                     </div>
                 </div>
                 <?php

@@ -66,7 +66,7 @@ try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
     Configure::load('mcake', 'default');
-    Configure::load('ham', 'default');
+    Configure::load('common', 'default');
 } catch (\Exception $e) {
     die($e->getMessage() . "\n");
 }

@@ -26,27 +26,14 @@ class DashboardCell extends Cell
      */
     public function superAdmin()
     {
-//        $this->loadModel('Offices');
-//        $this->loadModel('Users');
-//        $this->loadModel('Items');
-//        //count
-//        $office_number = $this->Offices->find('all')->where(['status'=>1])->count();
-//        $user_number = $this->Users->find('all')->where(['status'=>1])->count();
-//        $item_number = $this->Items->find('all')->where(['status'=>1])->count();
-//        // item
-//        $office_items = $this->Offices->find();
-//        $office_items
-//            ->select(['Offices.id','Offices.name_bn'])
-//            ->contain(['Items','Committees','OfficeBuildings','OfficeRooms','OfficeUnits','OfficeWarehouses']);
-//        $this->set(compact('office_number','user_number','item_number','office_items'));
 
     }
     public function officeAdmin()
     {
-//        $user = $this->request->session()->read('Auth.User');
-//        $this->loadModel('Offices');
-//        $this->loadModel('Users');
-//        $this->loadModel('Items');
+        $user = $this->request->session()->read('Auth.User');
+        $this->loadModel('Offices');
+        $this->loadModel('Users');
+        $this->loadModel('Applications');
 //        $this->loadModel('ItemAssigns');
 //        $this->loadModel('OfficeBuildings');
 //        $this->loadModel('OfficeRooms');
@@ -55,7 +42,8 @@ class DashboardCell extends Cell
 //        $this->loadModel('Users');
 //
 //        //count
-//        $user_number = $this->Users->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
+        $user_number = $this->Users->find('all')->where(['status'=>1])->count();
+        $application_number = $this->Applications->find('all')->where(['status'=>1])->count();
 //        $item_number = $this->Items->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
 //        $assign_item_number = $this->ItemAssigns->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
 //        $building_number = $this->OfficeBuildings->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
@@ -91,7 +79,10 @@ class DashboardCell extends Cell
 ////        print_r($leave_preparatory_users->toArray());
 ////        echo '</pre>';
 ////        die;
-//        $this->set(compact('leave_preparatory_users','building_number','recently_assigned_item','room_number','office_warehouse','committee_number','assign_item_number','user_number','item_number','office_items'));
+        $this->set(compact(
+            'application_number',
+            'user_number'
+        ));
     }
     public function officeUser()
     {
