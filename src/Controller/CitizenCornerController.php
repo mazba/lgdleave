@@ -26,11 +26,13 @@ class CitizenCornerController extends AppController
         $this->loadModel('ApplicantTypes');
         $this->loadModel('AreaDivisions');
         $this->loadModel('Applications');
+        $this->loadModel('ApplicationTypes');
         $applications = $this->Applications;
         $applicantTypes =  $this->ApplicantTypes->find('list', ['conditions'=>['status'=>1]]);
+        $applicationTypes =  $this->ApplicationTypes->find('list', ['conditions'=>['status'=>1]]);
         $divisions =  $this->AreaDivisions->find('list');
 
-        $this->set(compact('applicantTypes','divisions','applications'));
+        $this->set(compact('applicantTypes','applicationTypes','divisions','applications'));
         $this->viewBuilder()->layout('citizen_corner');
     }
 
@@ -131,9 +133,39 @@ class CitizenCornerController extends AppController
         {
             $district_id = $this->request->data('district_id');
             $this->loadModel('AreaUpazilas');
-            $upazilas = $this->AreaUpazilas->find('list',['conditions'=>['zillaid'=>$district_id]])->toArray();
+            $upazilas = $this->AreaUpazilas->find('list',['keyField'=>'upazilaid','keyValue'=>'upazilaname'])
+                ->where(['zillaid'=>$district_id])
+                ->toArray();
 
             $this->response->body(json_encode($upazilas));
+            return $this->response;
+        }
+        elseif($action=='get_city_corporations')
+        {
+            $district_id = $this->request->data('district_id');
+            $this->loadModel('CityCorporations');
+            $cityCorporations = $this->CityCorporations->find('list',['conditions'=>['zillaid'=>$district_id]])->toArray();
+
+            $this->response->body(json_encode($cityCorporations));
+            return $this->response;
+        } elseif($action=='get_municipals')
+        {
+            $district_id = $this->request->data('district_id');
+            $this->loadModel('Municipals');
+            $municipals = $this->Municipals->find('list',['conditions'=>['zillaid'=>$district_id]])->toArray();
+
+            $this->response->body(json_encode($municipals));
+            return $this->response;
+        }
+        elseif($action=='get_unions')
+        {
+            $district_id = $this->request->data('district_id');
+            $upazila_id = $this->request->data('upazila_id');
+
+            $this->loadModel('Unions');
+            $unions = $this->Unions->find('list',['conditions'=>['upazilaid'=>$upazila_id,'zillaid'=>$district_id]])->toArray();
+
+            $this->response->body(json_encode($unions));
             return $this->response;
         }
     }

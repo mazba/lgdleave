@@ -14,7 +14,6 @@ use Cake\ORM\Entity;
  * @property string $municipaleng
  * @property int $visible
  * @property string $ver_code
- * @property \App\Model\Entity\Application[] $applications
  */
 class Municipal extends Entity
 {

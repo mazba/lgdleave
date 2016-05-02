@@ -4,18 +4,19 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * CityCorporation Entity.
+ * Union Entity.
  *
  * @property int $rowid
- * @property string $citycorporationid
- * @property string $upazilaid
  * @property string $zillaid
- * @property string $citycorporationname
- * @property string $citycorporationnameeng
+ * @property string $upazilaid
+ * @property string $unionid
+ * @property string $municipalid
+ * @property string $unionname
+ * @property string $unionnameeng
  * @property int $visible
- * @property int $divid
+ * @property int $ver_code
  */
-class CityCorporation extends Entity
+class Union extends Entity
 {
 
     /**
