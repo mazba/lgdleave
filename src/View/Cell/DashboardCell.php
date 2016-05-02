@@ -31,9 +31,11 @@ class DashboardCell extends Cell
     public function officeAdmin()
     {
         $user = $this->request->session()->read('Auth.User');
+        $application_status = Configure::read('application_status');
         $this->loadModel('Offices');
         $this->loadModel('Users');
         $this->loadModel('Applications');
+        $this->loadModel('ApplicationTypes');
 //        $this->loadModel('ItemAssigns');
 //        $this->loadModel('OfficeBuildings');
 //        $this->loadModel('OfficeRooms');
@@ -43,45 +45,18 @@ class DashboardCell extends Cell
 //
 //        //count
         $user_number = $this->Users->find('all')->where(['status'=>1])->count();
-        $application_number = $this->Applications->find('all')->where(['status'=>1])->count();
-//        $item_number = $this->Items->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
-//        $assign_item_number = $this->ItemAssigns->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
-//        $building_number = $this->OfficeBuildings->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
-//        $room_number = $this->OfficeRooms->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
-//        $committee_number = $this->Committees->find('all')->where(['status'=>1,'office_id'=>$user['office_id']])->count();
-//        // item
-//        $office_warehouse = $this->OfficeWarehouses->find()
-//            ->contain(
-//                [
-//                'Items',
-//                'ItemWithdrawals'=>function($q){
-//                    return $q->where(['status'=>1]);
-//                },
-//                'ItemAssigns'=>function($q){
-//                return $q->where(['status'=>1]);
-//            }]
-//            );
-//        //recently assigned item
-//        $recently_assigned_item = $this->ItemAssigns
-//            ->find()
-//            ->where(['ItemAssigns.status'=>1,'ItemAssigns.office_id'=>$user['office_id']])
-//            ->contain(['DesignatedUsers','Items'])
-//            ->limit(10);
-//        //Leave preparatory to Retirement
-//        $lpr_range = Configure::read('lpr_range');
-//        $lpr_year = new Time('-'.$lpr_range.' years');
-//        $lpr_year = $lpr_year->addMonth(1)->toUnixString();
-//        $leave_preparatory_users = $this->Users
-//            ->find()
-//            ->where(['Users.status'=>1,'UserBasic.date_of_birth <'=>$lpr_year,'Users.office_id'=>$user['office_id']])
-//            ->contain(['UserBasic']);
-////        echo '<pre>';
-////        print_r($leave_preparatory_users->toArray());
-////        echo '</pre>';
-////        die;
+        $application_number = $this->Applications->find('all')->count();
+        $pending_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Pending']])->count();
+        $approve_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Approve']])->count();
+        $reject_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Reject']])->count();
+        $number_of_application_type = $this->ApplicationTypes->find('all')->where(['status'=>1])->count();
         $this->set(compact(
             'application_number',
-            'user_number'
+            'user_number',
+            'pending_application_number',
+            'approve_application_number',
+            'reject_application_number',
+            'number_of_application_type'
         ));
     }
     public function officeUser()

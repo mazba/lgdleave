@@ -28,7 +28,7 @@
                         <?php echo $application_number; ?>
                     </div>
                     <div class="desc">
-                        <?= __('Total Number Of Applications') ?>
+                        <?= __('Total Applications') ?>
                     </div>
                 </div>
                 <?php
@@ -43,14 +43,14 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $assign_item_number; ?>
+                        <?php echo $pending_application_number; ?>
                     </div>
                     <div class="desc">
-                        <?= __('Number of Pending Applicaions') ?>
+                        <?= __('Pending Applications') ?>
                     </div>
                 </div>
                 <?php
-                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'item_assigns'], ['class' => 'more']);
+//                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'item_assigns'], ['class' => 'more']);
                 ?>
             </div>
         </div>
@@ -61,14 +61,14 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $building_number; ?>
+                        <?php echo $approve_application_number; ?>
                     </div>
                     <div class="desc">
-                        <?= __('Number of Buildings') ?>
+                        <?= __('Approved Application') ?>
                     </div>
                 </div>
                 <?php
-                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'office_buildings'], ['class' => 'more']);
+//                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'office_buildings'], ['class' => 'more']);
                 ?>
             </div>
         </div>
@@ -79,14 +79,14 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $room_number; ?>
+                        <?php echo $reject_application_number; ?>
                     </div>
                     <div class="desc">
-                        <?= __('Number of Rooms') ?>
+                        <?= __(' Rejected Applications') ?>
                     </div>
                 </div>
                 <?php
-                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'office_rooms'], ['class' => 'more']);
+//                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'office_rooms'], ['class' => 'more']);
                 ?>
             </div>
         </div>
@@ -97,62 +97,34 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $committee_number; ?>
+                        <?php echo $number_of_application_type; ?>
                     </div>
                     <div class="desc">
-                        <?= __('Number of Committee') ?>
+                        <?= __('Application Type') ?>
                     </div>
                 </div>
                 <?php
-                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'committees'], ['class' => 'more']);
+//                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'committees'], ['class' => 'more']);
                 ?>
             </div>
         </div>
     </div>
     <div class="col-md-6">
-        <div class="portlet">
+        <div class="portlet solid grey-cararra bordered">
             <div class="portlet-title">
-                <div class="caption" style="color: red; font-weight: bold;">
-                    <i class="fa fa-joomla "></i><?= __('Leave preparatory to Retirement (LPR)') ?>
+                <div class="caption">
+                    <i class="fa fa-bullhorn"></i><?= __('Recent Application Status') ?>
                 </div>
             </div>
-            <div class="portlet-body" style="padding: 6px; background:#fff">
-                <div class="scroller" style="height: 205px;" data-always-visible="1" data-rail-visible="0">
-                    <?php
-                    if(count($leave_preparatory_users)):
-                    ?>
-                    <ul class="feeds">
-                        <?php
-                        foreach ($leave_preparatory_users as $leave_preparatory_user) :
-                        ?>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-info">
-                                                <i class="fa fa-check"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                <?php echo $leave_preparatory_user->full_name_bn; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        <?php echo $leave_preparatory_user->user_basic->formatted_date_of_birth; ?>
-                                    </div>
-                                </div>
-                            </li>
-                        <?php
-                        endforeach;
-                        ?>
-                    </ul>
-                    <?php else: ?>
-                        <h2 style="text-align: center"><?= __('No Data Found') ?></h2>
-                    <?php endif; ?>
+            <div class="portlet-body">
+                <div id="site_activities_loading">
+                    <img src="<?php echo $this->request->webroot; ?>assets/admin/layout/img/loading.gif" alt="loading"/>
+                </div>
+                <div id="site_activities_content" class="display-none">
+                    <div id="site_activities" style="height: 145px;">
+                    </div>
+                </div>
+                <div style="margin: 5px 0 10px 5px">
                 </div>
             </div>
         </div>
@@ -163,7 +135,7 @@
         <div class="portlet green-haze box">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-bank"></i><?= __('Office Warehouse') ?>
+                    <i class="fa fa-bank"></i><?= __('Recent Pending Applications') ?>
                 </div>
             </div>
             <div class="portlet-body">
@@ -172,15 +144,15 @@
                         <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th><?= __('Warehouse') ?></th>
-                                    <th><?= __('Total Item') ?></th>
-                                    <th><?= __('Assigned Item') ?></th>
-                                    <th><?= __('Total Withdrawals Item') ?></th>
+                                    <th><?= __('Application Code') ?></th>
+                                    <th><?= __('Applicant') ?></th>
+                                    <th><?= __('Applicant Type') ?></th>
+                                    <th><?= __('Application Time') ?></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                if($office_warehouse->count()):
+                                if(0):
                                 foreach($office_warehouse as $warehouse):?>
                                 <tr>
                                     <th><?php echo $warehouse->title_bn; ?></th>
@@ -209,7 +181,7 @@
         <div class="portlet green-haze box">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-bank"></i><?= __('Recently Assigned Items') ?>
+                    <i class="fa fa-bank"></i><?= __('Recently Accepted Application') ?>
                 </div>
             </div>
             <div class="portlet-body">
@@ -218,15 +190,15 @@
                         <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th><?= __('Item') ?></th>
-                                    <th><?= __('Designated Users') ?></th>
-                                    <th><?= __('Assigned Date') ?></th>
-                                    <th><?= __('Quantity') ?></th>
+                                    <th><?= __('Application Code') ?></th>
+                                    <th><?= __('Applicant') ?></th>
+                                    <th><?= __('Approve by') ?></th>
+                                    <th><?= __('Approved Time') ?></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                if($recently_assigned_item->count()):
+                                if(0):
                                 foreach($recently_assigned_item as $item):?>
                                     <tr>
                                         <td><?php echo $item->item->title_bn.'('.$item->item->office_serial_number.')'; ?></td>
@@ -252,3 +224,13 @@
         </div>
     </div>
 </div>
+<script src="<?= $this->request->webroot; ?>assets/admin/pages/scripts/index.js" type="text/javascript"></script>
+<script src="<?php echo $this->request->webroot; ?>assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+<script src="<?php echo $this->request->webroot; ?>assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+<script src="<?php echo $this->request->webroot; ?>assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function() {
+        Index.init(); // init index page
+        Index.initCharts(); // init index page's custom scripts
+    });
+</script>
