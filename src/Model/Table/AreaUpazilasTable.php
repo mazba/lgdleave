@@ -27,7 +27,7 @@ class AreaUpazilasTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('upazilas');
+        $this->table('upa_zilas');
         $this->displayField('upazilaname');
         $this->primaryKey('id');
 

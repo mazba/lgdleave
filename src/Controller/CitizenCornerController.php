@@ -121,7 +121,7 @@ class CitizenCornerController extends AppController
             $division_id = $this->request->data('division_id');
 
             $this->loadModel('AreaDistricts');
-            $districts = $this->AreaDistricts->find('list', ['conditions'=>['area_division_id'=>$division_id,  'status'=>1]])->toArray();
+            $districts = $this->AreaDistricts->find('list', ['conditions'=>['divid'=>$division_id]])->toArray();
 
             $this->response->body(json_encode($districts));
             return $this->response;
@@ -129,14 +129,9 @@ class CitizenCornerController extends AppController
 
         elseif($action=='get_upazilas')
         {
-
-            $division_id = $this->request->data('division_id');
             $district_id = $this->request->data('district_id');
-
-
-
             $this->loadModel('AreaUpazilas');
-            $upazilas = $this->AreaUpazilas->find('list',['conditions'=>['area_district_id'=>$district_id,'status'=>1]])->toArray();
+            $upazilas = $this->AreaUpazilas->find('list',['conditions'=>['zillaid'=>$district_id]])->toArray();
 
             $this->response->body(json_encode($upazilas));
             return $this->response;

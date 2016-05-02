@@ -89,50 +89,7 @@
                                     echo $this->Form->input('city_corporation_wards', ['options' => [], 'empty' => 'Select', 'class' => 'form-control city_corporation_wards', 'label' => __('City_corporation_wards')]);
                                     ?>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Username <span class="required">* </span>
-                                    </label>
 
-                                    <div class="col-md-4">
-                                        <input type="text" class="form-control" name="username"/>
-														<span class="help-block">
-														Provide your username </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Password <span class="required">
-													* </span>
-                                    </label>
-
-                                    <div class="col-md-4">
-                                        <input type="password" class="form-control" name="password"
-                                               id="submit_form_password"/>
-														<span class="help-block">
-														Provide your password. </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Confirm Password <span class="required">
-													* </span>
-                                    </label>
-
-                                    <div class="col-md-4">
-                                        <input type="password" class="form-control" name="rpassword"/>
-														<span class="help-block">
-														Confirm your password </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Email <span class="required">
-													* </span>
-                                    </label>
-
-                                    <div class="col-md-4">
-                                        <input type="text" class="form-control" name="email"/>
-														<span class="help-block">
-														Provide your email address </span>
-                                    </div>
-                                </div>
                             </div>
                             <div class="tab-pane" id="tab2">
                                 <h3 class="block">Provide your profile details</h3>
@@ -706,15 +663,14 @@
             $('#upazilas').html('');
             var obj = $(this);
             var applicantTypes_id = obj.closest('#tab1').find('.applicantTypes option:selected').val();
-            var division_id = obj.closest('#tab1').find('.division option:selected').val();
-            console.log(division_id);
+
             var district_id = $(this).val();
             console.log(district_id);
             if (applicantTypes_id > 4 && applicantTypes_id < 8) {
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_upazilas')?>',
                     type: 'POST',
-                    data: {district_id: district_id, division_id: division_id},
+                    data: {district_id: district_id},
 
                     success: function (data, status) {
                         $('.upazila').removeAttr('class', 'hide');
