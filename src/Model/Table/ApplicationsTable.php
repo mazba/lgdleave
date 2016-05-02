@@ -14,6 +14,13 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $ApplicationTypes
  * @property \Cake\ORM\Association\BelongsTo $ApplicantTypes
  * @property \Cake\ORM\Association\BelongsTo $LocationTypes
+ * @property \Cake\ORM\Association\BelongsTo $Divsions
+ * @property \Cake\ORM\Association\BelongsTo $Districts
+ * @property \Cake\ORM\Association\BelongsTo $Upazilas
+ * @property \Cake\ORM\Association\BelongsTo $CityCorporations
+ * @property \Cake\ORM\Association\BelongsTo $CityCorporationWards
+ * @property \Cake\ORM\Association\BelongsTo $Municipals
+ * @property \Cake\ORM\Association\BelongsTo $MunicipalWards
  */
 class ApplicationsTable extends Table
 {
@@ -32,18 +39,38 @@ class ApplicationsTable extends Table
         $this->displayField('id');
         $this->primaryKey(['id', 'temporary_id']);
 
-        $this->belongsTo('Temporaries', [
-            'foreignKey' => 'temporary_id',
+        $this->belongsTo('ApplicationTypes', [
+            'foreignKey' => 'application_type_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('ApplicationTypes', [
-            'foreignKey' => 'application_type_id'
-        ]);
         $this->belongsTo('ApplicantTypes', [
-            'foreignKey' => 'applicant_type_id'
+            'foreignKey' => 'applicant_type_id',
+            'joinType' => 'INNER'
         ]);
         $this->belongsTo('LocationTypes', [
             'foreignKey' => 'location_type_id'
+        ]);
+        $this->belongsTo('AreaDivisions', [
+            'foreignKey' => 'divsion_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('AreaDistricts', [
+            'foreignKey' => 'district_id'
+        ]);
+        $this->belongsTo('AreaUpazilas', [
+            'foreignKey' => 'upazila_id'
+        ]);
+        $this->belongsTo('CityCorporations', [
+            'foreignKey' => 'city_corporation_id'
+        ]);
+        $this->belongsTo('CityCorporationWards', [
+            'foreignKey' => 'city_corporation_ward_id'
+        ]);
+        $this->belongsTo('Municipals', [
+            'foreignKey' => 'municipal_id'
+        ]);
+        $this->belongsTo('MunicipalWards', [
+            'foreignKey' => 'municipal_ward_id'
         ]);
     }
 
@@ -61,28 +88,32 @@ class ApplicationsTable extends Table
 
         $validator
             ->add('submission_time', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('submission_time');
+            ->requirePresence('submission_time', 'create')
+            ->notEmpty('submission_time');
 
         $validator
-            ->allowEmpty('location_geo_code');
+            ->requirePresence('applicant_name_bn', 'create')
+            ->notEmpty('applicant_name_bn');
 
         $validator
-            ->allowEmpty('applicant_name_bn');
+            ->requirePresence('applicant_name_en', 'create')
+            ->notEmpty('applicant_name_en');
 
         $validator
-            ->allowEmpty('applicant_name_en');
+            ->requirePresence('mother_name_bn', 'create')
+            ->notEmpty('mother_name_bn');
 
         $validator
-            ->allowEmpty('mother_name_bn');
+            ->requirePresence('mother_name_en', 'create')
+            ->notEmpty('mother_name_en');
 
         $validator
-            ->allowEmpty('mother_name_en');
+            ->requirePresence('father_name_bn', 'create')
+            ->notEmpty('father_name_bn');
 
         $validator
-            ->allowEmpty('father_name_bn');
-
-        $validator
-            ->allowEmpty('father_name_en');
+            ->requirePresence('father_name_en', 'create')
+            ->notEmpty('father_name_en');
 
         $validator
             ->allowEmpty('phone');
@@ -114,6 +145,50 @@ class ApplicationsTable extends Table
             ->allowEmpty('emergency_contact');
 
         $validator
+            ->add('is_foregin_tour', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('is_foregin_tour');
+
+        $validator
+            ->allowEmpty('pasport_number');
+
+        $validator
+            ->add('applicant_using_passport_validity', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('applicant_using_passport_validity');
+
+        $validator
+            ->allowEmpty('using_passport_issue_place');
+
+        $validator
+            ->allowEmpty('foregin_tour_country');
+
+        $validator
+            ->add('have_foregin_tour', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('have_foregin_tour');
+
+        $validator
+            ->allowEmpty('last_foreign_tour_country');
+
+        $validator
+            ->allowEmpty('last_foreign_tour_reason');
+
+        $validator
+            ->add('last_foreign_tour_time', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('last_foreign_tour_time');
+
+        $validator
+            ->allowEmpty('application_reason');
+
+        $validator
+            ->add('start_date', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('start_date', 'create')
+            ->notEmpty('start_date');
+
+        $validator
+            ->add('end_date', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('end_date', 'create')
+            ->notEmpty('end_date');
+
+        $validator
             ->add('status', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('status');
 
@@ -133,33 +208,6 @@ class ApplicationsTable extends Table
             ->add('update_by', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('update_by');
 
-        $validator
-            ->add('is_foregin_tour', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('is_foregin_tour');
-
-        $validator
-            ->allowEmpty('pasport_number');
-
-        $validator
-            ->allowEmpty('foregin_tour_country');
-
-        $validator
-            ->add('have_foregin_tour', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('have_foregin_tour');
-
-        $validator
-            ->allowEmpty('last_foreign_tour_country');
-
-        $validator
-            ->add('last_foreign_tour_time', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('last_foreign_tour_time');
-
-        $validator
-            ->allowEmpty('application_reason');
-
-        $validator
-            ->allowEmpty('document_file');
-
         return $validator;
     }
 
@@ -172,11 +220,12 @@ class ApplicationsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['temporary_id'], 'Temporaries'));
         $rules->add($rules->existsIn(['application_type_id'], 'ApplicationTypes'));
         $rules->add($rules->existsIn(['applicant_type_id'], 'ApplicantTypes'));
         $rules->add($rules->existsIn(['location_type_id'], 'LocationTypes'));
+        $rules->add($rules->existsIn(['divsion_id'], 'AreaDivisions'));
+        $rules->add($rules->existsIn(['district_id'], 'AreaDistricts'));
+        $rules->add($rules->existsIn(['upazila_id'], 'AreaUpazilas'));
         return $rules;
     }
 }
