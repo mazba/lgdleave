@@ -4,8 +4,8 @@
         <div class="portlet box blue" id="form_wizard_1">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-gift"></i> Form Wizard - <span class="step-title">
-								Step 1 of 4 </span>
+                    <i class="fa fa-gift"></i>  <span class="step-title">
+							 </span>
                 </div>
 
             </div>
@@ -20,7 +20,7 @@
 												<span class="number">
 												1 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> Account Setup </span>
+												<i class="fa fa-check"></i><?= __('Account Setup')?>  </span>
                                 </a>
                             </li>
                             <li>
@@ -28,7 +28,7 @@
 												<span class="number">
 												2 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> Profile Setup </span>
+												<i class="fa fa-check"></i> <?= __('Profile_Setup')?></span>
                                 </a>
                             </li>
                             <li>
@@ -36,7 +36,7 @@
 												<span class="number">
 												3 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> Billing Setup </span>
+												<i class="fa fa-check"></i><?= __('Billing_Setup')?>  </span>
                                 </a>
                             </li>
                             <li>
@@ -44,7 +44,7 @@
 												<span class="number">
 												4 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> Confirm </span>
+												<i class="fa fa-check"></i> <?= __('Confirm')?> </span>
                                 </a>
                             </li>
                         </ul>
@@ -59,48 +59,61 @@
                                 <h3 class="block"><?= __('Basic Info') ?></h3>
 
                                 <?php
-                                echo $this->Form->input('applicantTypes', ['options' => $applicantTypes, 'empty' => 'Select', 'class' => 'form-control applicantTypes', 'label' => __('Applicant Types')]);
+                                echo $this->Form->input('applicant_type_id', ['options' => $applicantTypes, 'empty' => 'Select', 'class' => 'form-control applicantTypes', 'label' => __('Applicant Types')]);
 
-                                echo $this->Form->input('divisions', ['options' => $divisions, 'empty' => 'Select', 'class' => 'form-control division ', 'label' => __('Divisions')]);
+                                echo $this->Form->input('divsion_id', ['options' => $divisions, 'empty' => 'Select', 'class' => 'form-control division ', 'label' => __('Divisions')]);
                                 ?>
 
 
                                 <div class="hide district">
                                     <?php
-                                    echo $this->Form->input('districts', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  districts', 'label' => __('Districts')]);
+                                    echo $this->Form->input('district_id', [ 'empty' => 'Select', 'class' => 'form-control  districts', 'label' => __('Districts')]);
                                     ?>
                                 </div>
 
                                 <div class="hide upazila">
                                     <?php
-                                    echo $this->Form->input('upazilas', ['options' => [], 'empty' => 'Select', 'class' => 'form-control upazilas', 'label' => __('Upazilas')]);
+                                    echo $this->Form->input('upazila_id', [ 'empty' => 'Select', 'class' => 'form-control upazilas', 'label' => __('Upazilas')]);
                                     ?>
                                 </div>
 
 
                                 <div class="hide city_corporation">
                                     <?php
-                                    echo $this->Form->input('city_corporations', ['options' => [], 'empty' => 'Select', 'class' => 'form-control    city_corporations', 'label' => __('City_corporations')]);
+                                    echo $this->Form->input('city_corporation_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control    city_corporations', 'label' => __('City_corporations')]);
+                                    ?>
+                                </div>
+                                <div class="hide city_corporation_ward">
+                                    <?php
+                                    echo $this->Form->input('city_corporation_ward_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control city_corporation_wards', 'label' => __('City_corporation_wards')]);
+                                    ?>
+                                </div>
+                                <div class="hide municipal">
+                                    <?php
+                                    echo $this->Form->input('municipal_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control    municipals', 'label' => __('Municipals')]);
                                     ?>
                                 </div>
 
-                                <div class="hide municipal">
+                                <div class="hide municipal_ward">
                                     <?php
-                                    echo $this->Form->input('municipals', ['options' => [], 'empty' => 'Select', 'class' => 'form-control    municipals', 'label' => __('Municipals')]);
+                                    echo $this->Form->input('municipal_ward_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control municipal_wards', 'label' => __('Municipal_wards')]);
                                     ?>
                                 </div>
 
                                 <div class="hide union">
                                     <?php
-                                    echo $this->Form->input('unions', ['options' => [], 'empty' => 'Select', 'class' => 'form-control    unions', 'label' => __('Unions')]);
+                                    echo $this->Form->input('union_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control    unions', 'label' => __('Unions')]);
                                     ?>
                                 </div>
 
-                                <div class="hide">
+
+                                <div class="hide ward">
                                     <?php
-                                    echo $this->Form->input('city_corporation_wards', ['options' => [], 'empty' => 'Select', 'class' => 'form-control city_corporation_wards', 'label' => __('City_corporation_wards')]);
+                                    echo $this->Form->input('union_ward',['label' => __('Ward_name')]);
                                     ?>
                                 </div>
+
+
 
                             </div>
                             <div class="tab-pane" id="tab2">
@@ -109,49 +122,48 @@
                                 <h3 class="block"><?= __('Provide your profile details') ?></h3>
 
                                 <?php
-                                echo $this->Form->input('application_type_id', ['options' => $applicationTypes, 'empty' => 'Select', 'class' => 'form-control division ', 'label' => __('ApplicationTypes')]);
-                                echo $this->Form->input('applicant_name_bn',['required'=>'required']);
-                                echo $this->Form->input('applicant_name_en');
-                                echo $this->Form->input('mother_name_bn');
-                                echo $this->Form->input('mother_name_en');
-                                echo $this->Form->input('father_name_bn');
-                                echo $this->Form->input('father_name_en');
-                                echo $this->Form->input('phone');
-                                echo $this->Form->input('email');
-                                echo $this->Form->input('cellphone');
-                                echo $this->Form->input('nid');
-                                echo $this->Form->input('brn');
-                                echo $this->Form->input('religion');
-                                echo $this->Form->input('present_address');
-                                echo $this->Form->input('permanent_address');
-                                echo $this->Form->input('emergency_contact');
-                                echo $this->Form->input('nid');
+                                echo $this->Form->input('applicant_name_bn',['required'=>'required', 'label' => __('Applicant_name_bn')]);
+                                echo $this->Form->input('applicant_name_en',['label' => __('Applicant_name_en')]);
+                                echo $this->Form->input('mother_name_bn',['label' => __('Mother_name_bn')]);
+                                echo $this->Form->input('mother_name_en',['label' => __('Mother_name_en')]);
+                                echo $this->Form->input('father_name_bn',['label' => __('Father_name_bn')]);
+                                echo $this->Form->input('father_name_en',['label' => __('Father_name_en')]);
+                                echo $this->Form->input('phone',['label' => __('Phone')]);
+                                echo $this->Form->input('email',['label' => __('Email')]);
+                                echo $this->Form->input('cellphone',['label' => __('Cellphone')]);
+                                echo $this->Form->input('nid',['label' => __('Nid')]);
+                                echo $this->Form->input('brn',['label' => __('Brn')]);
+                                echo $this->Form->input('religion',['label' => __('Religion')]);
+                                echo $this->Form->input('present_address',['label' => __('Present_address')]);
+                                echo $this->Form->input('permanent_address',['label' => __('Permanent_address')]);
+                                echo $this->Form->input('emergency_contact',['label' => __('Emergency_contact')]);
                                 ?>
 
                             </div>
                             <div class="tab-pane" id="tab3">
                                 <h3 class="block"><?= __('Previous History')?></h3>
                                 <?php
-                                echo  $this->Form->input('application_reason');
+                                echo $this->Form->input('application_type_id', ['options' => $applicationTypes, 'empty' => 'Select', 'class' => 'form-control division ', 'label' => __('ApplicationTypes')]);
+                                echo  $this->Form->input('application_reason',['label' => __('Application_reason')]);
                                 echo  $this->Form->input('start_date',['type'=>'text','class'=>'form-control  datepicker','label'=>__('Start Date')]);
-                                echo  $this->Form->input('end_date');
-                                echo $this->Form->input('document_file',['type'=>'file']);
-                                echo $this->Form->input('is_foregin_tour',['type'=>'checkbox']);
+                                echo  $this->Form->input('end_date',['type'=>'text','class'=>'form-control  datepicker','label' => __('End date')]);
+                                echo $this->Form->input('document_file[]',['type'=>'file','multiple','label' => __('document_file')]);
+                                echo $this->Form->input('is_foregin_tour',['type'=>'checkbox','label' => __('is_foregin_tour')]);
                                 ?>
                                 <div class=" history" style="display: none">
                                     <?php
-                                    echo $this->Form->input('pasport_number');
-                                    echo $this->Form->input('applicant_using_passport_validity');
-                                    echo $this->Form->input('using_passport_issue_place');
-                                    echo $this->Form->input('foregin_tour_country');
+                                    echo $this->Form->input('pasport_number',['label' => __('pasport_number')]);
+                                    echo $this->Form->input('applicant_using_passport_validity',['label' => __('applicant_using_passport_validity')]);
+                                    echo $this->Form->input('using_passport_issue_place',['label' => __('using_passport_issue_place')]);
+                                    echo $this->Form->input('foregin_tour_country',['label' => __('foregin_tour_country')]);
 
-                                    echo $this->Form->input('have_foregin_tour',['type'=>'checkbox']);
+                                    echo $this->Form->input('have_foregin_tour',['type'=>'checkbox','label' => __('have_foregin_tour')]);
                                     ?>
                                     <div class="last_tour" style="display: none">
                                         <?php
-                                        echo $this->Form->input('last_foreign_tour_country');
-                                        echo $this->Form->input('last_foreign_tour_reason');
-                                        echo $this->Form->input('last_foreign_tour_time');
+                                        echo $this->Form->input('last_foreign_tour_country',['label' => __('last_foreign_tour_country')]);
+                                        echo $this->Form->input('last_foreign_tour_reason',['label' => __('last_foreign_tour_reason')]);
+                                        echo $this->Form->input('last_foreign_tour_time',['type'=>'text','class'=>'form-control  datepicker','label' => __('last_foreign_tour_time')]);
                                         ?>
                                     </div>
                                 </div>
@@ -162,125 +174,10 @@
 
                             </div>
                             <div class="tab-pane" id="tab4">
-                                <h3 class="block">Confirm your account</h3>
-                                <h4 class="form-section">Account</h4>
+                                <h3 class="block"><?= __('Confirm your account')?></h3>
+                                <h4 class="form-section"></h4>
 
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Username:</label>
 
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="username">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Email:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="email">
-                                        </p>
-                                    </div>
-                                </div>
-                                <h4 class="form-section">Profile</h4>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Fullname:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="fullname">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Gender:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="gender">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Phone:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="phone">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Address:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="address">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">City/Town:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="city">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Country:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="country">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Remarks:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="remarks">
-                                        </p>
-                                    </div>
-                                </div>
-                                <h4 class="form-section">Billing</h4>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Card Holder Name:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="card_name">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Card Number:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="card_number">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">CVC:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="card_cvc">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Expiration:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="card_expiry_date">
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Payment Options:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="payment[]">
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -308,9 +205,12 @@
 
 <script>
     $(document).ready(function () {
+        $('.datepicker').datepicker({
+            dateFormat: 'dd-mm-yy'
+        })
 
         $(document).on('change', '.division', function () {
-            $('#districts').html('');
+            $('.districts').html('');
             var obj = $(this);
 
             var applicantTypes_id = obj.closest('.tab-pane').find('.applicantTypes').val();
@@ -340,8 +240,8 @@
         });
 
 
-        $(document).on('change', '#districts', function () {
-            $('#upazilas').html('');
+        $(document).on('change', '.districts', function () {
+            $('.upazilas').html('');
             $('.city_corporations').html('');
             $('.municipals').html('');
             var obj = $(this);
@@ -407,12 +307,12 @@
             }
         });
 
-        $(document).on('change', '#upazilas', function () {
+        $(document).on('change', '.upazilas', function () {
             $('.unions').html('');
             var obj = $(this);
             var applicantTypes_id = obj.closest('#tab1').find('.applicantTypes option:selected').val();
 
-            var district_id = obj.closest('#tab1').find('#districts option:selected').val();
+            var district_id = obj.closest('#tab1').find('.districts option:selected').val();
 
             var upazila_id = $(this).val();
            if( applicantTypes_id>13){
@@ -433,6 +333,78 @@
                        console.log("error");
                    }
                });
+           }
+        });
+
+
+
+        $(document).on('change', '#city-corporation-id', function () {
+            $('.city_corporation_wards').html('');
+            var obj = $(this);
+            var applicantTypes_id = obj.closest('#tab1').find('.applicantTypes option:selected').val();
+
+            var district_id = obj.closest('#tab1').find(' .districts option:selected').val();
+
+            var city_corporation_id = $(this).val();
+           if( applicantTypes_id==9){
+               $.ajax({
+                   url: '<?= $this->Url->build('/CitizenCorner/ajax/get_city_corporation_wards')?>',
+                   type: 'POST',
+                   data: {city_corporation_id: city_corporation_id, district_id:district_id},
+
+                   success: function (data, status) {
+                       $('.city_corporation_ward').removeAttr('class', 'hide');
+                       data = JSON.parse(data);
+                       obj.closest('.tab-pane').find('.city_corporation_wards').append("<option ><?= __('select') ?></option>");
+                       $.each(data, function (key, value) {
+                           obj.closest('.tab-pane').find('.city_corporation_wards').append($("<option></option>").attr("value", key).text(value));
+                       });
+                   },
+                   error: function (xhr, desc, err) {
+                       console.log("error");
+                   }
+               });
+           }
+        });
+
+
+        $(document).on('change', '.municipals', function () {
+            $('.municipal_wards').html('');
+            var obj = $(this);
+            var applicantTypes_id = obj.closest('#tab1').find('.applicantTypes option:selected').val();
+
+            var district_id = obj.closest('#tab1').find(' .districts option:selected').val();
+
+            var municipal_id = $(this).val();
+           if( applicantTypes_id==12){
+               $.ajax({
+                   url: '<?= $this->Url->build('/CitizenCorner/ajax/get_municipal_wards')?>',
+                   type: 'POST',
+                   data: {municipal_id: municipal_id, district_id:district_id},
+
+                   success: function (data, status) {
+                       $('.municipal_ward').removeAttr('class', 'hide');
+                       data = JSON.parse(data);
+                       obj.closest('.tab-pane').find('.municipal_wards').append("<option ><?= __('select') ?></option>");
+                       $.each(data, function (key, value) {
+                           obj.closest('.tab-pane').find('.municipal_wards').append($("<option></option>").attr("value", key).text(value));
+                       });
+                   },
+                   error: function (xhr, desc, err) {
+                       console.log("error");
+                   }
+               });
+           }
+        });
+
+
+        $(document).on('change', '#union-id', function () {
+
+            var obj = $(this);
+            var applicantTypes_id = obj.closest('#tab1').find('.applicantTypes option:selected').val();
+
+           if( applicantTypes_id==15){
+               $('.ward').removeAttr('class', 'hide');
            }
         });
 

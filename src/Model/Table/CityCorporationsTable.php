@@ -26,7 +26,7 @@ class CityCorporationsTable extends Table
         parent::initialize($config);
 
         $this->table('city_corporations');
-        $this->displayField('rowid');
+        $this->displayField('citycorporationname');
         $this->primaryKey('rowid');
 
         $this->hasMany('Applications', [

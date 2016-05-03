@@ -73,4 +73,16 @@ class Application extends Entity
         'id' => false,
         'temporary_id' => false,
     ];
+
+//    protected function _setStartDate($start_date){
+//        return strtotime($this->start_date) ? strtotime($this->start_date) : 0;
+//    }
+//
+//    protected function _setEndDate($end_date){
+//        return strtotime($end_date) ? strtotime($end_date) : 0;
+//    }
+//
+//    protected function _setLastForeignTourTime($last_foreign_tour_time){
+//        return strtotime($last_foreign_tour_time) ? strtotime($last_foreign_tour_time) : 0;
+//    }
 }

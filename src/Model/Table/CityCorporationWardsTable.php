@@ -26,7 +26,7 @@ class CityCorporationWardsTable extends Table
         parent::initialize($config);
 
         $this->table('city_corporation_wards');
-        $this->displayField('rowid');
+        $this->displayField('wardname');
         $this->primaryKey('rowid');
 
         $this->hasMany('Applications', [

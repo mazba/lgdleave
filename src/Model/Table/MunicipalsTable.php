@@ -26,7 +26,7 @@ class MunicipalsTable extends Table
         parent::initialize($config);
 
         $this->table('municipals');
-        $this->displayField('rowid');
+        $this->displayField('municipalname');
         $this->primaryKey('rowid');
 
         $this->hasMany('Applications', [

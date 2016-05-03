@@ -26,7 +26,7 @@ class MunicipalWardsTable extends Table
         parent::initialize($config);
 
         $this->table('municipal_wards');
-        $this->displayField('rowid');
+        $this->displayField('wardname');
         $this->primaryKey('rowid');
 
         $this->hasMany('Applications', [
