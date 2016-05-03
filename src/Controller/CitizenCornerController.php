@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
+use Cake\Core\Exception\Exception;
+use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
 use Phinx\Config\Config;
 
@@ -39,47 +41,63 @@ class CitizenCornerController extends AppController
         $applcationFile = $this->ApplicationsFiles->newEntity();
 
         if ($this->request->is('post')) {
+
+
             try {
                 $data = $this->request->data;
-                $data['create_time'] = $time;
-                $data['submission_time'] = $time;
-                $data['temporary_id'] = 63;
-                $data['status'] = Configure::read('application_status.Pending');
-                $data['start_date'] = strtotime($data['start_date']);
-                $data['end_date'] = strtotime($data['end_date']);
-                $data['last_foreign_tour_time'] = $data['last_foreign_tour_time'] ? strtotime($data['last_foreign_tour_time']) : 0;
-                $files = $data['document_file'];
-                unset($data['document_file']);
-                $applications = $this->Applications->patchEntity($applications, $data);
-                if ($this->Applications->save($applications)) {
-                    //
-                    $fileTable = TableRegistry::get('applications_files');
-                    foreach ($files as $file) {
-                        $result = $this->FileUpload->upload_file($file, 'u_load/application_file', ['jpg', 'png']);
-                        if ($result['status'] === true) {
-                            $fileEntity = $fileTable->newEntity();
+                $conn = ConnectionManager::get('default');
+                $conn->transactional(function () use ($data, $applications, $time) {
+                    $data['create_time'] = $time;
+                    $data['submission_time'] = $time;
+                    $data['temporary_id'] = 63;
+                    $data['status'] = Configure::read('application_status.Pending');
+                    $data['start_date'] = strtotime($data['start_date']);
+                    $data['end_date'] = strtotime($data['end_date']);
+                    $data['last_foreign_tour_time'] = $data['last_foreign_tour_time'] ? strtotime($data['last_foreign_tour_time']) : 0;
+                    $files = $data['document_file'];
+                    unset($data['document_file']);
+                    $applications = $this->Applications->patchEntity($applications, $data);
+                    if ($this->Applications->save($applications)) {
+                        //
+                        $fileTable = TableRegistry::get('applications_files');
 
-                            $fileEntity->file = $result['file_path'];
-                            $fileEntity->application_id = $applications['id'];
-//                        print_r($fileEntity);die;
-                            $fileTable->save($fileEntity);
-                        } else {
-                            return false;
+                        if(is_array($files)){
+                        foreach ($files as $file) {
+                            $result = $this->FileUpload->upload_file($file, 'u_load/application_file', ['jpg', 'png']);
+                            if ($result['status'] === true) {
+                                $fileEntity = $fileTable->newEntity();
+                                $fileEntity->file = $result['file_path'];
+                                $fileEntity->application_id = $applications['id'];
+                                $fileTable->save($fileEntity);
+                            } else {
+                                throw new Exception('error');
+                            }
+                        }}else{
+                            $result = $this->FileUpload->upload_file($files, 'u_load/application_file', ['jpg', 'png']);
+                            if ($result['status'] === true) {
+                                $fileEntity = $fileTable->newEntity();
+                                $fileEntity->file = $result['file_path'];
+                                $fileEntity->application_id = $applications['id'];
+                                $fileTable->save($fileEntity);
+                            } else {
+                                throw new Exception('error');
+                            }
                         }
+                    } else {
+                        throw  new Exception('error');
                     }
-                    $this->Flash->success(__('The citizen corner has been saved.'));
-                    return $this->redirect(['action' => 'index']);
-                } else {
-                    $this->Flash->error(__('The citizen corner could not be saved. Please, try again.'));
-                }
+                });
+                $this->Flash->success(__('The citizen corner has been saved.'));
+                return $this->redirect(['action' => 'index']);
 
             } catch (\Exception $e) {
-                $this->Flash->error('The Application could not be saved. Please, try again.');
+                $this->Flash->error(__('The citizen corner could not be saved. Please, try again.'));
             }
         }
 
 
        // $applicantTypes = $this->ApplicantTypes->find('list', ['conditions' => ['status' => 1]]);
+        $applicationTypes =  $this->ApplicationTypes->find('list', ['conditions'=>['status'=>1]]);
         $locationTypes = $this->LocationTypes->find('list', ['conditions' => ['status' => 1]]);
         $divisions = $this->AreaDivisions->find('list');
 
