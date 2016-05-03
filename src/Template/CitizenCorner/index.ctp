@@ -63,11 +63,20 @@ $religions = \Cake\Core\Configure::read('religions');
                             <div class="tab-pane active" id="tab1">
                                 <h3 class="block"><?= __('Basic Info') ?></h3>
 
-                                <?php
-                                echo $this->Form->input('applicant_type_id', ['options' => $applicantTypes, 'empty' => 'Select', 'class' => 'form-control applicantTypes', 'label' => __('Applicant Types')]);
 
-                                echo $this->Form->input('divsion_id', ['options' => $divisions, 'empty' => 'Select', 'class' => 'form-control division ', 'label' => __('Divisions')]);
-                                ?>
+                                    <?php
+                                    echo $this->Form->input('location_type_id', ['options'=>$locationTypes, 'empty' => 'Select', 'class' => 'form-control  location_type', 'label' => __('Location_type')]);
+                                    ?>
+
+                                <div class="hide applicant_type">
+                                    <?php
+                                    echo $this->Form->input('applicant_type_id', [ 'empty' => 'Select', 'class' => 'form-control applicantTypes', 'label' => __('Applicant Types')]);
+
+                                    echo $this->Form->input('divsion_id', ['options' => $divisions, 'empty' => 'Select', 'class' => 'form-control division ', 'label' => __('Divisions')]);
+                                    ?>
+                                </div>
+
+
 
 
                                 <div class="hide district">
@@ -75,6 +84,9 @@ $religions = \Cake\Core\Configure::read('religions');
                                     echo $this->Form->input('district_id', [ 'empty' => 'Select', 'class' => 'form-control  districts', 'label' => __('Districts')]);
                                     ?>
                                 </div>
+
+
+
 
                                 <div class="hide upazila">
                                     <?php
@@ -217,6 +229,32 @@ $religions = \Cake\Core\Configure::read('religions');
         $('.datepicker').datepicker({
             dateFormat: 'dd-mm-yy'
         })
+
+        $(document).on('change', '.location_type', function () {
+
+            $('.applicantTypes').html('');
+            var obj = $(this);
+            var location_type_id = $(this).val();
+
+                $.ajax({
+                    url: '<?= $this->Url->build('/CitizenCorner/ajax/get_applicantTypes')?>',
+                    type: 'POST',
+                    data: {location_type_id: location_type_id},
+
+                    success: function (data, status) {
+                        $('.applicant_type').removeAttr('class', 'hide');
+                        data = JSON.parse(data);
+                        obj.closest('.tab-pane').find('.applicantTypes').append("<option ><?= __('select') ?></option>");
+                        $.each(data, function (key, value) {
+                            obj.closest('.tab-pane').find('.applicantTypes').append($("<option></option>").attr("value", key).text(value));
+                        });
+                    },
+                    error: function (xhr, desc, err) {
+                        console.log("error");
+                    }
+                });
+
+        });
 
         $(document).on('change', '.division', function () {
             $('.districts').html('');

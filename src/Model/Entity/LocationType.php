@@ -4,13 +4,12 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * ApplicantType Entity.
+ * LocationType Entity.
  *
  * @property int $id
- * @property int $type
- * @property int $order
  * @property string $title_bn
  * @property string $title_en
+ * @property string $code_format
  * @property string $description
  * @property int $status
  * @property int $create_time
@@ -18,8 +17,9 @@ use Cake\ORM\Entity;
  * @property int $create_by
  * @property int $update_by
  * @property \App\Model\Entity\Application[] $applications
+ * @property \App\Model\Entity\ApplicationsCopy[] $applications_copy
  */
-class ApplicantType extends Entity
+class LocationType extends Entity
 {
 
     /**

@@ -27,60 +27,63 @@ class CitizenCornerController extends AppController
      */
     public function index()
     {
-        $this->loadModel('ApplicantTypes');
+        $this->loadModel('LocationTypes');
         $this->loadModel('AreaDivisions');
         $this->loadModel('Applications');
         $this->loadModel('ApplicationTypes');
         $this->loadModel('ApplicationsFiles');
 
-        $time=time();
+        $time = time();
 
         $applications = $this->Applications->newEntity();
         $applcationFile = $this->ApplicationsFiles->newEntity();
 
         if ($this->request->is('post')) {
+            try {
+                $data = $this->request->data;
+                $data['create_time'] = $time;
+                $data['submission_time'] = $time;
+                $data['temporary_id'] = 63;
+                $data['status'] = Configure::read('application_status.Pending');
+                $data['start_date'] = strtotime($data['start_date']);
+                $data['end_date'] = strtotime($data['end_date']);
+                $data['last_foreign_tour_time'] = $data['last_foreign_tour_time'] ? strtotime($data['last_foreign_tour_time']) : 0;
+                $files = $data['document_file'];
+                unset($data['document_file']);
+                $applications = $this->Applications->patchEntity($applications, $data);
+                if ($this->Applications->save($applications)) {
+                    //
+                    $fileTable = TableRegistry::get('applications_files');
+                    foreach ($files as $file) {
+                        $result = $this->FileUpload->upload_file($file, 'u_load/application_file', ['jpg', 'png']);
+                        if ($result['status'] === true) {
+                            $fileEntity = $fileTable->newEntity();
 
-          $data=  $this->request->data;
-            $data['create_time']=$time;
-            $data['submission_time']=$time;
-            $data['temporary_id']=63;
-            $data['status']=Configure::read('application_status.Pending');
-            $data['start_date']=strtotime($data['start_date']);
-            $data['end_date']=strtotime($data['end_date']);
-            $data['last_foreign_tour_time']=  $data['last_foreign_tour_time']? strtotime($data['last_foreign_tour_time']): 0;
-            $files = $data['document_file'];
-            unset($data['document_file']);
-            $applications = $this->Applications->patchEntity($applications,$data);
-            if ($this->Applications->save($applications)) {
-                //
-                $fileTable = TableRegistry::get('applications_files');
-               foreach($files as  $file){
-                   $result= $this->FileUpload->upload_file($file, 'u_load/application_file', ['jpg', 'png']);
-                   if ($result['status'] === true) {
-                       $fileEntity = $fileTable->newEntity();
-
-                       $fileEntity->file = $result['file_path'];
-                       $fileEntity->application_id = $applications['id'];
+                            $fileEntity->file = $result['file_path'];
+                            $fileEntity->application_id = $applications['id'];
 //                        print_r($fileEntity);die;
-                       $fileTable->save($fileEntity);
-                   } else {
-                       return false;
-                   }
-               }
-                $this->Flash->success(__('The citizen corner has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The citizen corner could not be saved. Please, try again.'));
+                            $fileTable->save($fileEntity);
+                        } else {
+                            return false;
+                        }
+                    }
+                    $this->Flash->success(__('The citizen corner has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                    $this->Flash->error(__('The citizen corner could not be saved. Please, try again.'));
+                }
+
+            } catch (\Exception $e) {
+                $this->Flash->error('The Application could not be saved. Please, try again.');
             }
         }
 
 
+       // $applicantTypes = $this->ApplicantTypes->find('list', ['conditions' => ['status' => 1]]);
+        $locationTypes = $this->LocationTypes->find('list', ['conditions' => ['status' => 1]]);
+        $divisions = $this->AreaDivisions->find('list');
 
-        $applicantTypes =  $this->ApplicantTypes->find('list', ['conditions'=>['status'=>1]]);
-        $applicationTypes =  $this->ApplicationTypes->find('list', ['conditions'=>['status'=>1]]);
-        $divisions =  $this->AreaDivisions->find('list');
-
-        $this->set(compact('applicantTypes','applicationTypes','divisions','applications'));
+        $this->set(compact('locationTypes', 'applicationTypes', 'divisions', 'applications'));
         $this->viewBuilder()->layout('citizen_corner');
     }
 
@@ -121,30 +124,7 @@ class CitizenCornerController extends AppController
         $this->set('_serialize', ['citizenCorner']);
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Citizen Corner id.
-     * @return void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $citizenCorner = $this->CitizenCorner->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $citizenCorner = $this->CitizenCorner->patchEntity($citizenCorner, $this->request->data);
-            if ($this->CitizenCorner->save($citizenCorner)) {
-                $this->Flash->success(__('The citizen corner has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The citizen corner could not be saved. Please, try again.'));
-            }
-        }
-        $this->set(compact('citizenCorner'));
-        $this->set('_serialize', ['citizenCorner']);
-    }
+
 
     /**
      * Delete method
@@ -165,88 +145,85 @@ class CitizenCornerController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function ajax($action=null){
-        if($action=='get_districts'){
+
+    public function ajax($action = null)
+    {
+        if ($action == 'get_applicantTypes') {
+
+            $location_type_id = $this->request->data('location_type_id');
+            $this->loadModel('ApplicantTypes');
+            $application_types = $this->ApplicantTypes->find('list')
+                                                                    ->where(['type' => $location_type_id,'status'=>1])
+                                                                    ->toArray();
+            $this->response->body(json_encode($application_types));
+            return $this->response;
+        }  elseif ($action == 'get_districts') {
 
             $division_id = $this->request->data('division_id');
 
             $this->loadModel('AreaDistricts');
-            $districts = $this->AreaDistricts->find('list', ['conditions'=>['divid'=>$division_id]])->toArray();
+            $districts = $this->AreaDistricts->find('list', ['conditions' => ['divid' => $division_id]])->toArray();
 
             $this->response->body(json_encode($districts));
             return $this->response;
-        }
-
-        elseif($action=='get_upazilas')
-        {
+        } elseif ($action == 'get_upazilas') {
             $district_id = $this->request->data('district_id');
             $this->loadModel('AreaUpazilas');
-            $upazilas = $this->AreaUpazilas->find('list',['keyField'=>'upazilaid','keyValue'=>'upazilaname'])
-                ->where(['zillaid'=>$district_id])
+            $upazilas = $this->AreaUpazilas->find('list', ['keyField' => 'upazilaid', 'keyValue' => 'upazilaname'])
+                ->where(['zillaid' => $district_id])
                 ->toArray();
 
             $this->response->body(json_encode($upazilas));
             return $this->response;
-        }
-        elseif($action=='get_city_corporations')
-        {
+        } elseif ($action == 'get_city_corporations') {
             $district_id = $this->request->data('district_id');
             $this->loadModel('CityCorporations');
-            $cityCorporations = $this->CityCorporations->find('list',['keyField'=>'citycorporationid','keyValue'=>'citycorporationname'])
-                ->where(['zillaid'=>$district_id])
+            $cityCorporations = $this->CityCorporations->find('list', ['keyField' => 'citycorporationid', 'keyValue' => 'citycorporationname'])
+                ->where(['zillaid' => $district_id])
                 ->toArray();
 
             $this->response->body(json_encode($cityCorporations));
             return $this->response;
 
-        } elseif($action=='get_municipals')
-        {
+        } elseif ($action == 'get_municipals') {
             $district_id = $this->request->data('district_id');
             $this->loadModel('Municipals');
-            $municipals = $this->Municipals->find('list',['keyField'=>'municipalid','keyValue'=>'municipalname'])
-                ->where(['zillaid'=>$district_id])
+            $municipals = $this->Municipals->find('list', ['keyField' => 'municipalid', 'keyValue' => 'municipalname'])
+                ->where(['zillaid' => $district_id])
                 ->toArray();
 
             $this->response->body(json_encode($municipals));
             return $this->response;
-        }
-        elseif($action=='get_unions')
-        {
+        } elseif ($action == 'get_unions') {
             $district_id = $this->request->data('district_id');
             $upazila_id = $this->request->data('upazila_id');
 
             $this->loadModel('Unions');
-            $unions = $this->Unions->find('list',['conditions'=>['upazilaid'=>$upazila_id,'zillaid'=>$district_id]])->toArray();
+            $unions = $this->Unions->find('list', ['conditions' => ['upazilaid' => $upazila_id, 'zillaid' => $district_id]])->toArray();
 
             $this->response->body(json_encode($unions));
             return $this->response;
-        }
-
-        elseif($action=='get_city_corporation_wards')
-        {
+        } elseif ($action == 'get_city_corporation_wards') {
             $district_id = $this->request->data('district_id');
             $city_corporation_id = $this->request->data('city_corporation_id');
 
             $this->loadModel('CityCorporationWards');
 
-            $cityCorporationWards = $this->CityCorporationWards->find('list',['keyField'=>'citycorporationwardid','keyValue'=>'wardname'])
-                -> where(['zillaid'=>$district_id,'citycorporationid'=>$city_corporation_id])
+            $cityCorporationWards = $this->CityCorporationWards->find('list', ['keyField' => 'citycorporationwardid', 'keyValue' => 'wardname'])
+                ->where(['zillaid' => $district_id, 'citycorporationid' => $city_corporation_id])
                 ->toArray();
 
 
             $this->response->body(json_encode($cityCorporationWards));
             return $this->response;
-        }
-
-        elseif($action=='get_municipal_wards')
-        {
+        } elseif ($action == 'get_municipal_wards') {
             $district_id = $this->request->data('district_id');
             $municipal_id = $this->request->data('municipal_id');
 
             $this->loadModel('MunicipalWards');
 
-            $municipalWards = $this->MunicipalWards->find('list',['keyField'=>'wardid','keyValue'=>'wardname'])
-                -> where(['zillaid'=>$district_id,'municipalid'=>$municipal_id])
+            $municipalWards = $this->MunicipalWards->find('list', ['keyField' => 'wardid', 'keyValue' => 'wardname'])
+                ->where(['zillaid' => $district_id, 'municipalid' => $municipal_id])
                 ->toArray();
 
             $this->response->body(json_encode($municipalWards));

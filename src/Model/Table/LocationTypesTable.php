@@ -1,19 +1,19 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\ApplicantType;
+use App\Model\Entity\LocationType;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * ApplicantTypes Model
+ * LocationTypes Model
  *
  * @property \Cake\ORM\Association\HasMany $Applications
  * @property \Cake\ORM\Association\HasMany $ApplicationsCopy
  */
-class ApplicantTypesTable extends Table
+class LocationTypesTable extends Table
 {
 
     /**
@@ -26,15 +26,15 @@ class ApplicantTypesTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('applicant_types');
+        $this->table('location_types');
         $this->displayField('title_bn');
         $this->primaryKey('id');
 
         $this->hasMany('Applications', [
-            'foreignKey' => 'applicant_type_id'
+            'foreignKey' => 'location_type_id'
         ]);
         $this->hasMany('ApplicationsCopy', [
-            'foreignKey' => 'applicant_type_id'
+            'foreignKey' => 'location_type_id'
         ]);
     }
 
@@ -51,20 +51,15 @@ class ApplicantTypesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->add('type', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('type', 'create')
-            ->notEmpty('type');
-
-        $validator
-            ->add('order', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('order');
-
-        $validator
             ->requirePresence('title_bn', 'create')
             ->notEmpty('title_bn');
 
         $validator
             ->allowEmpty('title_en');
+
+        $validator
+            ->requirePresence('code_format', 'create')
+            ->notEmpty('code_format');
 
         $validator
             ->allowEmpty('description');
