@@ -52,20 +52,24 @@ class ApplicantTypesOfficeUnitsController extends AppController
      */
     public function assign($id = null)
     {
-        $applicantTypesOfficeUnit = $this->ApplicantTypesOfficeUnits->find()
-            ;
+
+        $old_types = $this->ApplicantTypesOfficeUnits->find()
+            ->where(['office_unit_id'=>$id]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $applicantTypesOfficeUnit = $this->ApplicantTypesOfficeUnits->patchEntity($applicantTypesOfficeUnit, $this->request->data);
-            if ($this->ApplicantTypesOfficeUnits->save($applicantTypesOfficeUnit)) {
-                $this->Flash->success(__('The applicant types office unit has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The applicant types office unit could not be saved. Please, try again.'));
+            $inputs = $this->request->data;
+            $arrange_data=[];
+            foreach($inputs['application_types'] as $input){
+                $ApplicantTypesOfficeUnits=$this->ApplicantTypesOfficeUnits->newEntity();
+                $ApplicantTypesOfficeUnits->applicant_type_id=$input;
+                $ApplicantTypesOfficeUnits->office_unit_id=$id;
+                if ($this->ApplicantTypesOfficeUnits->save($ApplicantTypesOfficeUnits));
             }
+            $this->Flash->success('The Data has been saved.');
+            return $this->redirect(['action' => 'index']);
         }
-        $applicantTypes = $this->ApplicantTypesOfficeUnits->ApplicantTypes->find('list', ['limit' => 200]);
-        $officeUnits = $this->ApplicantTypesOfficeUnits->OfficeUnits->find('list', ['limit' => 200]);
-        $this->set(compact('applicantTypesOfficeUnit', 'applicantTypes', 'officeUnits'));
+        $applicantTypes = $this->ApplicantTypesOfficeUnits->ApplicantTypes->find();
+        $OfficeUnit = $this->ApplicantTypesOfficeUnits->OfficeUnits->get($id);
+        $this->set(compact('old_types', 'applicantTypes','OfficeUnit'));
         $this->set('_serialize', ['applicantTypesOfficeUnit']);
     }
 }

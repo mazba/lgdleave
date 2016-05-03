@@ -1,29 +1,52 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $applicantTypesOfficeUnit->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $applicantTypesOfficeUnit->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Applicant Types Office Units'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Applicant Types'), ['controller' => 'ApplicantTypes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Applicant Type'), ['controller' => 'ApplicantTypes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Office Units'), ['controller' => 'OfficeUnits', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Office Unit'), ['controller' => 'OfficeUnits', 'action' => 'add']) ?></li>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="<?= $this->Url->build(('/Dashboard'), true); ?>"><?= __('Dashboard') ?></a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li><?= __('Assign Application Types') ?></li>
+
     </ul>
-</nav>
-<div class="applicantTypesOfficeUnits form large-9 medium-8 columns content">
-    <?= $this->Form->create($applicantTypesOfficeUnit) ?>
-    <fieldset>
-        <legend><?= __('Edit Applicant Types Office Unit') ?></legend>
-        <?php
-            echo $this->Form->input('applicant_type_id', ['options' => $applicantTypes]);
-            echo $this->Form->input('office_unit_id', ['options' => $officeUnits]);
-            echo $this->Form->input('status');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN BORDERED TABLE PORTLET-->
+        <div class="portlet box blue-hoki">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Assign Application Type') ?>
+                </div>
+                <div class="tools">
+                    <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <?= $this->Form->create(null,['class' => 'form-horizontal','role'=>'form']) ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 style="text-align: center"><?php echo $OfficeUnit['name_bn']; ?></h1>
+                    </div>
+                    <div class="col-md-12">
+                        <?php
+                        foreach($applicantTypes as $applicantType){
+                            ?>
+                            <div class="col-md-3" style="margin: 10px">
+                            <span class="label label-info" style="font-size: 18px"><input name="application_types[]" type="checkbox" value="<?php echo $applicantType['id']; ?>"/><?php echo $applicantType['title_bn']; ?></span>
+
+                            </div>
+                            <?php
+                        }
+
+                        ?>
+                        <?= $this->Form->button(__('Submit'),['class'=>'btn blue pull-right','style'=>'margin-top:20px']) ?>
+                    </div>
+                </div>
+                <?= $this->Form->end() ?>
+            </div>
+        </div>
+        <!-- END BORDERED TABLE PORTLET-->
+    </div>
+</div>
+

@@ -41,8 +41,8 @@ $status = \Cake\Core\Configure::read('status_options');
                                 <td>-</td>
                                 <td class="actions">
                                     <?php
-                                    echo $this->Html->link(__('Assign'), ['action' => 'edit', $unit->id], ['class' => 'btn btn-sm btn-danger']);
-                                    echo $this->Html->link(__('View'), ['assign' => 'view', $unit->id], ['class' => 'btn btn-sm btn-success']);
+                                    echo $this->Html->link(__('Assign'), ['action' => 'assign', $unit->id], ['class' => 'btn btn-sm btn-danger']);
+                                    echo $this->Html->link(__('View'), ['action' => 'view', $unit->id], ['class' => 'btn btn-sm btn-success']);
                                     ?>
 
                                 </td>
