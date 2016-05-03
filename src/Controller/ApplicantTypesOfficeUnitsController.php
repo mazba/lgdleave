@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Collection\Collection;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -36,10 +37,10 @@ class ApplicantTypesOfficeUnitsController extends AppController
      */
     public function view($id = null)
     {
-        $applicantTypesOfficeUnit = $this->ApplicantTypesOfficeUnits->get($id, [
-            'contain' => ['ApplicantTypes', 'OfficeUnits']
-        ]);
-        $this->set('applicantTypesOfficeUnit', $applicantTypesOfficeUnit);
+        $ApplicantTypesOfficeUnits = $this->ApplicantTypesOfficeUnits->find()
+            ->where(['office_unit_id'=>$id])
+            ->contain(['ApplicantTypes','OfficeUnits']);
+        $this->set('applicantTypesOfficeUnit', $ApplicantTypesOfficeUnits);
         $this->set('_serialize', ['applicantTypesOfficeUnit']);
     }
 
@@ -52,12 +53,18 @@ class ApplicantTypesOfficeUnitsController extends AppController
      */
     public function assign($id = null)
     {
-
         $old_types = $this->ApplicantTypesOfficeUnits->find()
             ->where(['office_unit_id'=>$id]);
+        if($old_types) {
+            $collection = new Collection($old_types);
+            $old_types = $collection->extract('applicant_type_id');
+            $old_types = $old_types->toArray();
+        }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $inputs = $this->request->data;
-            $arrange_data=[];
+            //delete old data
+            $this->ApplicantTypesOfficeUnits->deleteAllByUnit($id);
+            //insert new data
             foreach($inputs['application_types'] as $input){
                 $ApplicantTypesOfficeUnits=$this->ApplicantTypesOfficeUnits->newEntity();
                 $ApplicantTypesOfficeUnits->applicant_type_id=$input;

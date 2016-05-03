@@ -72,4 +72,11 @@ class ApplicantTypesOfficeUnitsTable extends Table
         $rules->add($rules->existsIn(['office_unit_id'], 'OfficeUnits'));
         return $rules;
     }
+    /*
+     * created by mazba
+     *delete all by unit id
+     */
+    public function deleteAllByUnit($id){
+        return $this->deleteAll(['office_unit_id'=>$id]);
+    }
 }

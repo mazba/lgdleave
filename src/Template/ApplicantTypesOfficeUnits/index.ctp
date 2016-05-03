@@ -29,7 +29,7 @@ $status = \Cake\Core\Configure::read('status_options');
                         <tr>
                             <th><?= __('Sl. No.') ?></th>
                             <th><?= __('Units') ?></th>
-                            <th><?= __('No of Applicant Type') ?></th>
+
                             <th><?= __('Actions') ?></th>
                         </tr>
                         </thead>
@@ -38,7 +38,7 @@ $status = \Cake\Core\Configure::read('status_options');
                             <tr>
                                 <td><?= $this->Number->format($key + 1) ?></td>
                                 <td><?= $unit['name_bn'] ?></td>
-                                <td>-</td>
+                                
                                 <td class="actions">
                                     <?php
                                     echo $this->Html->link(__('Assign'), ['action' => 'assign', $unit->id], ['class' => 'btn btn-sm btn-danger']);

@@ -33,7 +33,7 @@
                         foreach($applicantTypes as $applicantType){
                             ?>
                             <div class="col-md-3" style="margin: 10px">
-                            <span class="label label-info" style="font-size: 18px"><input name="application_types[]" type="checkbox" value="<?php echo $applicantType['id']; ?>"/><?php echo $applicantType['title_bn']; ?></span>
+                            <span class="label label-info" style="font-size: 18px"><input name="application_types[]" type="checkbox" <?php echo in_array($applicantType['id'],$old_types)?'checked':''; ?> value="<?php echo $applicantType['id']; ?>"/><?php echo $applicantType['title_bn']; ?></span>
 
                             </div>
                             <?php
