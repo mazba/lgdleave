@@ -38,13 +38,12 @@ $status = \Cake\Core\Configure::read('status_options');
                             <tr>
                                 <td><?= $this->Number->format($key + 1) ?></td>
                                 <td><?= $unit['name_bn'] ?></td>
-                                
+
                                 <td class="actions">
                                     <?php
                                     echo $this->Html->link(__('Assign'), ['action' => 'assign', $unit->id], ['class' => 'btn btn-sm btn-danger']);
                                     echo $this->Html->link(__('View'), ['action' => 'view', $unit->id], ['class' => 'btn btn-sm btn-success']);
                                     ?>
-
                                 </td>
                             </tr>
 
