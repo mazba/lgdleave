@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
+use Cake\ORM\TableRegistry;
 use Phinx\Config\Config;
 
 /**
@@ -30,17 +31,16 @@ class CitizenCornerController extends AppController
         $this->loadModel('AreaDivisions');
         $this->loadModel('Applications');
         $this->loadModel('ApplicationTypes');
+        $this->loadModel('ApplicationsFiles');
 
         $time=time();
 
         $applications = $this->Applications->newEntity();
+        $applcationFile = $this->ApplicationsFiles->newEntity();
 
         if ($this->request->is('post')) {
 
           $data=  $this->request->data;
-
-            print_r($data['document_file']);die();
-
             $data['create_time']=$time;
             $data['submission_time']=$time;
             $data['temporary_id']=63;
@@ -48,30 +48,30 @@ class CitizenCornerController extends AppController
             $data['start_date']=strtotime($data['start_date']);
             $data['end_date']=strtotime($data['end_date']);
             $data['last_foreign_tour_time']=  $data['last_foreign_tour_time']? strtotime($data['last_foreign_tour_time']): 0;
-
-
-
+            $files = $data['document_file'];
+            unset($data['document_file']);
             $applications = $this->Applications->patchEntity($applications,$data);
+            if ($this->Applications->save($applications)) {
+                //
+                $fileTable = TableRegistry::get('applications_files');
+               foreach($files as  $file){
+                   $result= $this->FileUpload->upload_file($file, 'u_load/application_file', ['jpg', 'png']);
+                   if ($result['status'] === true) {
+                       $fileEntity = $fileTable->newEntity();
 
-
-            if ($data['application_id']= $this->Applications->save($applications)) {
+                       $fileEntity->file = $result['file_path'];
+                       $fileEntity->application_id = $applications['id'];
+//                        print_r($fileEntity);die;
+                       $fileTable->save($fileEntity);
+                   } else {
+                       return false;
+                   }
+               }
                 $this->Flash->success(__('The citizen corner has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The citizen corner could not be saved. Please, try again.'));
             }
-
-
-             $this->FileUpload->upload_file($data[''], 'u_load/application_file', ['jpg', 'png']);
-            if ($result['status']) {
-                $data['picture_file'] = $result['file_path'];
-            } else {
-                if (isset($result['message'])) {
-                    $this->Flash->error($result['message']);
-                    return false;
-                }
-            }
-
         }
 
 

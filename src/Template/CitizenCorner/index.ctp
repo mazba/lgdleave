@@ -1,3 +1,8 @@
+<?php
+use Cake\Core\Configure;
+$religions = \Cake\Core\Configure::read('religions');
+?>
+
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -133,9 +138,13 @@
                                 echo $this->Form->input('cellphone',['label' => __('Cellphone')]);
                                 echo $this->Form->input('nid',['label' => __('Nid')]);
                                 echo $this->Form->input('brn',['label' => __('Brn')]);
-                                echo $this->Form->input('religion',['label' => __('Religion')]);
-                                echo $this->Form->input('present_address',['label' => __('Present_address')]);
-                                echo $this->Form->input('permanent_address',['label' => __('Permanent_address')]);
+
+                                echo $this->Form->input('religion',['options'=>$religions,'class'=>'form-control','label'=>__('Religion')]);
+
+
+
+                                echo $this->Form->input('present_address', ['type' => 'textarea', 'escape' => false,'label' => __('Present_address')]);
+                                echo $this->Form->input('permanent_address',['type' => 'textarea', 'escape' => false,'label' => __('Permanent_address')]);
                                 echo $this->Form->input('emergency_contact',['label' => __('Emergency_contact')]);
                                 ?>
 

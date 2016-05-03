@@ -82,131 +82,131 @@ class ApplicationsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-//        $validator
-//            ->add('id', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('id', 'create');
-//
-//        $validator
-//            ->add('submission_time', 'valid', ['rule' => 'numeric'])
-//            ->requirePresence('submission_time', 'create')
-//            ->notEmpty('submission_time');
-//
-//        $validator
-//            ->requirePresence('applicant_name_bn', 'create')
-//            ->notEmpty('applicant_name_bn');
-//
-//        $validator
-//            ->requirePresence('applicant_name_en', 'create')
-//            ->notEmpty('applicant_name_en');
-//
-//        $validator
-//            ->requirePresence('mother_name_bn', 'create')
-//            ->notEmpty('mother_name_bn');
-//
-//        $validator
-//            ->requirePresence('mother_name_en', 'create')
-//            ->notEmpty('mother_name_en');
-//
-//        $validator
-//            ->requirePresence('father_name_bn', 'create')
-//            ->notEmpty('father_name_bn');
-//
-//        $validator
-//            ->requirePresence('father_name_en', 'create')
-//            ->notEmpty('father_name_en');
-//
-//        $validator
-//            ->allowEmpty('phone');
-//
-//        $validator
-//            ->add('email', 'valid', ['rule' => 'email'])
-//            ->allowEmpty('email');
-//
-//        $validator
-//            ->allowEmpty('cellphone');
-//
-//        $validator
-//            ->allowEmpty('nid');
-//
-//        $validator
-//            ->allowEmpty('brn');
-//
-//        $validator
-//            ->add('religion', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('religion');
-//
-//        $validator
-//            ->allowEmpty('present_address');
-//
-//        $validator
-//            ->allowEmpty('permanent_address');
-//
-//        $validator
-//            ->allowEmpty('emergency_contact');
-//
-//        $validator
-//            ->add('is_foregin_tour', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('is_foregin_tour');
-//
-//        $validator
-//            ->allowEmpty('pasport_number');
-//
-//        $validator
-//            ->add('applicant_using_passport_validity', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('applicant_using_passport_validity');
-//
-//        $validator
-//            ->allowEmpty('using_passport_issue_place');
-//
-//        $validator
-//            ->allowEmpty('foregin_tour_country');
-//
-//        $validator
-//            ->add('have_foregin_tour', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('have_foregin_tour');
-//
-//        $validator
-//            ->allowEmpty('last_foreign_tour_country');
-//
-//        $validator
-//            ->allowEmpty('last_foreign_tour_reason');
-//
-//        $validator
-//            ->add('last_foreign_tour_time', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('last_foreign_tour_time');
-//
-//        $validator
-//            ->allowEmpty('application_reason');
-//
-//        $validator
-//            ->add('start_date', 'valid', ['rule' => 'numeric'])
-//            ->requirePresence('start_date', 'create')
-//            ->notEmpty('start_date');
-//
-//        $validator
-//            ->add('end_date', 'valid', ['rule' => 'numeric'])
-//            ->requirePresence('end_date', 'create')
-//            ->notEmpty('end_date');
-//
-//        $validator
-//            ->add('status', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('status');
-//
-//        $validator
-//            ->add('create_time', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('create_time');
-//
-//        $validator
-//            ->add('update_time', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('update_time');
-//
-//        $validator
-//            ->add('create_by', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('create_by');
-//
-//        $validator
-//            ->add('update_by', 'valid', ['rule' => 'numeric'])
-//            ->allowEmpty('update_by');
+        $validator
+            ->add('id', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('id', 'create');
+
+        $validator
+            ->add('submission_time', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('submission_time', 'create')
+            ->notEmpty('submission_time');
+
+        $validator
+            ->requirePresence('applicant_name_bn', 'create')
+            ->notEmpty('applicant_name_bn');
+
+        $validator
+            ->requirePresence('applicant_name_en', 'create')
+            ->notEmpty('applicant_name_en');
+
+        $validator
+            ->requirePresence('mother_name_bn', 'create')
+            ->notEmpty('mother_name_bn');
+
+        $validator
+            ->requirePresence('mother_name_en', 'create')
+            ->notEmpty('mother_name_en');
+
+        $validator
+            ->requirePresence('father_name_bn', 'create')
+            ->notEmpty('father_name_bn');
+
+        $validator
+            ->requirePresence('father_name_en', 'create')
+            ->notEmpty('father_name_en');
+
+        $validator
+            ->allowEmpty('phone');
+
+        $validator
+            ->add('email', 'valid', ['rule' => 'email'])
+            ->allowEmpty('email');
+
+        $validator
+            ->allowEmpty('cellphone');
+
+        $validator
+            ->allowEmpty('nid');
+
+        $validator
+            ->allowEmpty('brn');
+
+        $validator
+            ->add('religion', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('religion');
+
+        $validator
+            ->allowEmpty('present_address');
+
+        $validator
+            ->allowEmpty('permanent_address');
+
+        $validator
+            ->allowEmpty('emergency_contact');
+
+        $validator
+            ->add('is_foregin_tour', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('is_foregin_tour');
+
+        $validator
+            ->allowEmpty('pasport_number');
+
+        $validator
+            ->add('applicant_using_passport_validity', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('applicant_using_passport_validity');
+
+        $validator
+            ->allowEmpty('using_passport_issue_place');
+
+        $validator
+            ->allowEmpty('foregin_tour_country');
+
+        $validator
+            ->add('have_foregin_tour', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('have_foregin_tour');
+
+        $validator
+            ->allowEmpty('last_foreign_tour_country');
+
+        $validator
+            ->allowEmpty('last_foreign_tour_reason');
+
+        $validator
+            ->add('last_foreign_tour_time', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('last_foreign_tour_time');
+
+        $validator
+            ->allowEmpty('application_reason');
+
+        $validator
+            ->add('start_date', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('start_date', 'create')
+            ->notEmpty('start_date');
+
+        $validator
+            ->add('end_date', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('end_date', 'create')
+            ->notEmpty('end_date');
+
+        $validator
+            ->add('status', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('status');
+
+        $validator
+            ->add('create_time', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('create_time');
+
+        $validator
+            ->add('update_time', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('update_time');
+
+        $validator
+            ->add('create_by', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('create_by');
+
+        $validator
+            ->add('update_by', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('update_by');
 
         return $validator;
     }
