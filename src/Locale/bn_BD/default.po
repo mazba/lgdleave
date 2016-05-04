@@ -31,6 +31,9 @@ msgstr "আপনার অ্যাকাউন্ট নিশ্চিত ক
 
 msgid "Applicant Types"
 msgstr "আবেদনকারীর প্রকারভেদ"
+msgid "Location type"
+msgstr "Location type"
+
 msgid "Divisions"
 msgstr "বিভাগ"
 msgid "Districts"
