@@ -50,6 +50,8 @@ class CitizenCornerController extends AppController
                     $data['create_time'] = $time;
                     $data['submission_time'] = $time;
                     $data['temporary_id'] = 63;
+
+
                     $data['status'] = Configure::read('application_status.Pending');
                     $data['start_date'] = strtotime($data['start_date']);
                     $data['end_date'] = strtotime($data['end_date']);
@@ -175,15 +177,18 @@ class CitizenCornerController extends AppController
                                                                     ->toArray();
             $this->response->body(json_encode($application_types));
             return $this->response;
-        }  elseif ($action == 'get_districts') {
+        }
+
+        elseif ($action == 'get_districts') {
 
             $division_id = $this->request->data('division_id');
-
             $this->loadModel('AreaDistricts');
-            $districts = $this->AreaDistricts->find('list', ['conditions' => ['divid' => $division_id]])->toArray();
-
+            $districts = $this->AreaDistricts->find('list',['keyField' => 'zillaid', 'keyValue' => 'zillaname'])
+                ->where(['divid' => $division_id])
+                ->toArray();
             $this->response->body(json_encode($districts));
             return $this->response;
+
         } elseif ($action == 'get_upazilas') {
             $district_id = $this->request->data('district_id');
             $this->loadModel('AreaUpazilas');

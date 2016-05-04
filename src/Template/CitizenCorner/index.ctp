@@ -457,7 +457,7 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
         $(document).on('change', '.select_box', function () {
-         
+
         });
 
 
