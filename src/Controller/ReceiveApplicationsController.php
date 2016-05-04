@@ -12,7 +12,11 @@ use Cake\ORM\TableRegistry;
  */
 class ReceiveApplicationsController extends AppController
 {
-
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
     /**
      * Index method
      *
@@ -31,6 +35,7 @@ class ReceiveApplicationsController extends AppController
                         'applicant_type'=>'ApplicantTypes.title_bn',
                         'application_type'=>'ApplicationTypes.title_bn',
                         'applicant_name_bn'=>'Applications.applicant_name_bn',
+                        'id'=>'Applications.id',
                         'temporary_id'=>'Applications.temporary_id',
                         'submission'=>"FROM_UNIXTIME(Applications.submission_time,'%D, %M, %Y')",
                     ]
@@ -52,11 +57,12 @@ class ReceiveApplicationsController extends AppController
      */
     public function view($id = null)
     {
-        $receiveApplication = $this->ReceiveApplications->get($id, [
+        $this->loadModel('Applications');
+        $Application = $this->Applications->get($id, [
             'contain' => []
         ]);
-        $this->set('receiveApplication', $receiveApplication);
-        $this->set('_serialize', ['receiveApplication']);
+        $this->set('Application', $Application);
+        $this->set('_serialize', ['Application']);
     }
 
     /**
@@ -64,19 +70,71 @@ class ReceiveApplicationsController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function receive()
+    public function receive($id)
     {
-        $receiveApplication = $this->ReceiveApplications->newEntity();
+        $this->loadModel('Applications');
+        $application = $this->Applications->get($id, [
+            'contain' => [
+                'ApplicationTypes',
+                'ApplicantTypes',
+                'LocationTypes',
+                'AreaDivisions',
+                'AreaDistricts',
+                'AreaUpazilas',
+                'CityCorporations',
+                'Municipals',
+                'Unions',
+                'ApplicationsFiles'
+            ]
+        ]);
         if ($this->request->is('post')) {
-            $receiveApplication = $this->ReceiveApplications->patchEntity($receiveApplication, $this->request->data);
-            if ($this->ReceiveApplications->save($receiveApplication)) {
+            $inputs = $this->request->data;
+
+            $receiveApplication = $this->Applications->patchEntity($application,['status'=>$inputs['status']]);
+            if ($this->Applications->save($receiveApplication)) {
                 $this->Flash->success(__('The receive application has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The receive application could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('receiveApplication'));
-        $this->set('_serialize', ['receiveApplication']);
+        $this->set(compact('application'));
+        $this->set('_serialize', ['application']);
+    }
+    /*
+     * pdf view
+     */
+    public function pdfView($id){
+        $this->loadModel('Applications');
+        $application = $this->Applications->get($id, [
+            'contain' => [
+                'ApplicationTypes',
+                'ApplicantTypes',
+                'LocationTypes',
+                'AreaDivisions',
+                'AreaDistricts',
+                'AreaUpazilas',
+                'CityCorporations',
+                'Municipals',
+                'Unions',
+                'ApplicationsFiles'
+            ]
+        ]);
+        //generating the pdf
+        Configure::write('CakePdf', [
+            'engine' => [
+                'className'=>'CakePdf.WkHtmlToPdf',
+                'binary' => 'C:\\wkhtmltopdf2\\bin\\wkhtmltopdf.exe',
+                'options' => [
+                    'print-media-type' => false,
+                    'outline' => true,
+                    'dpi' => 96
+                ],
+            ]
+        ]);
+        $this->RequestHandler->renderAs($this,'pdf');
+        $this->request->env('HTTP_ACCEPT','application/pdf');
+        $this->set(compact('application'));
+        $this->set('_serialize', ['application']);
     }
 }

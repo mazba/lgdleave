@@ -29,7 +29,7 @@ class AreaUpazilasTable extends Table
 
         $this->table('upa_zilas');
         $this->displayField('upazilaname');
-        $this->primaryKey('id');
+        $this->primaryKey(['zillaid','upazilaid']);
 
 
         $this->belongsTo('AreaDistricts', [

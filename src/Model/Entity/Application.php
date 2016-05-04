@@ -8,7 +8,6 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $temporary_id
- * @property \App\Model\Entity\Temporary $temporary
  * @property int $application_type_id
  * @property \App\Model\Entity\ApplicationType $application_type
  * @property int $applicant_type_id
@@ -16,13 +15,22 @@ use Cake\ORM\Entity;
  * @property int $submission_time
  * @property int $location_type_id
  * @property \App\Model\Entity\LocationType $location_type
- * @property int $divsion_id
- * @property int $district_id
- * @property int $upazila_id
- * @property int $city_corporation_id
- * @property int $city_corporation_ward_id
- * @property int $municipal_id
- * @property int $municipal_ward_id
+ * @property string $divsion_id
+ * @property \App\Model\Entity\AreaDivision $area_division
+ * @property string $district_id
+ * @property \App\Model\Entity\AreaDistrict $area_district
+ * @property string $upazila_id
+ * @property string $union_id
+ * @property \App\Model\Entity\Union $union
+ * @property string $union_ward
+ * @property string $city_corporation_id
+ * @property \App\Model\Entity\CityCorporation $city_corporation
+ * @property string $city_corporation_ward_id
+ * @property \App\Model\Entity\CityCorporationWard $city_corporation_ward
+ * @property string $municipal_id
+ * @property \App\Model\Entity\Municipal $municipal
+ * @property string $municipal_ward_id
+ * @property \App\Model\Entity\MunicipalWard $municipal_ward
  * @property string $applicant_name_bn
  * @property string $applicant_name_en
  * @property string $mother_name_bn
@@ -55,6 +63,8 @@ use Cake\ORM\Entity;
  * @property int $update_time
  * @property int $create_by
  * @property int $update_by
+ * @property \App\Model\Entity\AreaUpazila $area_upazila
+ * @property \App\Model\Entity\ApplicationsFile[] $applications_files
  */
 class Application extends Entity
 {
@@ -71,18 +81,5 @@ class Application extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false,
-        'temporary_id' => false,
     ];
-
-//    protected function _setStartDate($start_date){
-//        return strtotime($this->start_date) ? strtotime($this->start_date) : 0;
-//    }
-//
-//    protected function _setEndDate($end_date){
-//        return strtotime($end_date) ? strtotime($end_date) : 0;
-//    }
-//
-//    protected function _setLastForeignTourTime($last_foreign_tour_time){
-//        return strtotime($last_foreign_tour_time) ? strtotime($last_foreign_tour_time) : 0;
-//    }
 }

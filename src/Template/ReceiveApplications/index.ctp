@@ -43,7 +43,10 @@ echo $this->element('jq_grid');
         };
 
         var dataAdapter = new $.jqx.dataAdapter(source);
-
+        var myCustomFormatter = function(cellVal,options,rowObject) {
+            console.log(cellVal)
+            return "<input style='height:22px;' type='button' value='Edit' onclick=\"window.location.href='editItem.asp?ID="+cellVal+"'\"  />";
+        };
         $("#dataTable").jqxGrid(
             {
                 width: '100%',
@@ -59,16 +62,41 @@ echo $this->element('jq_grid');
 //                selectionmode: 'checkbox',
                 altrows: true,
                 autoheight: true,
-
-
                 columns: [
-                    { text: '<?= __('Application Id') ?>', dataField: 'temporary_id',width:'20%'},
+                    { text: '<?= __('Application ID') ?>', dataField: 'temporary_id',width:'20%'},
                     { text: '<?= __('Location Type') ?>', dataField: 'location_type',width:'12%'},
-                    { text: '<?= __('Division') ?>', dataField: 'area_division',width:'10%'},
-                    { text: '<?= __('District') ?>', dataField: 'area_district',width:'10%'},
-                    { text: '<?= __('Applicant Type') ?>', dataField: 'applicant_type',width:'15%'},
+                    { text: '<?= __('Divisions') ?>', dataField: 'area_division',width:'10%'},
+                    { text: '<?= __('Districts') ?>', dataField: 'area_district',width:'10%'},
+                    { text: '<?= __('Applicant Type') ?>', dataField: 'applicant_type',width:'19%'},
                     { text: '<?= __('Application Type') ?>', dataField: 'application_type',width:'15%'},
-                    { text: '<?= __('Actions') ?>', cellsalign: 'center',dataField: 'action',width:'18%'}
+                    {
+                        text: '<?= __('Approve') ?>',
+
+                        filtertype: 'none',
+                        columntype: 'button',
+                        cellsrenderer: function () {
+                            return "<?= __('Approve') ?>";
+                        },
+                        buttonclick: function (row) {
+                            id = $("#dataTable").jqxGrid('getrowid', row);
+                            window.location = "<?php echo $this->request->webroot; ?>ReceiveApplications/receive/" + id;
+                        },
+                        width:'7%'
+                    },
+                    {
+                        text: '<?= __('View') ?>',
+
+                        filtertype: 'none',
+                        columntype: 'button',
+                        cellsrenderer: function () {
+                            return "<?= __('View Pdf') ?>";
+                        },
+                        buttonclick: function (row) {
+                            id = $("#dataTable").jqxGrid('getrowid', row);
+                            window.location = "<?php echo $this->request->webroot; ?>ReceiveApplications/pdf_view/" + id;
+                        },
+                        width:'7%'
+                    }
                 ]
             });
     });

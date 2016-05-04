@@ -17,10 +17,12 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Divsions
  * @property \Cake\ORM\Association\BelongsTo $Districts
  * @property \Cake\ORM\Association\BelongsTo $Upazilas
+ * @property \Cake\ORM\Association\BelongsTo $Unions
  * @property \Cake\ORM\Association\BelongsTo $CityCorporations
  * @property \Cake\ORM\Association\BelongsTo $CityCorporationWards
  * @property \Cake\ORM\Association\BelongsTo $Municipals
  * @property \Cake\ORM\Association\BelongsTo $MunicipalWards
+ * @property \Cake\ORM\Association\HasMany $LeaveApplicationDetails
  */
 class ApplicationsTable extends Table
 {
@@ -58,7 +60,7 @@ class ApplicationsTable extends Table
             'foreignKey' => 'district_id'
         ]);
         $this->belongsTo('AreaUpazilas', [
-            'foreignKey' => 'upazila_id'
+            'foreignKey' => ['district_id','upazila_id']
         ]);
         $this->belongsTo('CityCorporations', [
             'foreignKey' => 'city_corporation_id'
@@ -71,6 +73,12 @@ class ApplicationsTable extends Table
         ]);
         $this->belongsTo('MunicipalWards', [
             'foreignKey' => 'municipal_ward_id'
+        ]);
+        $this->belongsTo('Unions', [
+            'foreignKey' => 'union_id'
+        ]);
+        $this->hasMany('ApplicationsFiles', [
+            'foreignKey' => 'application_id'
         ]);
     }
 
@@ -90,6 +98,9 @@ class ApplicationsTable extends Table
             ->add('submission_time', 'valid', ['rule' => 'numeric'])
             ->requirePresence('submission_time', 'create')
             ->notEmpty('submission_time');
+
+        $validator
+            ->allowEmpty('union_ward');
 
         $validator
             ->requirePresence('applicant_name_bn', 'create')
@@ -209,23 +220,5 @@ class ApplicationsTable extends Table
             ->allowEmpty('update_by');
 
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->existsIn(['application_type_id'], 'ApplicationTypes'));
-        $rules->add($rules->existsIn(['applicant_type_id'], 'ApplicantTypes'));
-        $rules->add($rules->existsIn(['location_type_id'], 'LocationTypes'));
-        $rules->add($rules->existsIn(['divsion_id'], 'AreaDivisions'));
-        $rules->add($rules->existsIn(['district_id'], 'AreaDistricts'));
-        $rules->add($rules->existsIn(['upazila_id'], 'AreaUpazilas'));
-        return $rules;
     }
 }
