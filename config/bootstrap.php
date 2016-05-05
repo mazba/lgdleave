@@ -194,6 +194,7 @@ if (Configure::read('debug')) {
 //custom plugin for system
 Plugin::load('Xety/Cake3Upload');
 Plugin::load('Rana');
+Plugin::load('CakePdf', ['bootstrap' => true]);
 
 /**
  * Connect middleware/dispatcher filters.
