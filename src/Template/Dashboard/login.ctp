@@ -2,7 +2,7 @@
 <!-- END REGISTRATION FORM -->
 <!-- BEGIN LOGIN FORM -->
 <form class="login-form" action="login" method="post">
-    <h3 class="form-title">Login to your account</h3>
+    <h3 class="form-title"><?= __('Login to your account') ?></h3>
     <div class="alert alert-danger display-hide">
         <button class="close" data-close="alert"></button>
 			<span>
@@ -26,7 +26,7 @@
     <div class="form-actions">
 
         <button type="submit" class="btn blue pull-right">
-            Login <i class="m-icon-swapright m-icon-white"></i>
+            <?= __('Login') ?> <i class="m-icon-swapright m-icon-white"></i>
         </button>
     </div>
 
