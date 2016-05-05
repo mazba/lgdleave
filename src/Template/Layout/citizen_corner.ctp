@@ -112,7 +112,18 @@ License: You must have a valid license purchased only from themeforest(the above
 
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <!-- BEGIN NOTIFICATION DROPDOWN -->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                    <li class="dropdown  " id="">
 
+                        <a href="<?php echo $this->request->webroot."login"?>" class="dropdown-toggle btn btn-primary" data-toggle="" data-hover="" data-close-others="">
+                        LogIn    <i class="m-icon-swapright m-icon-white"></i> &nbsp;
+
+                        </a>
+
+                    </li>
+                </ul>
             </div>
             <!-- END TOP NAVIGATION MENU -->
         </div>
