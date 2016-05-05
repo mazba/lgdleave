@@ -18,8 +18,8 @@ $religions = Configure::read('religions');
             <div class="portlet-body">
                 <?= $this->Form->create(null,['class'=>'form-horizontal']) ?>
                 <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-responsive">
+                    <div class="col-md-6 col-md-offset-3">
+                        <table class="table table-bordered table-responsive">
                             <tbody>
                                 <tr><th><?= __('Divisions') ?></th><td><?php echo $application['area_division']['divname']; ?></td></tr>
                                 <?php if($application['area_district']): ?>
@@ -76,7 +76,7 @@ $religions = Configure::read('religions');
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-md-offset-3">
                         <h3><?= __('Applications File') ?></h3>
                         <?php
                         if(count($application['applications_files'])):
@@ -90,7 +90,7 @@ $religions = Configure::read('religions');
                         endif
                         ?>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-md-offset-3">
                         <h3><?= __('To View Pdf') ?></h3>
                         <a href="<?=$this->Url->build(('/ReceiveApplications/pdf_view/'.$application['id']), true)?>" target="_blank" class="btn green-haze btn-circle btn-sm todo-projects-config">
                             <i class="fa fa-file-pdf-o"></i> PDF

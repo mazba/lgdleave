@@ -1,5 +1,4 @@
 <?php
-$user = $this->request->Session()->read('Auth')['User'];
 ?>
 <!DOCTYPE html>
 <!-- 

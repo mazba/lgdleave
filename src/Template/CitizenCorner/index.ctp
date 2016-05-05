@@ -1,5 +1,6 @@
 <?php
 use Cake\Core\Configure;
+
 $religions = \Cake\Core\Configure::read('religions');
 ?>
 
@@ -25,7 +26,7 @@ $religions = \Cake\Core\Configure::read('religions');
 												<span class="number">
 												1 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i><?= __('Account Setup')?>  </span>
+												<i class="fa fa-check"></i><?= __('Account Setup') ?>  </span>
                                 </a>
                             </li>
                             <li>
@@ -33,7 +34,7 @@ $religions = \Cake\Core\Configure::read('religions');
 												<span class="number">
 												2 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> <?= __('Profile_Setup')?></span>
+												<i class="fa fa-check"></i> <?= __('Profile_Setup') ?></span>
                                 </a>
                             </li>
                             <li>
@@ -41,7 +42,7 @@ $religions = \Cake\Core\Configure::read('religions');
 												<span class="number">
 												3 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i><?= __('Billing_Setup')?>  </span>
+												<i class="fa fa-check"></i><?= __('Billing_Setup') ?>  </span>
                                 </a>
                             </li>
                             <li>
@@ -49,7 +50,7 @@ $religions = \Cake\Core\Configure::read('religions');
 												<span class="number">
 												4 </span>
 												<span class="desc">
-												<i class="fa fa-check"></i> <?= __('Confirm')?> </span>
+												<i class="fa fa-check"></i> <?= __('Confirm') ?> </span>
                                 </a>
                             </li>
                         </ul>
@@ -64,33 +65,29 @@ $religions = \Cake\Core\Configure::read('religions');
                                 <h3 class="block"><?= __('Basic Info') ?></h3>
 
 
-                                    <?php
-                                    echo $this->Form->input('location_type_id', ['options'=>$locationTypes, 'empty' => 'Select', 'class' => 'form-control  location_type', 'label' => __('Location type')]);
-                                    ?>
+                                <?php
+                                echo $this->Form->input('location_type_id', ['options' => $locationTypes, 'empty' => 'Select', 'class' => 'form-control  location_type', 'label' => __('Location type')]);
+                                ?>
 
                                 <div class="hide applicant_type">
                                     <?php
-                                    echo $this->Form->input('applicant_type_id', [ 'empty' => 'Select', 'class' => 'form-control select_box applicantTypes', 'label' => __('Applicant Types')]);
+                                    echo $this->Form->input('applicant_type_id', ['empty' => 'Select', 'class' => 'form-control select_box applicantTypes', 'label' => __('Applicant Types')]);
 
                                     echo $this->Form->input('divsion_id', ['options' => $divisions, 'empty' => 'Select', 'class' => 'form-control select_box division ', 'label' => __('Divisions')]);
                                     ?>
                                 </div>
 
 
-
-
                                 <div class="hide district">
                                     <?php
-                                    echo $this->Form->input('district_id', [ 'empty' => 'Select', 'class' => 'form-control  select_box districts', 'label' => __('Districts')]);
+                                    echo $this->Form->input('district_id', ['empty' => 'Select', 'class' => 'form-control  select_box districts', 'label' => __('Districts')]);
                                     ?>
                                 </div>
 
 
-
-
                                 <div class="hide upazila">
                                     <?php
-                                    echo $this->Form->input('upazila_id', [ 'empty' => 'Select', 'class' => 'form-control select_box upazilas', 'label' => __('Upazilas')]);
+                                    echo $this->Form->input('upazila_id', ['empty' => 'Select', 'class' => 'form-control select_box upazilas', 'label' => __('Upazilas')]);
                                     ?>
                                 </div>
 
@@ -126,10 +123,9 @@ $religions = \Cake\Core\Configure::read('religions');
 
                                 <div class="hide ward">
                                     <?php
-                                    echo $this->Form->input('union_ward',['label' => __('Ward_name')]);
+                                    echo $this->Form->input('union_ward', ['label' => __('Ward_name')]);
                                     ?>
                                 </div>
-
 
 
                             </div>
@@ -139,63 +135,59 @@ $religions = \Cake\Core\Configure::read('religions');
                                 <h3 class="block"><?= __('Provide your profile details') ?></h3>
 
                                 <?php
-                                echo $this->Form->input('applicant_name_bn',['required'=>'required', 'label' => __('Applicant_name_bn')]);
-                                echo $this->Form->input('applicant_name_en',['label' => __('Applicant_name_en')]);
-                                echo $this->Form->input('mother_name_bn',['label' => __('Mother_name_bn')]);
-                                echo $this->Form->input('mother_name_en',['label' => __('Mother_name_en')]);
-                                echo $this->Form->input('father_name_bn',['label' => __('Father_name_bn')]);
-                                echo $this->Form->input('father_name_en',['label' => __('Father_name_en')]);
-                                echo $this->Form->input('phone',['label' => __('Phone')]);
-                                echo $this->Form->input('email',['label' => __('Email')]);
-                                echo $this->Form->input('cellphone',['label' => __('Cellphone')]);
-                                echo $this->Form->input('nid',['label' => __('Nid')]);
-                                echo $this->Form->input('brn',['label' => __('Brn')]);
+                                echo $this->Form->input('applicant_name_bn', ['required' => 'required', 'label' => __('Applicant_name_bn')]);
+                                echo $this->Form->input('applicant_name_en', ['label' => __('Applicant_name_en')]);
+                                echo $this->Form->input('mother_name_bn', ['label' => __('Mother_name_bn')]);
+                                echo $this->Form->input('mother_name_en', ['label' => __('Mother_name_en')]);
+                                echo $this->Form->input('father_name_bn', ['label' => __('Father_name_bn')]);
+                                echo $this->Form->input('father_name_en', ['label' => __('Father_name_en')]);
+                                echo $this->Form->input('phone', ['label' => __('Phone')]);
+                                echo $this->Form->input('email', ['label' => __('Email')]);
+                                echo $this->Form->input('cellphone', ['label' => __('Cellphone')]);
+                                echo $this->Form->input('nid', ['label' => __('Nid')]);
+                                echo $this->Form->input('brn', ['label' => __('Brn')]);
 
-                                echo $this->Form->input('religion',['options'=>$religions,'class'=>'form-control','label'=>__('Religion')]);
+                                echo $this->Form->input('religion', ['options' => $religions, 'class' => 'form-control', 'label' => __('Religion')]);
 
 
-
-                                echo $this->Form->input('present_address', ['type' => 'textarea', 'escape' => false,'label' => __('Present_address')]);
-                                echo $this->Form->input('permanent_address',['type' => 'textarea', 'escape' => false,'label' => __('Permanent_address')]);
-                                echo $this->Form->input('emergency_contact',['label' => __('Emergency_contact')]);
+                                echo $this->Form->input('present_address', ['type' => 'textarea', 'escape' => false, 'label' => __('Present_address')]);
+                                echo $this->Form->input('permanent_address', ['type' => 'textarea', 'escape' => false, 'label' => __('Permanent_address')]);
+                                echo $this->Form->input('emergency_contact', ['label' => __('Emergency_contact')]);
                                 ?>
 
                             </div>
                             <div class="tab-pane" id="tab3">
-                                <h3 class="block"><?= __('Previous History')?></h3>
+                                <h3 class="block"><?= __('Previous History') ?></h3>
                                 <?php
                                 echo $this->Form->input('application_type_id', ['options' => $applicationTypes, 'empty' => 'Select', 'class' => 'form-control division ', 'label' => __('ApplicationTypes')]);
-                                echo  $this->Form->input('application_reason',['label' => __('Application_reason')]);
-                                echo  $this->Form->input('start_date',['type'=>'text','class'=>'form-control  datepicker','label'=>__('Start Date')]);
-                                echo  $this->Form->input('end_date',['type'=>'text','class'=>'form-control  datepicker','label' => __('End date')]);
-                                echo $this->Form->input('document_file[]',['type'=>'file','multiple','label' => __('document_file')]);
-                                echo $this->Form->input('is_foregin_tour',['type'=>'checkbox','label' => __('is_foregin_tour')]);
+                                echo $this->Form->input('application_reason', ['label' => __('Application_reason')]);
+                                echo $this->Form->input('start_date', ['type' => 'text', 'class' => 'form-control  datepicker', 'label' => __('Start Date')]);
+                                echo $this->Form->input('end_date', ['type' => 'text', 'class' => 'form-control  datepicker', 'label' => __('End date')]);
+                                echo $this->Form->input('document_file[]', ['type' => 'file', 'multiple', 'label' => __('document_file'),'required'=>'required']);
+                                echo $this->Form->input('is_foregin_tour', ['type' => 'checkbox', 'label' => __('is_foregin_tour')]);
                                 ?>
                                 <div class=" history" style="display: none">
                                     <?php
-                                    echo $this->Form->input('pasport_number',['label' => __('pasport_number')]);
-                                    echo $this->Form->input('applicant_using_passport_validity',['label' => __('applicant_using_passport_validity')]);
-                                    echo $this->Form->input('using_passport_issue_place',['label' => __('using_passport_issue_place')]);
-                                    echo $this->Form->input('foregin_tour_country',['label' => __('foregin_tour_country')]);
+                                    echo $this->Form->input('pasport_number', ['label' => __('pasport_number')]);
+                                    echo $this->Form->input('applicant_using_passport_validity', ['label' => __('applicant_using_passport_validity')]);
+                                    echo $this->Form->input('using_passport_issue_place', ['label' => __('using_passport_issue_place')]);
+                                    echo $this->Form->input('foregin_tour_country', ['label' => __('foregin_tour_country')]);
 
-                                    echo $this->Form->input('have_foregin_tour',['type'=>'checkbox','label' => __('have_foregin_tour')]);
+                                    echo $this->Form->input('have_foregin_tour', ['type' => 'checkbox', 'label' => __('have_foregin_tour')]);
                                     ?>
                                     <div class="last_tour" style="display: none">
                                         <?php
-                                        echo $this->Form->input('last_foreign_tour_country',['label' => __('last_foreign_tour_country')]);
-                                        echo $this->Form->input('last_foreign_tour_reason',['label' => __('last_foreign_tour_reason')]);
-                                        echo $this->Form->input('last_foreign_tour_time',['type'=>'text','class'=>'form-control  datepicker','label' => __('last_foreign_tour_time')]);
+                                        echo $this->Form->input('last_foreign_tour_country', ['label' => __('last_foreign_tour_country')]);
+                                        echo $this->Form->input('last_foreign_tour_reason', ['label' => __('last_foreign_tour_reason')]);
+                                        echo $this->Form->input('last_foreign_tour_time', ['type' => 'text', 'class' => 'form-control  datepicker', 'label' => __('last_foreign_tour_time')]);
                                         ?>
                                     </div>
                                 </div>
 
 
-
-
-
                             </div>
                             <div class="tab-pane" id="tab4">
-                                <h3 class="block"><?= __('Confirm your account')?></h3>
+                                <h3 class="block"><?= __('Confirm your account') ?></h3>
                                 <h4 class="form-section"></h4>
 
 
@@ -230,29 +222,31 @@ $religions = \Cake\Core\Configure::read('religions');
             dateFormat: 'dd-mm-yy'
         })
 
+        $('#location-type-id').val('');
+
         $(document).on('change', '.location_type', function () {
 
             $('.applicantTypes').html('');
             var obj = $(this);
             var location_type_id = $(this).val();
 
-                $.ajax({
-                    url: '<?= $this->Url->build('/CitizenCorner/ajax/get_applicantTypes')?>',
-                    type: 'POST',
-                    data: {location_type_id: location_type_id},
+            $.ajax({
+                url: '<?= $this->Url->build('/CitizenCorner/ajax/get_applicantTypes')?>',
+                type: 'POST',
+                data: {location_type_id: location_type_id},
 
-                    success: function (data, status) {
-                        $('.applicant_type').removeAttr('class', 'hide');
-                        data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('.applicantTypes').append("<option value=''><?= __('select') ?></option>");
-                        $.each(data, function (key, value) {
-                            obj.closest('.tab-pane').find('.applicantTypes').append($("<option></option>").attr("value", key).text(value));
-                        });
-                    },
-                    error: function (xhr, desc, err) {
-                        console.log("error");
-                    }
-                });
+                success: function (data, status) {
+                    $('.applicant_type').removeAttr('class', 'hide');
+                    data = JSON.parse(data);
+                    obj.closest('.tab-pane').find('.applicantTypes').append("<option value=''><?= __('select') ?></option>");
+                    $.each(data, function (key, value) {
+                        obj.closest('.tab-pane').find('.applicantTypes').append($("<option></option>").attr("value", key).text(value));
+                    });
+                },
+                error: function (xhr, desc, err) {
+                    console.log("error");
+                }
+            });
 
         });
 
@@ -296,7 +290,7 @@ $religions = \Cake\Core\Configure::read('religions');
 
             var district_id = $(this).val();
 
-            if (applicantTypes_id > 4 && applicantTypes_id < 8 || applicantTypes_id>13) {
+            if (applicantTypes_id > 4 && applicantTypes_id < 8 || applicantTypes_id > 13) {
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_upazilas')?>',
                     type: 'POST',
@@ -315,7 +309,7 @@ $religions = \Cake\Core\Configure::read('religions');
                         console.log("error");
                     }
                 });
-            }else if(applicantTypes_id > 7 && applicantTypes_id < 11) {
+            } else if (applicantTypes_id > 7 && applicantTypes_id < 11) {
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_city_corporations')?>',
                     type: 'POST',
@@ -333,7 +327,7 @@ $religions = \Cake\Core\Configure::read('religions');
                         console.log("error");
                     }
                 });
-            }else if(applicantTypes_id > 10 && applicantTypes_id < 14) {
+            } else if (applicantTypes_id > 10 && applicantTypes_id < 14) {
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_municipals')?>',
                     type: 'POST',
@@ -362,27 +356,26 @@ $religions = \Cake\Core\Configure::read('religions');
             var district_id = obj.closest('#tab1').find('.districts option:selected').val();
 
             var upazila_id = $(this).val();
-           if( applicantTypes_id>13){
-               $.ajax({
-                   url: '<?= $this->Url->build('/CitizenCorner/ajax/get_unions')?>',
-                   type: 'POST',
-                   data: {upazila_id: upazila_id, district_id:district_id},
+            if (applicantTypes_id > 13) {
+                $.ajax({
+                    url: '<?= $this->Url->build('/CitizenCorner/ajax/get_unions')?>',
+                    type: 'POST',
+                    data: {upazila_id: upazila_id, district_id: district_id},
 
-                   success: function (data, status) {
-                       $('.union').removeAttr('class', 'hide');
-                       data = JSON.parse(data);
-                       obj.closest('.tab-pane').find('.unions').append("<option value=''><?= __('select') ?></option>");
-                       $.each(data, function (key, value) {
-                           obj.closest('.tab-pane').find('.unions').append($("<option></option>").attr("value", key).text(value));
-                       });
-                   },
-                   error: function (xhr, desc, err) {
-                       console.log("error");
-                   }
-               });
-           }
+                    success: function (data, status) {
+                        $('.union').removeAttr('class', 'hide');
+                        data = JSON.parse(data);
+                        obj.closest('.tab-pane').find('.unions').append("<option value=''><?= __('select') ?></option>");
+                        $.each(data, function (key, value) {
+                            obj.closest('.tab-pane').find('.unions').append($("<option></option>").attr("value", key).text(value));
+                        });
+                    },
+                    error: function (xhr, desc, err) {
+                        console.log("error");
+                    }
+                });
+            }
         });
-
 
 
         $(document).on('change', '#city-corporation-id', function () {
@@ -393,25 +386,25 @@ $religions = \Cake\Core\Configure::read('religions');
             var district_id = obj.closest('#tab1').find(' .districts option:selected').val();
 
             var city_corporation_id = $(this).val();
-           if( applicantTypes_id==9){
-               $.ajax({
-                   url: '<?= $this->Url->build('/CitizenCorner/ajax/get_city_corporation_wards')?>',
-                   type: 'POST',
-                   data: {city_corporation_id: city_corporation_id, district_id:district_id},
+            if (applicantTypes_id == 9) {
+                $.ajax({
+                    url: '<?= $this->Url->build('/CitizenCorner/ajax/get_city_corporation_wards')?>',
+                    type: 'POST',
+                    data: {city_corporation_id: city_corporation_id, district_id: district_id},
 
-                   success: function (data, status) {
-                       $('.city_corporation_ward').removeAttr('class', 'hide');
-                       data = JSON.parse(data);
-                       obj.closest('.tab-pane').find('.city_corporation_wards').append("<option value=''><?= __('select') ?></option>");
-                       $.each(data, function (key, value) {
-                           obj.closest('.tab-pane').find('.city_corporation_wards').append($("<option></option>").attr("value", key).text(value));
-                       });
-                   },
-                   error: function (xhr, desc, err) {
-                       console.log("error");
-                   }
-               });
-           }
+                    success: function (data, status) {
+                        $('.city_corporation_ward').removeAttr('class', 'hide');
+                        data = JSON.parse(data);
+                        obj.closest('.tab-pane').find('.city_corporation_wards').append("<option value=''><?= __('select') ?></option>");
+                        $.each(data, function (key, value) {
+                            obj.closest('.tab-pane').find('.city_corporation_wards').append($("<option></option>").attr("value", key).text(value));
+                        });
+                    },
+                    error: function (xhr, desc, err) {
+                        console.log("error");
+                    }
+                });
+            }
         });
 
 
@@ -423,25 +416,25 @@ $religions = \Cake\Core\Configure::read('religions');
             var district_id = obj.closest('#tab1').find(' .districts option:selected').val();
 
             var municipal_id = $(this).val();
-           if( applicantTypes_id==12){
-               $.ajax({
-                   url: '<?= $this->Url->build('/CitizenCorner/ajax/get_municipal_wards')?>',
-                   type: 'POST',
-                   data: {municipal_id: municipal_id, district_id:district_id},
+            if (applicantTypes_id == 12) {
+                $.ajax({
+                    url: '<?= $this->Url->build('/CitizenCorner/ajax/get_municipal_wards')?>',
+                    type: 'POST',
+                    data: {municipal_id: municipal_id, district_id: district_id},
 
-                   success: function (data, status) {
-                       $('.municipal_ward').removeAttr('class', 'hide');
-                       data = JSON.parse(data);
-                       obj.closest('.tab-pane').find('.municipal_wards').append("<option value=''><?= __('select') ?></option>");
-                       $.each(data, function (key, value) {
-                           obj.closest('.tab-pane').find('.municipal_wards').append($("<option></option>").attr("value", key).text(value));
-                       });
-                   },
-                   error: function (xhr, desc, err) {
-                       console.log("error");
-                   }
-               });
-           }
+                    success: function (data, status) {
+                        $('.municipal_ward').removeAttr('class', 'hide');
+                        data = JSON.parse(data);
+                        obj.closest('.tab-pane').find('.municipal_wards').append("<option value=''><?= __('select') ?></option>");
+                        $.each(data, function (key, value) {
+                            obj.closest('.tab-pane').find('.municipal_wards').append($("<option></option>").attr("value", key).text(value));
+                        });
+                    },
+                    error: function (xhr, desc, err) {
+                        console.log("error");
+                    }
+                });
+            }
         });
 
 
@@ -450,41 +443,50 @@ $religions = \Cake\Core\Configure::read('religions');
             var obj = $(this);
             var applicantTypes_id = obj.closest('#tab1').find('.applicantTypes option:selected').val();
 
-           if( applicantTypes_id==15){
-               $('.ward').removeAttr('class', 'hide');
-           }
-        });
-
-
-        $(document).on('change', '.select_box', function () {
-
-        });
-
-
-
-        $("#is-foregin-tour").on("click", function() {
-            if ($(this).is(':checked') ) {
-                $('.history').show();
-            } else {
-                $('.history').hide();
+            if (applicantTypes_id == 15) {
+                $('.ward').removeAttr('class', 'hide');
             }
         });
 
-        $("#have-foregin-tour").on("click", function() {
-            if ($(this).is(':checked') ) {
+
+
+
+        $("#is-foregin-tour").on("click", function () {
+            if ($(this).is(':checked')) {
+                $('.history').show();
+                $('#pasport-number').attr('required','required');
+                $('#applicant-using-passport-validity').attr('required','required');
+                $('#using-passport-issue-place').attr('required','required');
+                $('#foregin-tour-country').attr('required','required');
+            } else {
+                $('.history').hide();
+                $('#pasport-number').removeAttr('required','required');
+                $('#applicant-using-passport-validity').removeAttr('required','required');
+                $('#using-passport-issue-place').removeAttr('required','required');
+                $('#foregin-tour-country').removeAttr('required','required');
+            }
+        });
+
+        $("#have-foregin-tour").on("click", function () {
+            if ($(this).is(':checked')) {
                 $('.last_tour').show();
+                $('#last-foreign-tour-country').attr('required','required');
+                $('#last-foreign-tour-reason').attr('required','required');
+                $('#last-foreign-tour-time').attr('required','required');
             } else {
                 $('.last_tour').hide();
+                $('#last-foreign-tour-country').removeAttr('required','required');
+                $('#last-foreign-tour-reason').removeAttr('required','required');
+                $('#last-foreign-tour-time').removeAttr('required','required');
             }
         });
 
         //valudation relatted
     });
 
-    function isValidForm(){
+    function isValidForm() {
         var response = true;
-        if($('#tab1').hasClass('active'))
-        {
+        if ($('#tab1').hasClass('active')) {
             var location_type = $('#location-type-id ').val();
             var applicant_type = $('#applicant-type-id').val();
             var divsion_id = $('#divsion-id').val();
@@ -497,142 +499,140 @@ $religions = \Cake\Core\Configure::read('religions');
             var union_id = $('#union-id').val();
             var union_ward = $('#union-ward').val();
 
-            if(!location_type){
+            if (!location_type) {
                 response = false;
                 alert('please select location_type');
             }
-            if(location_type==1){
-                if(!applicant_type) {
+            if (location_type == 1) {
+                if (!applicant_type) {
                     response = false;
                     alert('please select applicant_type');
-                }else if (!divsion_id){
+                } else if (!divsion_id) {
                     response = false;
                     alert('please select divsion');
-                }else if(!district_id) {
+                } else if (!district_id) {
                     response = false;
                     alert('please select district');
                 }
-            }else if(location_type==2){
-                if(!applicant_type) {
+            } else if (location_type == 2) {
+                if (!applicant_type) {
                     response = false;
                     alert('please select applicant_type');
-                }else if (!divsion_id){
+                } else if (!divsion_id) {
                     response = false;
                     alert('please select divsion');
-                }else if(!district_id) {
+                } else if (!district_id) {
                     response = false;
                     alert('please select district');
-                }else if(!upazila_id){
+                } else if (!upazila_id) {
                     response = false;
                     alert('please select upazila');
                 }
-            }else if(location_type==3){
-                if(!applicant_type) {
+            } else if (location_type == 3) {
+                if (!applicant_type) {
                     response = false;
                     alert('please select applicant_type');
-                }else if (!divsion_id){
+                } else if (!divsion_id) {
                     response = false;
                     alert('please select divsion');
-                }else if(!district_id) {
+                } else if (!district_id) {
                     response = false;
                     alert('please select district');
-                }else if(!city_corporation_id){
+                } else if (!city_corporation_id) {
                     response = false;
                     alert('please select city_corporation');
                 }
-            }else if(location_type==4){
-                if(!applicant_type) {
+            } else if (location_type == 4) {
+                if (!applicant_type) {
                     response = false;
                     alert('please select applicant_type');
-                }else if (!divsion_id){
+                } else if (!divsion_id) {
                     response = false;
                     alert('please select divsion');
-                }else if(!district_id) {
+                } else if (!district_id) {
                     response = false;
                     alert('please select district');
-                }else if(!city_corporation_id){
+                } else if (!city_corporation_id) {
                     response = false;
                     alert('please select city_corporation');
-                }else if(!city_corporation_ward_id){
+                } else if (!city_corporation_ward_id) {
                     response = false;
                     alert('please select city_corporation_ward');
                 }
-            }else if(location_type==5){
-                if(!applicant_type) {
+            } else if (location_type == 5) {
+                if (!applicant_type) {
                     response = false;
                     alert('please select applicant_type');
-                }else if (!divsion_id){
+                } else if (!divsion_id) {
                     response = false;
                     alert('please select divsion');
-                }else if(!district_id) {
+                } else if (!district_id) {
                     response = false;
                     alert('please select district');
-                }else if(!municipal_id){
+                } else if (!municipal_id) {
                     response = false;
                     alert('please select municipal');
                 }
-            }else if(location_type==6){
-                if(!applicant_type) {
+            } else if (location_type == 6) {
+                if (!applicant_type) {
                     response = false;
                     alert('please select applicant_type');
-                }else if (!divsion_id){
+                } else if (!divsion_id) {
                     response = false;
                     alert('please select divsion');
-                }else if(!district_id) {
+                } else if (!district_id) {
                     response = false;
                     alert('please select district');
-                }else if(!municipal_id){
+                } else if (!municipal_id) {
                     response = false;
                     alert('please select municipal');
-                }else if(!municipal_ward_id){
+                } else if (!municipal_ward_id) {
                     response = false;
                     alert('please select municipal_ward');
                 }
-            }else if(location_type==7){
-                if(!applicant_type) {
+            } else if (location_type == 7) {
+                if (!applicant_type) {
                     response = false;
                     alert('please select applicant_type');
-                }else if (!divsion_id){
+                } else if (!divsion_id) {
                     response = false;
                     alert('please select divsion');
-                }else if(!district_id) {
+                } else if (!district_id) {
                     response = false;
                     alert('please select district');
-                }else if(!upazila_id){
+                } else if (!upazila_id) {
                     response = false;
                     alert('please select upazila');
-                }else if(!union_id){
+                } else if (!union_id) {
                     response = false;
                     alert('please select union');
                 }
-            }else if(location_type==8){
-                if(!applicant_type) {
+            } else if (location_type == 8) {
+                if (!applicant_type) {
                     response = false;
                     alert('please select applicant_type');
-                }else if (!divsion_id){
+                } else if (!divsion_id) {
                     response = false;
                     alert('please select divsion');
-                }else if(!district_id) {
+                } else if (!district_id) {
                     response = false;
                     alert('please select district');
-                }else if(!upazila_id){
+                } else if (!upazila_id) {
                     response = false;
                     alert('please select upazila');
-                }else if(!union_id){
+                } else if (!union_id) {
                     response = false;
                     alert('please select union');
-                }else if(!union_ward){
+                } else if (!union_ward) {
                     response = false;
                     alert('please select union_ward');
                 }
             }
         }
-        else if($('#tab2').hasClass('active'))
-        {
+        else if ($('#tab2').hasClass('active')) {
             response = true;
         }
-        else if($('#tab3').hasClass('active'))
-        {
+        else if ($('#tab3').hasClass('active')) {
             response = true;
         }
         return response;
