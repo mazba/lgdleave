@@ -4,6 +4,14 @@ use Cake\Core\Configure;
 $religions = \Cake\Core\Configure::read('religions');
 ?>
 
+<style>
+    label.mandetory:after {
+        content: ' *';
+        color: red;
+        display: inline;
+    }
+</style>
+
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -66,64 +74,64 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                                 <?php
-                                echo $this->Form->input('location_type_id', ['options' => $locationTypes, 'empty' => 'Select', 'class' => 'form-control  location_type', 'label' => __('Location type')]);
+                                echo $this->Form->input('location_type_id', ['options' => $locationTypes, 'empty' => 'Select', 'class' => 'form-control  location_type', 'label' => [__('Location Type'), 'escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 ?>
 
-                                <div class="hide applicant_type">
+                                <div class="hide applicant_type" id="applicant_type">
                                     <?php
-                                    echo $this->Form->input('applicant_type_id', ['empty' => 'Select', 'class' => 'form-control select_box applicantTypes', 'label' => __('Applicant Types')]);
+                                    echo $this->Form->input('applicant_type_id', ['empty' => 'Select', 'class' => 'form-control select_box applicantTypes', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
 
-                                    echo $this->Form->input('divsion_id', ['options' => $divisions, 'empty' => 'Select', 'class' => 'form-control select_box division ', 'label' => __('Divisions')]);
+                                    echo $this->Form->input('divsion_id', ['options' => $divisions, 'empty' => 'Select', 'class' => 'form-control select_box division divisions ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
 
-                                <div class="hide district">
+                                <div class="hide district" id="district">
                                     <?php
-                                    echo $this->Form->input('district_id', ['empty' => 'Select', 'class' => 'form-control  select_box districts', 'label' => __('Districts')]);
+                                    echo $this->Form->input('district_id', ['empty' => 'Select', 'class' => 'form-control  select_box districts', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
 
-                                <div class="hide upazila">
+                                <div class="hide upazila" id="upazila">
                                     <?php
-                                    echo $this->Form->input('upazila_id', ['empty' => 'Select', 'class' => 'form-control select_box upazilas', 'label' => __('Upazilas')]);
+                                    echo $this->Form->input('upazila_id', ['empty' => 'Select', 'class' => 'form-control select_box upazilas', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
 
-                                <div class="hide city_corporation">
+                                <div class="hide city_corporation" id="city_corporation">
                                     <?php
-                                    echo $this->Form->input('city_corporation_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  select_box  city_corporations', 'label' => __('City_corporations')]);
+                                    echo $this->Form->input('city_corporation_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  select_box  city_corporations', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
-                                <div class="hide city_corporation_ward">
+                                <div class="hide city_corporation_ward" id="city_corporation_ward">
                                     <?php
-                                    echo $this->Form->input('city_corporation_ward_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control select_box city_corporation_wards', 'label' => __('City_corporation_wards')]);
+                                    echo $this->Form->input('city_corporation_ward_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control select_box city_corporation_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
-                                <div class="hide municipal">
+                                <div class="hide municipal" id="municipal">
                                     <?php
-                                    echo $this->Form->input('municipal_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  select_box  municipals', 'label' => __('Municipals')]);
-                                    ?>
-                                </div>
-
-                                <div class="hide municipal_ward">
-                                    <?php
-                                    echo $this->Form->input('municipal_ward_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control select_box municipal_wards', 'label' => __('Municipal_wards')]);
+                                    echo $this->Form->input('municipal_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  select_box  municipals', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
-                                <div class="hide union">
+                                <div class="hide municipal_ward" id="municipal_ward">
                                     <?php
-                                    echo $this->Form->input('union_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  select_box  unions', 'label' => __('Unions')]);
+                                    echo $this->Form->input('municipal_ward_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control select_box municipal_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    ?>
+                                </div>
+
+                                <div class="hide union" id="union">
+                                    <?php
+                                    echo $this->Form->input('union_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  select_box  unions', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
 
-                                <div class="hide ward">
+                                <div class="hide ward" id="ward">
                                     <?php
-                                    echo $this->Form->input('union_ward', ['label' => __('Ward_name')]);
+                                    echo $this->Form->input('union_ward', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
@@ -135,14 +143,14 @@ $religions = \Cake\Core\Configure::read('religions');
                                 <h3 class="block"><?= __('Provide your profile details') ?></h3>
 
                                 <?php
-                                echo $this->Form->input('applicant_name_bn', ['required' => 'required', 'label' => __('Applicant_name_bn')]);
-                                echo $this->Form->input('applicant_name_en', ['label' => __('Applicant_name_en')]);
-                                echo $this->Form->input('mother_name_bn', ['label' => __('Mother_name_bn')]);
-                                echo $this->Form->input('mother_name_en', ['label' => __('Mother_name_en')]);
-                                echo $this->Form->input('father_name_bn', ['label' => __('Father_name_bn')]);
-                                echo $this->Form->input('father_name_en', ['label' => __('Father_name_en')]);
-                                echo $this->Form->input('phone', ['label' => __('Phone')]);
-                                echo $this->Form->input('email', ['label' => __('Email')]);
+                                echo $this->Form->input('applicant_name_bn', ['required' => 'required', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('applicant_name_en', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('mother_name_bn', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('mother_name_en', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('father_name_bn', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('father_name_en', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('phone', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('email', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('cellphone', ['label' => __('Cellphone')]);
                                 echo $this->Form->input('nid', ['label' => __('Nid')]);
                                 echo $this->Form->input('brn', ['label' => __('Brn')]);
@@ -159,27 +167,27 @@ $religions = \Cake\Core\Configure::read('religions');
                             <div class="tab-pane" id="tab3">
                                 <h3 class="block"><?= __('Previous History') ?></h3>
                                 <?php
-                                echo $this->Form->input('application_type_id', ['options' => $applicationTypes, 'empty' => 'Select', 'class' => 'form-control division ', 'label' => __('ApplicationTypes')]);
+                                echo $this->Form->input('application_type_id', ['options' => $applicationTypes, 'required' => 'required', 'empty' => 'Select', 'class' => 'form-control division ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('application_reason', ['label' => __('Application_reason')]);
-                                echo $this->Form->input('start_date', ['type' => 'text', 'class' => 'form-control  datepicker', 'label' => __('Start Date')]);
-                                echo $this->Form->input('end_date', ['type' => 'text', 'class' => 'form-control  datepicker', 'label' => __('End date')]);
-                                echo $this->Form->input('document_file[]', ['type' => 'file', 'multiple', 'label' => __('document_file'),'required'=>'required']);
+                                echo $this->Form->input('start_date', ['type' => 'text', 'class' => 'form-control ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('end_date', ['type' => 'text', 'class' => 'form-control ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('document_file[]', ['type' => 'file', 'multiple', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right'], 'required' => 'required']);
                                 echo $this->Form->input('is_foregin_tour', ['type' => 'checkbox', 'label' => __('is_foregin_tour')]);
                                 ?>
                                 <div class=" history" style="display: none">
                                     <?php
-                                    echo $this->Form->input('pasport_number', ['label' => __('pasport_number')]);
-                                    echo $this->Form->input('applicant_using_passport_validity', ['label' => __('applicant_using_passport_validity')]);
-                                    echo $this->Form->input('using_passport_issue_place', ['label' => __('using_passport_issue_place')]);
-                                    echo $this->Form->input('foregin_tour_country', ['label' => __('foregin_tour_country')]);
+                                    echo $this->Form->input('pasport_number', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('applicant_using_passport_validity', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('using_passport_issue_place', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('foregin_tour_country', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
 
                                     echo $this->Form->input('have_foregin_tour', ['type' => 'checkbox', 'label' => __('have_foregin_tour')]);
                                     ?>
                                     <div class="last_tour" style="display: none">
                                         <?php
-                                        echo $this->Form->input('last_foreign_tour_country', ['label' => __('last_foreign_tour_country')]);
-                                        echo $this->Form->input('last_foreign_tour_reason', ['label' => __('last_foreign_tour_reason')]);
-                                        echo $this->Form->input('last_foreign_tour_time', ['type' => 'text', 'class' => 'form-control  datepicker', 'label' => __('last_foreign_tour_time')]);
+                                        echo $this->Form->input('last_foreign_tour_country', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                        echo $this->Form->input('last_foreign_tour_reason', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                        echo $this->Form->input('last_foreign_tour_time', ['type' => 'text', 'class' => 'form-control  datepicker', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                         ?>
                                     </div>
                                 </div>
@@ -226,7 +234,18 @@ $religions = \Cake\Core\Configure::read('religions');
 
         $(document).on('change', '.location_type', function () {
 
+            $('#district').hide();
+            $('#upazila').hide();
+            $('#city_corporation').hide();
+            $('#city_corporation_ward').hide();
+            $('#municipal').hide();
+            $('#municipal_ward').hide();
+            $('#union').hide();
+            $('#ward').hide();
+
+
             $('.applicantTypes').html('');
+            $('.divisions').val('');
             var obj = $(this);
             var location_type_id = $(this).val();
 
@@ -251,6 +270,16 @@ $religions = \Cake\Core\Configure::read('religions');
         });
 
         $(document).on('change', '.division', function () {
+
+            $('#upazila').hide();
+            $('#city_corporation').hide();
+            $('#city_corporation_ward').hide();
+            $('#municipal').hide();
+            $('#municipal_ward').hide();
+            $('#union').hide();
+            $('#ward').hide();
+
+            $('#district').show();
             $('.districts').html('');
             var obj = $(this);
 
@@ -267,6 +296,7 @@ $religions = \Cake\Core\Configure::read('religions');
                     success: function (data, status) {
                         $('.district').removeAttr('class', 'hide');
 
+
                         data = JSON.parse(data);
                         obj.closest('.tab-pane').find('.districts').append("<option value=''><?= __('select') ?></option>");
                         $.each(data, function (key, value) {
@@ -282,6 +312,9 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
         $(document).on('change', '.districts', function () {
+
+            $('#union').hide();
+            $('#ward').hide();
             $('.upazilas').html('');
             $('.city_corporations').html('');
             $('.municipals').html('');
@@ -291,6 +324,8 @@ $religions = \Cake\Core\Configure::read('religions');
             var district_id = $(this).val();
 
             if (applicantTypes_id > 4 && applicantTypes_id < 8 || applicantTypes_id > 13) {
+
+                $('#upazila').show();
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_upazilas')?>',
                     type: 'POST',
@@ -310,6 +345,7 @@ $religions = \Cake\Core\Configure::read('religions');
                     }
                 });
             } else if (applicantTypes_id > 7 && applicantTypes_id < 11) {
+                $('#city_corporation').show();
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_city_corporations')?>',
                     type: 'POST',
@@ -328,6 +364,7 @@ $religions = \Cake\Core\Configure::read('religions');
                     }
                 });
             } else if (applicantTypes_id > 10 && applicantTypes_id < 14) {
+                $('#municipal').show();
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_municipals')?>',
                     type: 'POST',
@@ -357,6 +394,7 @@ $religions = \Cake\Core\Configure::read('religions');
 
             var upazila_id = $(this).val();
             if (applicantTypes_id > 13) {
+                $('#union').show('');
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_unions')?>',
                     type: 'POST',
@@ -417,6 +455,7 @@ $religions = \Cake\Core\Configure::read('religions');
 
             var municipal_id = $(this).val();
             if (applicantTypes_id == 12) {
+                $('#municipal_ward').show();
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_municipal_wards')?>',
                     type: 'POST',
@@ -444,44 +483,62 @@ $religions = \Cake\Core\Configure::read('religions');
             var applicantTypes_id = obj.closest('#tab1').find('.applicantTypes option:selected').val();
 
             if (applicantTypes_id == 15) {
+                $('#ward').show();
                 $('.ward').removeAttr('class', 'hide');
             }
         });
 
 
-
-
         $("#is-foregin-tour").on("click", function () {
             if ($(this).is(':checked')) {
                 $('.history').show();
-                $('#pasport-number').attr('required','required');
-                $('#applicant-using-passport-validity').attr('required','required');
-                $('#using-passport-issue-place').attr('required','required');
-                $('#foregin-tour-country').attr('required','required');
+                $('#pasport-number').attr('required', 'required');
+                $('#applicant-using-passport-validity').attr('required', 'required');
+                $('#using-passport-issue-place').attr('required', 'required');
+                $('#foregin-tour-country').attr('required', 'required');
             } else {
                 $('.history').hide();
-                $('#pasport-number').removeAttr('required','required');
-                $('#applicant-using-passport-validity').removeAttr('required','required');
-                $('#using-passport-issue-place').removeAttr('required','required');
-                $('#foregin-tour-country').removeAttr('required','required');
+                $('#pasport-number').removeAttr('required', 'required');
+                $('#applicant-using-passport-validity').removeAttr('required', 'required');
+                $('#using-passport-issue-place').removeAttr('required', 'required');
+                $('#foregin-tour-country').removeAttr('required', 'required');
             }
         });
 
         $("#have-foregin-tour").on("click", function () {
             if ($(this).is(':checked')) {
                 $('.last_tour').show();
-                $('#last-foreign-tour-country').attr('required','required');
-                $('#last-foreign-tour-reason').attr('required','required');
-                $('#last-foreign-tour-time').attr('required','required');
+                $('#last-foreign-tour-country').attr('required', 'required');
+                $('#last-foreign-tour-reason').attr('required', 'required');
+                $('#last-foreign-tour-time').attr('required', 'required');
             } else {
                 $('.last_tour').hide();
-                $('#last-foreign-tour-country').removeAttr('required','required');
-                $('#last-foreign-tour-reason').removeAttr('required','required');
-                $('#last-foreign-tour-time').removeAttr('required','required');
+                $('#last-foreign-tour-country').removeAttr('required', 'required');
+                $('#last-foreign-tour-reason').removeAttr('required', 'required');
+                $('#last-foreign-tour-time').removeAttr('required', 'required');
             }
         });
 
         //valudation relatted
+    });
+
+    $(function () {
+        $("#start-date").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            onClose: function (selectedDate) {
+                $("#end-date").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#end-date").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            onClose: function (selectedDate) {
+                $("#start-date").datepicker("option", "maxDate", selectedDate);
+            }
+        });
     });
 
     function isValidForm() {
