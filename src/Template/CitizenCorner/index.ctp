@@ -298,7 +298,10 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                         data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('#district-id').append("<option value=''><?= __('select') ?></option>");
+                        obj.closest('.tab-pane').find('#district-id') .find('option')
+                            .remove()
+                            .end()
+                            .append("<option value=''><?= __('select') ?></option>");
                         $.each(data, function (key, value) {
                             obj.closest('.tab-pane').find('#district-id').append($("<option></option>").attr("value", key).text(value));
                         });
