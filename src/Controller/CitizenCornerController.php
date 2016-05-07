@@ -62,6 +62,9 @@ class CitizenCornerController extends AppController
                     unset($data['document_file']);
                     $applications = $this->Applications->patchEntity($applications, $data);
 
+//                    echo"<pre/>";
+   //                print_r($applications);die();
+
                     if ($this->Applications->save($applications)) {
                         //
                         $fileTable = TableRegistry::get('applications_files');

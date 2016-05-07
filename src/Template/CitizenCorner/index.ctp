@@ -280,7 +280,7 @@ $religions = \Cake\Core\Configure::read('religions');
             $('#ward').hide();
 
             $('#district').show();
-            $('.districts').html('');
+        //   $('#district-id').html('');
             var obj = $(this);
 
             var applicantTypes_id = obj.closest('.tab-pane').find('.applicantTypes').val();
@@ -298,9 +298,9 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                         data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('.districts').append("<option value=''><?= __('select') ?></option>");
+                        obj.closest('.tab-pane').find('#district-id').append("<option value=''><?= __('select') ?></option>");
                         $.each(data, function (key, value) {
-                            obj.closest('.tab-pane').find('.districts').append($("<option></option>").attr("value", key).text(value));
+                            obj.closest('.tab-pane').find('#district-id').append($("<option></option>").attr("value", key).text(value));
                         });
                     },
                     error: function (xhr, desc, err) {
@@ -315,6 +315,7 @@ $religions = \Cake\Core\Configure::read('religions');
 
             $('#union').hide();
             $('#ward').hide();
+
             $('.upazilas').html('');
             $('.city_corporations').html('');
             $('.municipals').html('');
@@ -326,6 +327,7 @@ $religions = \Cake\Core\Configure::read('religions');
             if (applicantTypes_id > 4 && applicantTypes_id < 8 || applicantTypes_id > 13) {
 
                 $('#upazila').show();
+
                 $.ajax({
                     url: '<?= $this->Url->build('/CitizenCorner/ajax/get_upazilas')?>',
                     type: 'POST',
