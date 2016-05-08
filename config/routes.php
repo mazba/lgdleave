@@ -48,7 +48,7 @@ Router::scope('/', function ($routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
 //    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-    $routes->connect('/', ['controller' => 'Dashboard', 'action' => 'index']);
+    $routes->connect('/', ['controller' => 'CitizenCorner', 'action' => 'index']);
     $routes->connect('/login', ['controller' => 'Dashboard', 'action' => 'login']);
     $routes->connect('/logout', ['controller' => 'Dashboard', 'action' => 'logout']);
     $routes->connect('/home', ['controller' => 'Pages', 'action' => 'display', 'home']);
