@@ -110,7 +110,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                             <?php
 
                                             echo $this->Form->input('user_designations.1.office_unit_id',['options'=>$OfficeUnits,'empty'=>'Select','class'=>'form-control office_unit_id','label'=>__('Office Unit')]);
-                                            echo $this->Form->input('user_designations.1.office_unit_designation_id',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
+                                            echo $this->Form->input('user_designations.1.designation_id',['options'=>[],'empty'=>'Select','class'=>'form-control office_unit_designation_id','label'=>__('Office Unit Designation')]);
 
                                             ?>
                                         </div>

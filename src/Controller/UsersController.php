@@ -69,9 +69,9 @@ public function index()
 //                echo "<pre/>";
 //        //    print_r($data);die();
 //           echo count($data['user_designations']);die();
-            $data['user_designations']['starting_date']=strtotime($data['user_designations']['starting_date']);
-            $data['user_designations']['ending_date']=strtotime($data['user_designations']['ending_date']);
-            $data['']=strtotime($data[]);
+     //       $data['user_designations']['starting_date']=strtotime($data['user_designations']['starting_date']);
+        //    $data['user_designations']['ending_date']=strtotime($data['user_designations']['ending_date']);
+      //      $data['']=strtotime($data[]);
 
             $data['create_by']=$user_info['id'];
             $data['create_date']=$time;
@@ -83,9 +83,7 @@ public function index()
                 $data['user_designations'][$i]['ending_date']=strtotime( $data['user_designations'][$i]['ending_date']);
             }
 
-            if(!$data['password']){
 
-            }
 
 
             $user = $this->Users->patchEntity($user, $data, [
@@ -142,9 +140,17 @@ public function index()
             for($i=0;$i<count($data['user_designations']);$i++){
                 $data['user_designations'][$i]['starting_date']=strtotime( $data['user_designations'][$i]['starting_date']);
                 $data['user_designations'][$i]['ending_date']=strtotime( $data['user_designations'][$i]['ending_date']);
-        }
-            echo "<pre/>";
-            print_r($data);die();
+
+            }
+
+            if($data['update_password']){
+                $data['password']=$data['update_password'];
+            }else{
+                $data['password']=$user['password'];
+            }
+
+//            echo "<pre/>";
+//            print_r($data);die();
             $data['update_by']=$auth['id'];
             $data['update_date']=$time;
             $user = $this->Users->patchEntity($user, $data);
