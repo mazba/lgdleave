@@ -66,13 +66,26 @@ public function index()
         if ($this->request->is('post'))
         {
             $data=$this->request->data;
+//                echo "<pre/>";
+//        //    print_r($data);die();
+//           echo count($data['user_designations']);die();
+            $data['user_designations']['starting_date']=strtotime($data['user_designations']['starting_date']);
+            $data['user_designations']['ending_date']=strtotime($data['user_designations']['ending_date']);
+            $data['']=strtotime($data[]);
 
             $data['create_by']=$user_info['id'];
             $data['create_date']=$time;
             $data['create_by']=$user_info['id'];
             $data['create_time']=$time;
             $data['office_id']=1;
+            for($i=0;$i<count($data['user_designations']);$i++){
+                $data['user_designations'][$i]['starting_date']=strtotime( $data['user_designations'][$i]['starting_date']);
+                $data['user_designations'][$i]['ending_date']=strtotime( $data['user_designations'][$i]['ending_date']);
+            }
 
+            if(!$data['password']){
+
+            }
 
 
             $user = $this->Users->patchEntity($user, $data, [
@@ -111,15 +124,28 @@ public function index()
      */
     public function edit($id = null)
     {
-        $user=$this->Auth->user();
+        $this->loadModel('Designations');
+        $this->loadModel('OfficeUnits');
+        $this->loadModel('OfficeUnitDesignations');
+        $auth=$this->Auth->user();
         $time=time();
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' => ['UserBasics','UserDesignations']
         ]);
+
+
+
         if ($this->request->is(['patch', 'post', 'put']))
         {
             $data=$this->request->data;
-            $data['update_by']=$user['id'];
+
+            for($i=0;$i<count($data['user_designations']);$i++){
+                $data['user_designations'][$i]['starting_date']=strtotime( $data['user_designations'][$i]['starting_date']);
+                $data['user_designations'][$i]['ending_date']=strtotime( $data['user_designations'][$i]['ending_date']);
+        }
+            echo "<pre/>";
+            print_r($data);die();
+            $data['update_by']=$auth['id'];
             $data['update_date']=$time;
             $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user))
@@ -132,9 +158,14 @@ public function index()
                 $this->Flash->error('The user could not be saved. Please, try again.');
             }
         }
+
+        $Unit_designations = $this->OfficeUnitDesignations->find('list', ['conditions'=>['office_id'=>1, 'status'=>1]]);
+        $Designations = $this->Designations->find('list', ['conditions'=>['office_id'=>1,'status'=>1]]);
+
+        $OfficeUnits = $this->OfficeUnits->find('list', ['conditions'=>['office_id'=>1,'status'=>1]]);
         $offices = $this->Users->Offices->find('list', ['conditions'=>['status'=>1]]);
         $userGroups = $this->Users->UserGroups->find('list', ['conditions'=>['status'=>1]]);
-        $this->set(compact('user', 'offices', 'userGroups'));
+        $this->set(compact('user','Designations','Unit_designations','OfficeUnits', 'offices', 'userGroups'));
         $this->set('_serialize', ['user']);
     }
 

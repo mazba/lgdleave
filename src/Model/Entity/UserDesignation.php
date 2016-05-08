@@ -41,4 +41,14 @@ class UserDesignation extends Entity
         '*' => true,
         'id' => false,
     ];
+
+//    protected function _setStartingDate($starting_date)
+//    {
+//        return $starting_date?strtotime($starting_date):0;
+//    }
+//
+//    protected function _setEndingDate($ending_date)
+//    {
+//        return $ending_date?strtotime($ending_date):0;
+//    }
 }
