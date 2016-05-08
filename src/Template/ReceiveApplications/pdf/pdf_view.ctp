@@ -4,8 +4,8 @@
     $religions = Configure::read('religions');
 ?>
 <div class="col-md-6 col-md-offset-3">
-    <h1 style="text-align: center;margin-bottom: 5px;padding-bottom: 5px">বাংলাদেশে স্থানীয় সরকার</h1>
-    <h3 style="text-align: center;margin-top: 5px;padding-top: 5px">আবেদনপত্র</h3>
+    <h1 style="text-align: center;margin-bottom: 5px;padding-bottom: 5px"><?= __('LOCAL GOVERNMENT DIVISION') ?></h1>
+    <h3 style="text-align: center;margin-top: 5px;padding-top: 5px"><?= __('Application') ?></h3>
     <hr style="border-color:#1adbd1"/>
     <table class="table table-responsive table-bordered" style="margin-left: 200px!important;">
         <tbody style="text-align: left;">
@@ -26,15 +26,15 @@
                 <tr><th><?= __('Unions') ?></th><td><?php echo $application['union']['unionname']; ?></td></tr>
             <?php endif ?>
 
-            <tr><th><?= __('Location Type') ?></th><td><?php echo $application['location_type']['title_bn']; ?></td></tr>
-            <tr><th><?= __('Applicant Type') ?></th><td><?php echo $application['applicant_type']['title_bn']; ?></td></tr>
+            <tr><th><?= __('Location Type') ?></th><td><?php echo $application['location_type']['title_en']; ?></td></tr>
+            <tr><th><?= __('Applicant Type') ?></th><td><?php echo $application['applicant_type']['title_en']; ?></td></tr>
             <tr><th><?= __('Application ID') ?></th><td><?php echo $application['temporary_id']; ?></td></tr>
-            <tr><th><?= __('ApplicationTypes') ?></th><td><?php echo $application['application_type']['title_bn']; ?></td></tr>
-            <tr><th><?= __('Applicant_name_bn') ?></th><td><?php echo $application['applicant_name_bn']; ?></td></tr>
-            <tr><th><?= __('Applicant_name_en') ?></th><td><?php echo $application['applicant_name_bn']; ?></td></tr>
-            <tr><th><?= __('Mother_name_bn') ?></th><td><?php echo $application['mother_name_bn']; ?></td></tr>
+            <tr><th><?= __('ApplicationTypes') ?></th><td><?php echo $application['application_type']['title_en']; ?></td></tr>
+            <tr><th><?= __('Applicant_name_bn') ?></th><td><?php echo $application['applicant_name_en']; ?></td></tr>
+            <tr><th><?= __('Applicant_name_en') ?></th><td><?php echo $application['applicant_name_en']; ?></td></tr>
+            <tr><th><?= __('Mother_name_bn') ?></th><td><?php echo $application['mother_name_en']; ?></td></tr>
             <tr><th><?= __('Mother_name_en') ?></th><td><?php echo $application['mother_name_en']; ?></td></tr>
-            <tr><th><?= __('Father_name_bn') ?></th><td><?php echo $application['father_name_bn']; ?></td></tr>
+            <tr><th><?= __('Father_name_bn') ?></th><td><?php echo $application['father_name_en']; ?></td></tr>
             <tr><th><?= __('Father_name_en') ?></th><td><?php echo $application['father_name_en']; ?></td></tr>
             <tr><th><?= __('Phone') ?></th><td><?php echo $application['phone']; ?></td></tr>
             <tr><th><?= __('Email') ?></th><td><?php echo $application['email']; ?></td></tr>
@@ -45,7 +45,7 @@
             <tr><th><?= __('Present_address') ?></th><td><?php echo $application['present_address']; ?></td></tr>
             <tr><th><?= __('Permanent_address') ?></th><td><?php echo $application['permanent_address']; ?></td></tr>
             <tr><th><?= __('Emergency_contact') ?></th><td><?php echo $application['emergency_contact']; ?></td></tr>
-            <tr><th><?= __('is_foregin_tour') ?></th><td><?php echo $application['is_foregin_tour']?'হঁ্যা' : 'না'; ?></td></tr>
+            <tr><th><?= __('is_foregin_tour') ?></th><td><?php echo $application['is_foregin_tour']?'yes' : 'no'; ?></td></tr>
             <?php if($application['is_foregin_tour']): ?>
                 <tr><th><?= __('pasport_number') ?></th><td><?php echo $application['pasport_number']; ?></td></tr>
                 <tr><th><?= __('applicant_using_passport_validity') ?></th><td><?php echo $application['applicant_using_passport_validity'] ? date('d-m-Y',$application['applicant_using_passport_validity']):''; ?></td></tr>

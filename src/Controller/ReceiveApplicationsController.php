@@ -3,7 +3,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
+use Cake\Collection\Collection;
+use Cake\ORM\Query;
 use Cake\ORM\TableRegistry;
+
 
 /**
  * ReceiveApplications Controller
@@ -25,6 +28,21 @@ class ReceiveApplicationsController extends AppController
     public function index()
     {
         if($this->request->is('ajax')){
+            $user = $this->Auth->user();
+            $usrUnits = TableRegistry::get('user_designations');
+            $userUnits = $usrUnits->find()
+                ->select(['office_unit_id'])
+                ->where(['user_id'=>$user['id'],'is_basic IS'=>null]);
+            $collection = new Collection($userUnits);
+            $userUnits = $collection->extract('office_unit_id');
+            $userUnits = $userUnits->toArray();
+
+            $applicantType = TableRegistry::get('applicant_types_office_units');
+            $applicantType = $applicantType->find()
+                ->where(['office_unit_id IN'=>$userUnits]);
+            $collection = new Collection($applicantType);
+            $applicantType = $collection->extract('applicant_type_id');
+            $applicantTypes = $applicantType->toArray();
             $this->loadModel('Applications');
             $new_applications = $this->Applications->find()
                 ->select(
@@ -40,7 +58,12 @@ class ReceiveApplicationsController extends AppController
                         'submission'=>"FROM_UNIXTIME(Applications.submission_time,'%D, %M, %Y')",
                     ]
                 )
-                ->where(['applications.status'=>Configure::read('application_status.Pending')])
+                ->where(
+                    [
+                        'Applications.status'=>Configure::read('application_status.Pending'),
+                        'Applications.applicant_type_id IN'=>$applicantTypes
+                    ]
+                )
                 ->contain(['ApplicationTypes','ApplicantTypes','LocationTypes','AreaDivisions','AreaDistricts','AreaUpazilas','CityCorporations','Municipals'])
                 ->toArray();
             $this->response->body(json_encode($new_applications));
@@ -123,8 +146,8 @@ class ReceiveApplicationsController extends AppController
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
-                'className'=>'CakePdf.WkHtmlToPdf',
-                'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+                'className'=>'CakePdf.Mpdf',
+//                'binary' => 'C:\\wkhtmltopdf2\\bin\\wkhtmltopdf.exe',
                 'options' => [
                     'print-media-type' => false,
                     'outline' => true,

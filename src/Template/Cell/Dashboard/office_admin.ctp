@@ -46,7 +46,7 @@
                         <?php echo $pending_application_number; ?>
                     </div>
                     <div class="desc">
-                        <?= __('Pending Applications') ?>
+                        <?= __('Pending') ?>
                     </div>
                 </div>
                 <?php
@@ -64,7 +64,7 @@
                         <?php echo $approve_application_number; ?>
                     </div>
                     <div class="desc">
-                        <?= __('Approved Application') ?>
+                        <?= __('Approved') ?>
                     </div>
                 </div>
                 <?php
@@ -82,7 +82,7 @@
                         <?php echo $reject_application_number; ?>
                     </div>
                     <div class="desc">
-                        <?= __(' Rejected Applications') ?>
+                        <?= __(' Rejected') ?>
                     </div>
                 </div>
                 <?php
