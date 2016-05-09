@@ -52,22 +52,22 @@ class UsersTable extends Table
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create');
-//
-//        $validator
-//            ->requirePresence('full_name_bn', 'create')
-//            ->notEmpty('full_name_bn');
-//
-//        $validator
-//            ->requirePresence('full_name_en', 'create')
-//            ->notEmpty('full_name_en');
-//
-//        $validator
-//            ->requirePresence('username', 'create')
-//            ->notEmpty('username');
-//
-//        $validator
-//            ->requirePresence('password', 'create')
-//            ->notEmpty('password');
+
+        $validator
+            ->requirePresence('full_name_bn', 'create')
+            ->notEmpty('full_name_bn');
+
+        $validator
+            ->requirePresence('full_name_en', 'create')
+            ->notEmpty('full_name_en');
+
+        $validator
+            ->requirePresence('username', 'create')
+            ->notEmpty('username');
+
+        $validator
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
 //
 //        $validator
 //            ->requirePresence('picture_alt', 'create')

@@ -53,8 +53,8 @@ class UserBasic extends Entity
         'id' => false,
     ];
 
-    protected function _setDateOfBirth($date_of_birth)
-    {
-        return $date_of_birth?strtotime($date_of_birth):0;
-    }
+//    protected function _setDateOfBirth($date_of_birth)
+//    {
+//        return $date_of_birth?strtotime($date_of_birth):0;
+//    }
 }
