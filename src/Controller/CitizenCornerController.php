@@ -58,6 +58,7 @@ class CitizenCornerController extends AppController
                     $data['start_date'] = strtotime($data['start_date']);
                     $data['end_date'] = strtotime($data['end_date']);
                     $data['last_foreign_tour_time'] = $data['last_foreign_tour_time'] ? strtotime($data['last_foreign_tour_time']) : 0;
+                    $data['applicant_using_passport_validity'] = $data['applicant_using_passport_validity'] ? strtotime($data['applicant_using_passport_validity']) : 0;
                     $files = $data['document_file'];
                     unset($data['document_file']);
                     $applications = $this->Applications->patchEntity($applications, $data);

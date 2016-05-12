@@ -10,6 +10,9 @@ $religions = \Cake\Core\Configure::read('religions');
         color: red;
         display: inline;
     }
+    .padding{
+        padding-left: 50px;
+    }
 </style>
 
 <!-- BEGIN PAGE CONTENT-->
@@ -70,7 +73,7 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                             <div class="tab-pane active" id="tab1">
-                                <h3 class="block"><?= __('Basic Info') ?></h3>
+                                <h3 class="block"><?= __('') ?></h3>
 
 
                                 <?php
@@ -172,12 +175,12 @@ $religions = \Cake\Core\Configure::read('religions');
                                 echo $this->Form->input('start_date', ['type' => 'text', 'class' => 'form-control ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('end_date', ['type' => 'text', 'class' => 'form-control ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('document_file[]', ['type' => 'file', 'multiple', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right'], 'required' => 'required']);
-                                echo $this->Form->input('is_foregin_tour', ['type' => 'checkbox', 'label' => __('is_foregin_tour')]);
+                                echo $this->Form->input('is_foregin_tour', ['type' => 'checkbox','class' => 'form-control text-right', 'label' => __('is_foregin_tour')]);
                                 ?>
                                 <div class=" history" style="display: none">
                                     <?php
                                     echo $this->Form->input('pasport_number', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    echo $this->Form->input('applicant_using_passport_validity', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('applicant_using_passport_validity', ['type' => 'text','class'=>'form-control datepicker','label' => ['escape' => false, 'class' => ' mandetory col-sm-3 control-label text-right']]);
                                     echo $this->Form->input('using_passport_issue_place', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     echo $this->Form->input('foregin_tour_country', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
 
