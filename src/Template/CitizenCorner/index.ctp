@@ -65,7 +65,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             <li>
                                 <a href="#tab5" data-toggle="tab" class="step">
 												<span class="number">
-												5 </span>
+												৫ </span>
 												<span class="desc">
 												<i class="fa fa-check"></i> <?= __('Confirm') ?> </span>
                                 </a>
@@ -231,11 +231,10 @@ $religions = \Cake\Core\Configure::read('religions');
 
                             </div>
                             <div class="tab-pane tab4" id="tab4">
-                                <h3 class="block"><?= __('Confirm your account') ?></h3>
 
 
                                 <div class="form-group input file required" aria-required="true">
-                                    <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('') ?></label>
+                                    <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('To') ?></label>
                                     <div class="col-sm-9 container_file_label[]">
                                         <textarea class="form-control" name="application_head" rows="2" required>
                                               <p><?= __('To') ?></p>
@@ -251,7 +250,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                 <div class="form-group input file required" aria-required="true">
                                     <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('Subject') ?></label>
                                     <div class="col-sm-9 container_file_label[]">
-                                        <textarea class="form-control" name="application_subject" rows="2" required></textarea>
+                                        <textarea class="form-control" name="application_subject" rows="2" id="application_subject" required></textarea>
                                     </div>
 
                                 </div>
@@ -259,7 +258,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                 <div class="form-group input file required" aria-required="true">
                                     <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('Body') ?></label>
                                     <div class="col-sm-9 container_file_label[]">
-                                        <textarea class="form-control editor1" name="application_body" rows="6" id="editor1" required></textarea>
+                                        <textarea class="form-control editor1" name="application_body" rows="6" id="" required></textarea>
                                     </div>
                                 </div>
 
@@ -315,14 +314,6 @@ $religions = \Cake\Core\Configure::read('religions');
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="control-label col-md-6"><?= __('Brn') ?>:</label>
-
-                                    <div class="col-md-4">
-                                        <p class="form-control-static" data-display="brn">
-                                        </p>
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label class="control-label col-md-6"><?= __('Religion') ?>:</label>
@@ -763,6 +754,8 @@ $religions = \Cake\Core\Configure::read('religions');
                 $("#start-date").datepicker("option", "maxDate", selectedDate);
             }
         });
+
+
     });
 
     function isValidForm() {

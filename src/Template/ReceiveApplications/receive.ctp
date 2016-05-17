@@ -82,7 +82,7 @@ $religions = Configure::read('religions');
                         if(count($application['applications_files'])):
                             foreach($application['applications_files'] as $key=>$file):
                             ?>
-                                <a href="<?php echo $this->request->webroot.$file['file']; ?>" class="btn green-haze btn-circle btn-sm todo-projects-config">
+                                <a href="<?php echo $this->request->webroot.$file['file']; ?>"  target="_blank" class="btn green-haze btn-circle btn-sm todo-projects-config">
                                     <i class="fa fa-file-word-o"></i> File <?= $key+1 ?>
                                 </a>
                             <?php

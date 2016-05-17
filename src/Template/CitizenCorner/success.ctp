@@ -234,7 +234,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             foreach ($application['applications_files'] as $key => $file):
                                 ?>
                                 <a href="<?php echo $this->request->webroot . $file['file']; ?>"
-                                   class="btn green-haze btn-circle btn-sm todo-projects-config">
+                                   target="_blank"  class="btn green-haze btn-circle btn-sm todo-projects-config">
                                     <i class="fa fa-file-word-o"></i> <?= $file['file_label'] ?>
                                 </a>
                                 <?php
