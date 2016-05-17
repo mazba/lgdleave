@@ -7,6 +7,9 @@ msgstr "নাম (ইংরেজি)"
 msgid "Name Bangla"
 msgstr "নাম (বাংলা)"
 
+msgid "Name"
+msgstr "নাম"
+
 msgid "Provide your profile details"
 msgstr "আপনার ব্যক্তিগত তথ্য প্রদান করুন"
 
