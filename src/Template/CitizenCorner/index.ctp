@@ -10,20 +10,18 @@ $religions = \Cake\Core\Configure::read('religions');
         color: red;
         display: inline;
     }
-    .padding{
+
+    .padding {
         padding-left: 50px;
     }
 </style>
 
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
         <div class="portlet box blue" id="form_wizard_1">
             <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-gift"></i>  <span class="step-title">
-							 </span>
-                </div>
+
 
             </div>
             <div class="portlet-body form">
@@ -35,7 +33,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             <li>
                                 <a href="#tab1" data-toggle="tab" class="step">
 												<span class="number">
-												1 </span>
+												১ </span>
 												<span class="desc">
 												<i class="fa fa-check"></i><?= __('Account Setup') ?>  </span>
                                 </a>
@@ -43,7 +41,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             <li>
                                 <a href="#tab2" data-toggle="tab" class="step">
 												<span class="number">
-												2 </span>
+												২ </span>
 												<span class="desc">
 												<i class="fa fa-check"></i> <?= __('Profile_Setup') ?></span>
                                 </a>
@@ -51,7 +49,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             <li>
                                 <a href="#tab3" data-toggle="tab" class="step active">
 												<span class="number">
-												3 </span>
+												৩ </span>
 												<span class="desc">
 												<i class="fa fa-check"></i><?= __('Billing_Setup') ?>  </span>
                                 </a>
@@ -59,7 +57,15 @@ $religions = \Cake\Core\Configure::read('religions');
                             <li>
                                 <a href="#tab4" data-toggle="tab" class="step">
 												<span class="number">
-												4 </span>
+												৪ </span>
+												<span class="desc">
+												<i class="fa fa-check"></i> <?= __('Application') ?> </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab5" data-toggle="tab" class="step">
+												<span class="number">
+												5 </span>
 												<span class="desc">
 												<i class="fa fa-check"></i> <?= __('Confirm') ?> </span>
                                 </a>
@@ -77,57 +83,57 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                                 <?php
-                                echo $this->Form->input('location_type_id', ['options' => $locationTypes, 'empty' => 'Select', 'class' => 'form-control  location_type', 'label' => [__('Location Type'), 'escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('location_type_id', ['options' => $locationTypes, 'empty' => __('Select'), 'class' => 'form-control  location_type', 'label' => [__('Location Type'), 'escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 ?>
 
                                 <div class="hide applicant_type" id="applicant_type">
                                     <?php
-                                    echo $this->Form->input('applicant_type_id', ['empty' => 'Select', 'class' => 'form-control select_box applicantTypes', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('applicant_type_id', ['options' => '', 'empty' => __('Select'), 'class' => 'form-control select_box applicantTypes', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
 
-                                    echo $this->Form->input('divsion_id', ['options' => $divisions, 'empty' => 'Select', 'class' => 'form-control select_box division divisions ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('divsion_id', ['options' => $divisions, 'empty' => __('Select'), 'class' => 'form-control select_box division divisions ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
 
                                 <div class="hide district" id="district">
                                     <?php
-                                    echo $this->Form->input('district_id', ['empty' => 'Select', 'class' => 'form-control  select_box districts', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('district_id', ['empty' => __('Select'), 'class' => 'form-control  select_box districts', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
 
                                 <div class="hide upazila" id="upazila">
                                     <?php
-                                    echo $this->Form->input('upazila_id', ['empty' => 'Select', 'class' => 'form-control select_box upazilas', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('upazila_id', ['empty' => __('Select'), 'class' => 'form-control select_box upazilas', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
 
                                 <div class="hide city_corporation" id="city_corporation">
                                     <?php
-                                    echo $this->Form->input('city_corporation_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  select_box  city_corporations', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('city_corporation_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control  select_box  city_corporations', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
                                 <div class="hide city_corporation_ward" id="city_corporation_ward">
                                     <?php
-                                    echo $this->Form->input('city_corporation_ward_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control select_box city_corporation_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('city_corporation_ward_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control select_box city_corporation_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
                                 <div class="hide municipal" id="municipal">
                                     <?php
-                                    echo $this->Form->input('municipal_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  select_box  municipals', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('municipal_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control  select_box  municipals', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
                                 <div class="hide municipal_ward" id="municipal_ward">
                                     <?php
-                                    echo $this->Form->input('municipal_ward_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control select_box municipal_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('municipal_ward_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control select_box municipal_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
                                 <div class="hide union" id="union">
                                     <?php
-                                    echo $this->Form->input('union_id', ['options' => [], 'empty' => 'Select', 'class' => 'form-control  select_box  unions', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('union_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control  select_box  unions', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     ?>
                                 </div>
 
@@ -147,40 +153,67 @@ $religions = \Cake\Core\Configure::read('religions');
 
                                 <?php
                                 echo $this->Form->input('applicant_name_bn', ['required' => 'required', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('applicant_name_en', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('applicant_name_en');
                                 echo $this->Form->input('mother_name_bn', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('mother_name_en', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('mother_name_en');
                                 echo $this->Form->input('father_name_bn', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('father_name_en', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('father_name_en');
                                 echo $this->Form->input('phone', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('email', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('cellphone', ['label' => __('Cellphone')]);
+                                echo $this->Form->input('emergency_contact', ['label' => __('Emergency_contact')]);
+                                echo $this->Form->input('email', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('nid', ['label' => __('Nid')]);
-                                echo $this->Form->input('brn', ['label' => __('Brn')]);
-
-                                echo $this->Form->input('religion', ['options' => $religions, 'class' => 'form-control', 'label' => __('Religion')]);
-
-
+                                //  echo $this->Form->input('brn', ['label' => __('Brn')]);
+                                echo $this->Form->input('religion', ['options' => $religions, 'empty' => __('Select'), 'class' => 'form-control', 'label' => __('Religion')]);
                                 echo $this->Form->input('present_address', ['type' => 'textarea', 'escape' => false, 'label' => __('Present_address')]);
                                 echo $this->Form->input('permanent_address', ['type' => 'textarea', 'escape' => false, 'label' => __('Permanent_address')]);
-                                echo $this->Form->input('emergency_contact', ['label' => __('Emergency_contact')]);
                                 ?>
 
                             </div>
                             <div class="tab-pane" id="tab3">
                                 <h3 class="block"><?= __('Previous History') ?></h3>
                                 <?php
-                                echo $this->Form->input('application_type_id', ['options' => $applicationTypes, 'required' => 'required', 'empty' => 'Select', 'class' => 'form-control division ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('application_type_id', ['options' => $applicationTypes, 'empty' => __('Select'), 'required' => 'required', 'class' => 'form-control division ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('application_reason', ['label' => __('Application_reason')]);
                                 echo $this->Form->input('start_date', ['type' => 'text', 'class' => 'form-control ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('end_date', ['type' => 'text', 'class' => 'form-control ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('document_file[]', ['type' => 'file', 'multiple', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right'], 'required' => 'required']);
-                                echo $this->Form->input('is_foregin_tour', ['type' => 'checkbox','class' => 'form-control text-right', 'label' => __('is_foregin_tour')]);
+                                ?>
+                                <div id="file_wrapper">
+                                    <div class="file_div" data-index_no="0">
+                                        <div class="form-group input file required" aria-required="true">
+                                            <label for="document-file"
+                                                   class="mandetory col-sm-3 control-label text-right">ডকুমেন্ট
+                                                ফাইল</label>
+
+                                            <div class="col-sm-4 container_file_label[]">
+                                                <input id="file-label" class="form-control" type="text"
+                                                       name="file_label[]" required="required" aria-required="true">
+                                            </div>
+                                            <div class="col-sm-3 container_document_file[]">
+                                                <input type="file" name="document_file[]" class="" id="document-file"
+                                                       required="required" multiple="multiple" aria-required="true">
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <span class='btn btn-success add_file'>+</span>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <span class='btn btn-danger remove_file'>-</span>
+                                            </div>
+                                        </div>
+                                        <!--                                    --><?php
+                                        //                                    echo $this->Form->input('file_label[]', ['required' => 'required', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                        //                                    echo $this->Form->input('document_file[]', ['type' => 'file', 'multiple', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right'], 'required' => 'required']);
+                                        //                                     ?>
+
+                                    </div>
+                                </div>
+                                <?php
+                                echo $this->Form->input('is_foregin_tour', ['type' => 'checkbox', 'class' => 'form-control text-right', 'label' => __('is_foregin_tour')]);
                                 ?>
                                 <div class=" history" style="display: none">
                                     <?php
                                     echo $this->Form->input('pasport_number', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    echo $this->Form->input('applicant_using_passport_validity', ['type' => 'text','class'=>'form-control datepicker','label' => ['escape' => false, 'class' => ' mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('applicant_using_passport_validity', ['type' => 'text', 'class' => 'form-control datepicker', 'label' => ['escape' => false, 'class' => ' mandetory col-sm-3 control-label text-right']]);
                                     echo $this->Form->input('using_passport_issue_place', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                     echo $this->Form->input('foregin_tour_country', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
 
@@ -197,10 +230,162 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                             </div>
-                            <div class="tab-pane" id="tab4">
+                            <div class="tab-pane tab4" id="tab4">
                                 <h3 class="block"><?= __('Confirm your account') ?></h3>
-                                <h4 class="form-section"></h4>
 
+
+                                <div class="form-group input file required" aria-required="true">
+                                    <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('') ?></label>
+                                    <div class="col-sm-9 container_file_label[]">
+                                        <textarea class="form-control" name="application_head" rows="2" required>
+                                              <p><?= __('To') ?></p>
+                                                <p><?= __('HEAD_1') ?></p>
+                                                <p><?= __('HEAD_2') ?></p>
+                                                <p><?= __('HEAD_3') ?></p>
+                                                <p><?= __('HEAD_4') ?></p>
+                                        </textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group input file required" aria-required="true">
+                                    <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('Subject') ?></label>
+                                    <div class="col-sm-9 container_file_label[]">
+                                        <textarea class="form-control" name="application_subject" rows="2" required></textarea>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group input file required" aria-required="true">
+                                    <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('Body') ?></label>
+                                    <div class="col-sm-9 container_file_label[]">
+                                        <textarea class="form-control editor1" name="application_body" rows="6" id="editor1" required></textarea>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="tab-pane tab4" id="tab5" >
+                                <h3 class="block"><?= __('Confirm your account') ?></h3>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Applicant Name Bn') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="applicant_name_bn">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Mother_name_bn') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="mother_name_bn">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Father_name_bn') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="father_name_bn">
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Cellphone') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="cellphone">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Nid') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="nid">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Brn') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="brn">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Religion') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="religion">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Present_address') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="present_address">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Permanent_address') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="permanent_address">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('ApplicationTypes') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="application_type_id">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Application_reason') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="application_reason">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Start Date') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="start_date">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('End Date') ?>:</label>
+
+                                    <div class="col-md-4">
+                                        <p class="form-control-static" data-display="end_date">
+                                        </p>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -209,12 +394,12 @@ $religions = \Cake\Core\Configure::read('religions');
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
                                 <a href="javascript:;" class="btn default button-previous">
-                                    <i class="m-icon-swapleft"></i> Back </a>
+                                    <i class="m-icon-swapleft"></i> <?= __('Back') ?> </a>
                                 <a href="javascript:;" class="btn blue button-next">
-                                    Continue <i class="m-icon-swapright m-icon-white"></i>
+                                    <?= __('Continue') ?> <i class="m-icon-swapright m-icon-white"></i>
                                 </a>
                                 <a href="javascript:;" class="btn green button-submit">
-                                    Submit <i class="m-icon-swapright m-icon-white"></i>
+                                    <?= __('Submit') ?> <i class="m-icon-swapright m-icon-white"></i>
                                 </a>
                             </div>
                         </div>
@@ -226,8 +411,16 @@ $religions = \Cake\Core\Configure::read('religions');
     </div>
 </div>
 <!-- END PAGE CONTENT-->
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace( 'application_head');
+
+    CKEDITOR.replace( 'application_body');
+</script>
 
 <script>
+
     $(document).ready(function () {
         $('.datepicker').datepicker({
             dateFormat: 'dd-mm-yy'
@@ -260,7 +453,7 @@ $religions = \Cake\Core\Configure::read('religions');
                 success: function (data, status) {
                     $('.applicant_type').removeAttr('class', 'hide');
                     data = JSON.parse(data);
-                    obj.closest('.tab-pane').find('.applicantTypes').append("<option value=''><?= __('select') ?></option>");
+                    obj.closest('.tab-pane').find('.applicantTypes').append("<option value=''><?= __('Select') ?></option>");
                     $.each(data, function (key, value) {
                         obj.closest('.tab-pane').find('.applicantTypes').append($("<option></option>").attr("value", key).text(value));
                     });
@@ -283,7 +476,7 @@ $religions = \Cake\Core\Configure::read('religions');
             $('#ward').hide();
 
             $('#district').show();
-        //   $('#district-id').html('');
+            //   $('#district-id').html('');
             var obj = $(this);
 
             var applicantTypes_id = obj.closest('.tab-pane').find('.applicantTypes').val();
@@ -301,10 +494,10 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                         data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('#district-id') .find('option')
+                        obj.closest('.tab-pane').find('#district-id').find('option')
                             .remove()
                             .end()
-                            .append("<option value=''><?= __('select') ?></option>");
+                            .append("<option value=''><?= __('Select') ?></option>");
                         $.each(data, function (key, value) {
                             obj.closest('.tab-pane').find('#district-id').append($("<option></option>").attr("value", key).text(value));
                         });
@@ -343,7 +536,7 @@ $religions = \Cake\Core\Configure::read('religions');
                         $('.upazila').removeAttr('class', 'hide');
 
                         data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('.upazilas').append("<option value=''><?= __('select') ?></option>");
+                        obj.closest('.tab-pane').find('.upazilas').append("<option value=''><?= __('Select') ?></option>");
                         $.each(data, function (key, value) {
                             obj.closest('.tab-pane').find('.upazilas').append($("<option></option>").attr("value", key).text(value));
                         });
@@ -362,7 +555,7 @@ $religions = \Cake\Core\Configure::read('religions');
                     success: function (data, status) {
                         $('.city_corporation').removeAttr('class', 'hide');
                         data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('.city_corporations').append("<option value=''><?= __('select') ?></option>");
+                        obj.closest('.tab-pane').find('.city_corporations').append("<option value=''><?= __('Select') ?></option>");
                         $.each(data, function (key, value) {
                             obj.closest('.tab-pane').find('.city_corporations').append($("<option></option>").attr("value", key).text(value));
                         });
@@ -381,7 +574,7 @@ $religions = \Cake\Core\Configure::read('religions');
                     success: function (data, status) {
                         $('.municipal').removeAttr('class', 'hide');
                         data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('.municipals').append("<option value=''><?= __('select') ?></option>");
+                        obj.closest('.tab-pane').find('.municipals').append("<option value=''><?= __('Select') ?></option>");
                         $.each(data, function (key, value) {
                             obj.closest('.tab-pane').find('.municipals').append($("<option></option>").attr("value", key).text(value));
                         });
@@ -411,7 +604,7 @@ $religions = \Cake\Core\Configure::read('religions');
                     success: function (data, status) {
                         $('.union').removeAttr('class', 'hide');
                         data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('.unions').append("<option value=''><?= __('select') ?></option>");
+                        obj.closest('.tab-pane').find('.unions').append("<option value=''><?= __('Select') ?></option>");
                         $.each(data, function (key, value) {
                             obj.closest('.tab-pane').find('.unions').append($("<option></option>").attr("value", key).text(value));
                         });
@@ -441,7 +634,7 @@ $religions = \Cake\Core\Configure::read('religions');
                     success: function (data, status) {
                         $('.city_corporation_ward').removeAttr('class', 'hide');
                         data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('.city_corporation_wards').append("<option value=''><?= __('select') ?></option>");
+                        obj.closest('.tab-pane').find('.city_corporation_wards').append("<option value=''><?= __('Select') ?></option>");
                         $.each(data, function (key, value) {
                             obj.closest('.tab-pane').find('.city_corporation_wards').append($("<option></option>").attr("value", key).text(value));
                         });
@@ -472,7 +665,7 @@ $religions = \Cake\Core\Configure::read('religions');
                     success: function (data, status) {
                         $('.municipal_ward').removeAttr('class', 'hide');
                         data = JSON.parse(data);
-                        obj.closest('.tab-pane').find('.municipal_wards').append("<option value=''><?= __('select') ?></option>");
+                        obj.closest('.tab-pane').find('.municipal_wards').append("<option value=''><?= __('Select') ?></option>");
                         $.each(data, function (key, value) {
                             obj.closest('.tab-pane').find('.municipal_wards').append($("<option></option>").attr("value", key).text(value));
                         });
@@ -526,6 +719,29 @@ $religions = \Cake\Core\Configure::read('religions');
                 $('#last-foreign-tour-time').removeAttr('required', 'required');
             }
         });
+
+
+        //For add new file option
+
+        $(document).on('click', '.add_file', function () {
+
+            var index = $('.file_div').data('index_no');
+            $('.file_div').data('index_no', index + 1);
+
+
+            $('.file_div:last').clone()
+                .find("input:text, input:file").val("").end()
+                .appendTo('#file_wrapper');
+        });
+
+        $(document).on('click', '.remove_file', function () {
+            var obj = $(this);
+            var count = $('.file_div').length;
+            if (count > 1) {
+                obj.closest('.file_div').remove();
+            }
+        });
+
 
         //valudation relatted
     });

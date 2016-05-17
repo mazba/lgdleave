@@ -60,24 +60,29 @@ class CitizenCornerController extends AppController
                     $data['last_foreign_tour_time'] = $data['last_foreign_tour_time'] ? strtotime($data['last_foreign_tour_time']) : 0;
                     $data['applicant_using_passport_validity'] = $data['applicant_using_passport_validity'] ? strtotime($data['applicant_using_passport_validity']) : 0;
                     $files = $data['document_file'];
+                    $files_label = $data['file_label'];
                     unset($data['document_file']);
+                    unset($data['file_label']);
                     $applications = $this->Applications->patchEntity($applications, $data);
 
 //                    echo"<pre/>";
-   //                print_r($applications);die();
+//                 print_r($applications); die();
 
                     if ($this->Applications->save($applications)) {
                         //
                         $fileTable = TableRegistry::get('applications_files');
 
                         if(is_array($files)){
+                            $i=0;
                         foreach ($files as $file) {
                             $result = $this->FileUpload->upload_file($file, 'u_load/application_file', ['jpg','jpeg','png','doc','pdf','xls','xlsx']);
                             if ($result['status'] === true) {
                                 $fileEntity = $fileTable->newEntity();
+                                $fileEntity->file_label = $files_label[$i];
                                 $fileEntity->file = $result['file_path'];
                                 $fileEntity->application_id = $applications['id'];
                                 $fileTable->save($fileEntity);
+                                $i++;
                             } else {
                                 throw new Exception('error');
                             }
@@ -85,6 +90,7 @@ class CitizenCornerController extends AppController
                             $result = $this->FileUpload->upload_file($files, 'u_load/application_file', ['jpg', 'png']);
                             if ($result['status'] === true) {
                                 $fileEntity = $fileTable->newEntity();
+                                $fileEntity->file_label = $files_label['0'];
                                 $fileEntity->file = $result['file_path'];
                                 $fileEntity->application_id = $applications['id'];
                                 $fileTable->save($fileEntity);
@@ -97,7 +103,7 @@ class CitizenCornerController extends AppController
                     }
                 });
                 $this->Flash->success(__('The citizen corner has been saved.'));
-                return $this->redirect(['action' => 'pdfView',$applications['id']]);
+               return $this->redirect(['action' => 'success',$applications['id']]);
 
             } catch (\Exception $e) {
                 $this->Flash->error(__('The citizen corner could not be saved. Please, try again.'));
@@ -114,7 +120,29 @@ class CitizenCornerController extends AppController
         $this->viewBuilder()->layout('citizen_corner');
     }
 
+        public function success($id){
 
+            $this->loadModel('Applications');
+            $application = $this->Applications->get($id, [
+                'contain' => [
+                    'ApplicationTypes',
+                    'ApplicantTypes',
+                    'LocationTypes',
+                    'AreaDivisions',
+                    'AreaDistricts',
+                    'AreaUpazilas',
+                    'CityCorporations',
+                    'Municipals',
+                    'Unions',
+                    'ApplicationsFiles'
+                ]
+            ]);
+
+            $this->set(compact('application'));
+            $this->viewBuilder()->layout('citizen_corner');
+
+          //  $this->set('_serialize', ['application']);
+        }
 
     /*
         * pdf view
@@ -143,7 +171,34 @@ class CitizenCornerController extends AppController
                 'options' => [
                     'print-media-type' => false,
                     'outline' => true,
-                    'dpi' => 96
+                    'dpi' => 96,
+                ],
+            ]
+        ]);
+       $this->RequestHandler->renderAs($this,'pdf');
+        $this->request->env('HTTP_ACCEPT','application/pdf');
+        $this->set(compact('application'));
+        $this->set('_serialize', ['application']);
+    }
+
+    public function pdfViewApplication($id){
+        $this->loadModel('Applications');
+        $application = $this->Applications->get($id, [
+            'contain' => [
+                'ApplicationTypes',
+                'ApplicantTypes',
+                'ApplicationsFiles'
+            ]
+        ]);
+        //generating the pdf
+        Configure::write('CakePdf', [
+            'engine' => [
+                'className'=>'CakePdf.WkHtmlToPdf',
+                'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+                'options' => [
+                    'print-media-type' => false,
+                    'outline' => true,
+                    'dpi' => 96,
                 ],
             ]
         ]);

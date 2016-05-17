@@ -95,6 +95,9 @@ $religions = Configure::read('religions');
                         <a href="<?=$this->Url->build(('/ReceiveApplications/pdf_view/'.$application['id']), true)?>" target="_blank" class="btn green-haze btn-circle btn-sm todo-projects-config">
                             <i class="fa fa-file-pdf-o"></i> PDF
                         </a>
+                        <a href="<?=$this->Url->build(('/ReceiveApplications/pdfViewApplication/'.$application['id']), true)?>" target="_blank" class="btn green-haze btn-circle btn-sm todo-projects-config">
+                            <i class="fa fa-file-pdf-o"></i> PDF_APPLICATION
+                        </a>
                     </div>
                     <div class="col-md-6 col-md-offset-3" style="margin-top: 50px">
                         <?php

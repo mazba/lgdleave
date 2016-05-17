@@ -146,40 +146,12 @@ class ReceiveApplicationsController extends AppController
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
-    //            'className'=>'CakePdf.Mpdf',
-                'className'=>'CakePdf.WkHtmlToPdf',
-                'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+                'className'=>'CakePdf.Mpdf',
+//                'binary' => 'C:\\wkhtmltopdf2\\bin\\wkhtmltopdf.exe',
                 'options' => [
                     'print-media-type' => false,
                     'outline' => true,
                     'dpi' => 96
-                ],
-            ]
-        ]);
-        $this->RequestHandler->renderAs($this,'pdf');
-        $this->request->env('HTTP_ACCEPT','application/pdf');
-        $this->set(compact('application'));
-        $this->set('_serialize', ['application']);
-    }
-
-    public function pdfViewApplication($id){
-        $this->loadModel('Applications');
-        $application = $this->Applications->get($id, [
-            'contain' => [
-                'ApplicationTypes',
-                'ApplicantTypes',
-                'ApplicationsFiles'
-            ]
-        ]);
-        //generating the pdf
-        Configure::write('CakePdf', [
-            'engine' => [
-                'className'=>'CakePdf.WkHtmlToPdf',
-                'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
-                'options' => [
-                    'print-media-type' => false,
-                    'outline' => true,
-                    'dpi' => 96,
                 ],
             ]
         ]);

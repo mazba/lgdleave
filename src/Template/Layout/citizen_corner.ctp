@@ -71,6 +71,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
+    <script src="<?= $this->request->webroot; ?>assets/global/plugins/ckeditor/ckeditor.js"
+            type="text/javascript"></script>
 
 <!--    jquery -->
 
@@ -97,7 +99,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <a href="#">
                 <img src="<?= $this->request->webroot; ?>img/logo-light.png" alt="logo" class="logo-default"/>
             </a>
-      <h3> স্থানীয় সরকার বিভাগ</h3>
+      <h3> স্থানীয় সরকার পল্লী উন্নয়ন বিভাগ</h3>
 <!--            <div class="menu-toggler sidebar-toggler"></div>-->
         </div>
         <!-- END LOGO -->
@@ -171,6 +173,7 @@ License: You must have a valid license purchased only from themeforest(the above
     type="text/javascript"></script>
 <script src="<?= $this->request->webroot; ?>assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
         type="text/javascript"></script>
+
 <script src="<?= $this->request->webroot; ?>assets/global/plugins/jquery.blockui.min.js"
         type="text/javascript"></script>
 <script src="<?= $this->request->webroot; ?>assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>

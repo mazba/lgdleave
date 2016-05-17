@@ -53,7 +53,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END SIDEBAR TOGGLER BUTTON -->
 <!-- BEGIN LOGO -->
 <div class="logo">
-        <h1 style="color: #f1f1e3"><b>স্থানীয় সরকার বিভাগ</b></h1>
+        <h1 style="color: #f1f1e3"><b>স্থানীয় সরকার পল্লী উন্নয়ন বিভাগ</b></h1>
 
 </div>
 <!-- END LOGO -->

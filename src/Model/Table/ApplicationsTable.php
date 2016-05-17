@@ -107,24 +107,21 @@ class ApplicationsTable extends Table
             ->notEmpty('applicant_name_bn');
 
         $validator
-            ->requirePresence('applicant_name_en', 'create')
-            ->notEmpty('applicant_name_en');
+            ->allowEmpty('applicant_name_en');
 
         $validator
             ->requirePresence('mother_name_bn', 'create')
             ->notEmpty('mother_name_bn');
 
         $validator
-            ->requirePresence('mother_name_en', 'create')
-            ->notEmpty('mother_name_en');
+            ->allowEmpty('mother_name_en');
 
         $validator
             ->requirePresence('father_name_bn', 'create')
             ->notEmpty('father_name_bn');
 
         $validator
-            ->requirePresence('father_name_en', 'create')
-            ->notEmpty('father_name_en');
+            ->allowEmpty('father_name_en');
 
         $validator
             ->allowEmpty('phone');
