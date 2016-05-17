@@ -1,7 +1,7 @@
 <?php
 use Cake\Core\Configure;
 $status = array_flip(Configure::read('application_status'));
-$religions = Configure::read('religions');
+$religions = \Cake\Core\Configure::read('religions');
 ?>
 <style>
     table {
@@ -68,7 +68,9 @@ $religions = Configure::read('religions');
         <tr><th><?= __('Email') ?></th><td><?php echo $application['email']; ?></td></tr>
         <tr><th><?= __('Cellphone') ?></th><td><?php echo $application['cellphone']; ?></td></tr>
         <tr><th><?= __('Nid') ?></th><td><?php echo $application['nid']; ?></td></tr>
+        <?php if( $application['religion']):?>
         <tr><th><?= __('Religion') ?></th><td><?php echo $religions[$application['religion']]; ?></td></tr>
+        <?php endif ?>
         <tr><th><?= __('Present_address') ?></th><td><?php echo $application['present_address']; ?></td></tr>
         <tr><th><?= __('Permanent_address') ?></th><td><?php echo $application['permanent_address']; ?></td></tr>
         <tr><th><?= __('Emergency_contact') ?></th><td><?php echo $application['emergency_contact']; ?></td></tr>

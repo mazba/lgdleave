@@ -63,7 +63,7 @@ echo $this->element('jq_grid');
                 altrows: true,
                 autoheight: true,
                 columns: [
-                    { text: '<?= __('Application ID') ?>', dataField: 'temporary_id',width:'20%'},
+                    { text: '<?= __('Application ID') ?>', dataField: 'temporary_id',width:'5%'},
                     { text: '<?= __('Location Type') ?>', dataField: 'location_type',width:'12%'},
                     { text: '<?= __('Divisions') ?>', dataField: 'area_division',width:'10%'},
                     { text: '<?= __('Districts') ?>', dataField: 'area_district',width:'10%'},
@@ -96,6 +96,20 @@ echo $this->element('jq_grid');
                             window.location = "<?php echo $this->request->webroot; ?>ReceiveApplications/pdf_view/" + id;
                         },
                         width:'7%'
+                    } ,
+                    {
+                        text: '<?= __('View_Application') ?>',
+
+                        filtertype: 'none',
+                        columntype: 'button',
+                        cellsrenderer: function () {
+                            return "<?= __('View Application Pdf') ?>";
+                        },
+                        buttonclick: function (row) {
+                            id = $("#dataTable").jqxGrid('getrowid', row);
+                            window.location = "<?php echo $this->request->webroot; ?>ReceiveApplications/pdfViewApplication/" + id;
+                        },
+                        width:'15%'
                     }
                 ]
             });
