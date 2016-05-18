@@ -167,7 +167,7 @@ class CitizenCornerController extends AppController
         Configure::write('CakePdf', [
             'engine' => [
                 'className'=>'CakePdf.WkHtmlToPdf',
-                'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+                'binary' => 'C:\\wkhtmltopdf2\\bin\\wkhtmltopdf.exe',
                 'options' => [
                     'print-media-type' => false,
                     'outline' => true,
