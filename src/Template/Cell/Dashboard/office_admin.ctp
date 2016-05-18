@@ -152,13 +152,13 @@
                             </thead>
                             <tbody>
                                 <?php
-                                if(0):
-                                foreach($office_warehouse as $warehouse):?>
+                                if($new_applications):
+                                foreach($new_applications as $application):?>
                                 <tr>
-                                    <th><?php echo $warehouse->title_bn; ?></th>
-                                    <td><?php echo count($warehouse->items); ?></td>
-                                    <td><?php echo count($warehouse->item_assigns); ?></td>
-                                    <td><?php echo count($warehouse->item_withdrawals); ?></td>
+                                    <th><?php echo $application['temporary_id'] ?></th>
+                                    <td><?php echo $application['applicant_name_bn'] ?></td>
+                                    <td><?php echo $application ['applicant_type']; ?></td>
+                                    <td><?php echo $application['submission']; ?></td>
                                 </tr>
                                 <?php
                                     endforeach;
@@ -198,13 +198,13 @@
                             </thead>
                             <tbody>
                                 <?php
-                                if(0):
-                                foreach($recently_assigned_item as $item):?>
+                                if($new_approved_applications):
+                                foreach($new_approved_applications as $application):?>
                                     <tr>
-                                        <td><?php echo $item->item->title_bn.'('.$item->item->office_serial_number.')'; ?></td>
-                                        <td><?php echo $item->designated_user->full_name_bn; ?></td>
-                                        <td><?php echo $item->formatted_assign_date; ?></td>
-                                        <td><?php echo $item->quantity; ?></td>
+                                        <th><?php echo $application['temporary_id'] ?></th>
+                                        <td><?php echo $application['applicant_name_bn'] ?></td>
+                                        <td><?php echo $application ['applicant_type']; ?></td>
+                                        <td><?php echo $application['submission']; ?></td>
                                     </tr>
                                 <?php
                                 endforeach;

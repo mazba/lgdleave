@@ -85,16 +85,55 @@ class DashboardCell extends Cell
             ->limit(10)
             ->contain(['ApplicationTypes','ApplicantTypes','LocationTypes','AreaDivisions','AreaDistricts','AreaUpazilas','CityCorporations','Municipals'])
             ->toArray();
+
+
+
+
+        //for accepted application
+        $applicantType = TableRegistry::get('applicant_types_office_units');
+        $applicantType = $applicantType->find()
+            ->where(['office_unit_id IN'=>$userUnits]);
+        $collection = new Collection($applicantType);
+        $applicantType = $collection->extract('applicant_type_id');
+        $applicantTypes = $applicantType->toArray();
+        $this->loadModel('Applications');
+        $new_approved_applications = $this->Applications->find()
+            ->select(
+                [
+                    'location_type'=>'LocationTypes.title_bn',
+                    'area_district'=>'AreaDistricts.zillaname',
+                    'area_division'=>'AreaDivisions.divname',
+                    'applicant_type'=>'ApplicantTypes.title_bn',
+                    'application_type'=>'ApplicationTypes.title_bn',
+                    'applicant_name_bn'=>'Applications.applicant_name_bn',
+                    'id'=>'Applications.id',
+                    'temporary_id'=>'Applications.temporary_id',
+                    'submission'=>"FROM_UNIXTIME(Applications.submission_time,'%D, %M, %Y')",
+                ]
+            )
+            ->where(
+                [
+                    'Applications.status'=>Configure::read('application_status.Approve'),
+                    'Applications.applicant_type_id IN'=>$applicantTypes
+                ]
+            )
+            ->limit(10)
+            ->contain(['ApplicationTypes','ApplicantTypes','LocationTypes','AreaDivisions','AreaDistricts','AreaUpazilas','CityCorporations','Municipals'])
+            ->toArray();
 //        echo '<pre>';
 //        print_r($new_applications);
 //        echo '</pre>';
 //        die;
+
+
+
         $this->set(compact(
             'application_number',
             'user_number',
             'pending_application_number',
             'approve_application_number',
             'reject_application_number',
+            'new_approved_applications',
             'new_applications',
             'number_of_application_type'
         ));
