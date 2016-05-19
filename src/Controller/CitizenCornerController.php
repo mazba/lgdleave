@@ -187,7 +187,8 @@ class CitizenCornerController extends AppController
             'contain' => [
                 'ApplicationTypes',
                 'ApplicantTypes',
-                'ApplicationsFiles'
+                'ApplicationsFiles',
+                'LocationTypes'
             ]
         ]);
         //generating the pdf

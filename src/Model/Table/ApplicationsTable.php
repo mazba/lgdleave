@@ -63,13 +63,13 @@ class ApplicationsTable extends Table
             'foreignKey' => ['district_id','upazila_id']
         ]);
         $this->belongsTo('CityCorporations', [
-            'foreignKey' => 'city_corporation_id'
+            'foreignKey' => ['city_corporation_id','district_id']
         ]);
         $this->belongsTo('CityCorporationWards', [
             'foreignKey' => 'city_corporation_ward_id'
         ]);
         $this->belongsTo('Municipals', [
-            'foreignKey' => 'municipal_id'
+            'foreignKey' => ['municipal_id','district_id']
         ]);
         $this->belongsTo('MunicipalWards', [
             'foreignKey' => 'municipal_ward_id'

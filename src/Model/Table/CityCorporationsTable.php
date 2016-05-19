@@ -27,7 +27,7 @@ class CityCorporationsTable extends Table
 
         $this->table('city_corporations');
         $this->displayField('citycorporationname');
-        $this->primaryKey('rowid');
+        $this->primaryKey(['citycorporationid','zillaid']);
 
         $this->hasMany('Applications', [
             'foreignKey' => 'city_corporation_id'

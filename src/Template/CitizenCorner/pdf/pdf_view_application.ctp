@@ -19,11 +19,13 @@ $religions = Configure::read('religions');
     <br/>
     <br/>
     <?php
-    if(count($application['applications_files'])):
+    $count=count($application['applications_files']);
+    $i=1;
+    if($count):
         echo __('Attach').':';
         foreach($application['applications_files'] as $key=>$file):
             ?>
-                <?=$file['file_label'].',' ?>
+                <?=$file['file_label'];if($i<$count){echo ',';} ?>
 
             <?php
         endforeach;
@@ -31,7 +33,9 @@ $religions = Configure::read('religions');
     ?>
    <div style="float: right; text-align: center">
        <?php echo  __('Sincerely') ?><br/><br/><br/>
-       <?php echo  $application['applicant_name_bn']; ?>
+       <?php echo  $application['applicant_name_bn']; ?><br/>
+       <?php echo  $application['applicant_type']['title_bn']; ?>
+       ,<?php echo ' '. $application['location_type']['title_bn']; ?>
    </div>
 
 </div>

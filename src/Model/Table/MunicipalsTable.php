@@ -27,7 +27,7 @@ class MunicipalsTable extends Table
 
         $this->table('municipals');
         $this->displayField('municipalname');
-        $this->primaryKey('rowid');
+        $this->primaryKey(['municipalid','zillaid']);
 
         $this->hasMany('Applications', [
             'foreignKey' => 'municipal_id'

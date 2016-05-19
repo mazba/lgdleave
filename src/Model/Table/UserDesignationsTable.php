@@ -112,7 +112,7 @@ class UserDesignationsTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['office_id'], 'Offices'));
         $rules->add($rules->existsIn(['office_unit_id'], 'OfficeUnits'));
-        $rules->add($rules->existsIn(['designation_id'], 'Designations'));
+//        $rules->add($rules->existsIn(['designation_id'], 'Designations'));
         return $rules;
     }
 }
