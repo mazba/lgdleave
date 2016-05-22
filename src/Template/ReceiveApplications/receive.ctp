@@ -1,6 +1,9 @@
 <?php
 use Cake\Core\Configure;
 $status = array_flip(Configure::read('application_status'));
+foreach($status as &$value){
+    $value=__($value);
+}
 $religions = Configure::read('religions');
 ?>
 <div class="row">
@@ -53,7 +56,7 @@ $religions = Configure::read('religions');
                                 <tr><th><?= __('Cellphone') ?></th><td><?php echo $application['cellphone']; ?></td></tr>
                                 <tr><th><?= __('Nid') ?></th><td><?php echo $application['nid']; ?></td></tr>
                                 <tr><th><?= __('Brn') ?></th><td><?php echo $application['brn']; ?></td></tr>
-                                <tr><th><?= __('Religion') ?></th><td><?php echo $religions[$application['religion']]; ?></td></tr>
+                                <tr><th><?= __('Religion') ?></th><td><?php echo $application['religion'] ? $religions[$application['religion']] : ""; ?></td></tr>
                                 <tr><th><?= __('Present_address') ?></th><td><?php echo $application['present_address']; ?></td></tr>
                                 <tr><th><?= __('Permanent_address') ?></th><td><?php echo $application['permanent_address']; ?></td></tr>
                                 <tr><th><?= __('Emergency_contact') ?></th><td><?php echo $application['emergency_contact']; ?></td></tr>
@@ -102,6 +105,9 @@ $religions = Configure::read('religions');
                     <div class="col-md-6 col-md-offset-3" style="margin-top: 50px">
                         <?php
                         echo $this->Form->input('status', ['label'=>__('Action'),'options' => $status]);
+                        echo $this->Form->input('comment', ['type' => 'textarea']);
+                        echo $this->Form->input('approve_time', ['type' => 'text', 'class' => 'form-control datepicker']);
+
                         ?>
                         <?= $this->Form->button(__('Submit'),['class'=>'btn blue pull-right','style'=>'margin-top:20px']) ?>
                     </div>
@@ -112,3 +118,12 @@ $religions = Configure::read('religions');
         <!-- END BORDERED TABLE PORTLET-->
     </div>
 </div>
+<script>
+
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            dateFormat: 'dd-mm-yy'
+        })
+    })
+
+</script>
