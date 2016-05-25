@@ -105,6 +105,8 @@ $religions = Configure::read('religions');
                     <div class="col-md-6 col-md-offset-3" style="margin-top: 50px">
                         <?php
                         echo $this->Form->input('status', ['label'=>__('Action'),'options' => $status]);
+                        echo $this->Form->input('registration_number');
+
                         echo $this->Form->input('comment', ['type' => 'textarea']);
                         echo $this->Form->input('approve_time', ['type' => 'text', 'class' => 'form-control datepicker']);
 
@@ -125,5 +127,6 @@ $religions = Configure::read('religions');
             dateFormat: 'dd-mm-yy'
         })
     })
+
 
 </script>

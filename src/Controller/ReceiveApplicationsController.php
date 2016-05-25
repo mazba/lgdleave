@@ -112,7 +112,12 @@ class ReceiveApplicationsController extends AppController
         ]);
         if ($this->request->is('post')) {
             $inputs = $this->request->data;
-            $receiveApplication = $this->Applications->patchEntity($application,['status'=>$inputs['status'],'comment'=>$inputs['comment'],'approve_time'=>strtotime($inputs['approve_time'])]);
+            $receiveApplication = $this->Applications->patchEntity($application,
+                                                                    [   'status'=>$inputs['status'],
+                                                                        'registration_number'=>$inputs['registration_number'],
+                                                                        'comment'=>$inputs['comment'],
+                                                                        'approve_time'=>strtotime($inputs['approve_time']),
+                                                                    ]);
             if ($this->Applications->save($receiveApplication)) {
                 $this->Flash->success(__('The receive application has been saved.'));
                 return $this->redirect(['action' => 'index']);

@@ -30,12 +30,69 @@ class ReportleaveController extends AppController
      */
     public function index()
     {
+        $this->loadModel('LocationTypes');
+        $this->loadModel('AreaDivisions');
+        $this->loadModel('Applications');
+        $this->loadModel('ApplicationTypes');
+        $this->loadModel('ApplicationsFiles');
+
+
+
         if ($this->request->is('post')) {
+        //    echo "<pre/>";print_r($this->request->data);die();
+            $location_type_id = $this->request->data['location_type_id'];
+            $application_type_id = $this->request->data['application_type_id'];
+            $status = $this->request->data['status'];
             $start_date = strtotime($this->request->data['from_date']);
             $end_date = strtotime($this->request->data['to_date']);
 
             $leaves = TableRegistry::get('applications')->find();
-        //    $leaves->select(['applications.id', 'applications.application_type_id', 'applications.applicant_name_bn', 'applications.phone', 'applications.email', 'applications.start_date', 'applications.end_date']);
+
+            if (!empty($location_type_id) ) {
+                $leaves->where(['location_type_id' => $location_type_id]);
+            }
+            if (!empty($applicant_type_id) ) {
+                $leaves->where(['applicant_type_id' => $applicant_type_id]);
+            }
+            if (!empty($divsion_id) ) {
+                $leaves->where(['divsion_id' => $divsion_id]);
+            }
+            if (!empty($district_id) ) {
+                $leaves->where(['district_id' => $district_id]);
+            }
+            if (!empty($upazila_id) ) {
+                $leaves->where(['upazila_id' => $upazila_id]);
+            }
+            if (!empty($city_corporation_id) ) {
+                $leaves->where(['city_corporation_id' => $city_corporation_id]);
+            }
+            if (!empty($city_corporation_ward_id) ) {
+                $leaves->where(['city_corporation_ward_id' => $city_corporation_ward_id]);
+            }
+            if (!empty($municipal_id) ) {
+                $leaves->where(['municipal_id' => $municipal_id]);
+            }
+            if (!empty($municipal_ward_id) ) {
+                $leaves->where(['municipal_ward_id' => $municipal_ward_id]);
+            }
+            if (!empty($union_id) ) {
+                $leaves->where(['union_id' => $union_id]);
+            }
+            if (!empty($union_ward) ) {
+                $leaves->where(['union_ward' => $union_ward]);
+            }
+            if (!empty($location_type_id) ) {
+                $leaves->where(['location_type_id' => $location_type_id]);
+            }
+
+
+            if (!empty($application_type_id)) {
+                $leaves->where(['application_type_id' => $application_type_id ]);
+            }
+
+            if (!empty($status)) {
+                $leaves->where(['applications.status' => $status]);
+            }
 
             if (!empty($start_date) && $start_date > 0) {
                 $leaves->where(['start_date  >=' => $start_date]);
@@ -47,14 +104,105 @@ class ReportleaveController extends AppController
             $leaves->contain(['ApplicationTypes']);
 
             $reportData = $leaves->toArray();
-         //   echo "<pre/>"; print_r($reportData);die();
+            //   echo "<pre/>"; print_r($reportData);die();
             $this->set('reportData', $reportData);
             $this->set('_serialize', ['reportData']);
         }
 
+        $applicationTypes =  $this->ApplicationTypes->find('list', ['conditions'=>['status'=>1]]);
+        $locationTypes = $this->LocationTypes->find('list', ['conditions' => ['status' => 1]]);
+        $divisions = $this->AreaDivisions->find('list');
+
+        $this->set(compact('locationTypes', 'applicationTypes','divisions'));
+
+    }
+
+    public function ajax($action = null)
+    {
+        if ($action == 'get_applicantTypes') {
+
+            $location_type_id = $this->request->data('location_type_id');
+            $this->loadModel('ApplicantTypes');
+            $application_types = $this->ApplicantTypes->find('list')
+                ->where(['type' => $location_type_id,'status'=>1])
+                ->toArray();
+            $this->response->body(json_encode($application_types));
+            return $this->response;
+        }
+
+        elseif ($action == 'get_districts') {
+
+            $division_id = $this->request->data('division_id');
+            $this->loadModel('AreaDistricts');
+            $districts = $this->AreaDistricts->find('list',['keyField' => 'zillaid', 'keyValue' => 'zillaname'])
+                ->where(['divid' => $division_id])
+                ->toArray();
+            $this->response->body(json_encode($districts));
+            return $this->response;
+
+        } elseif ($action == 'get_upazilas') {
+            $district_id = $this->request->data('district_id');
+            $this->loadModel('AreaUpazilas');
+            $upazilas = $this->AreaUpazilas->find('list', ['keyField' => 'upazilaid', 'keyValue' => 'upazilaname'])
+                ->where(['zillaid' => $district_id])
+                ->toArray();
+
+            $this->response->body(json_encode($upazilas));
+            return $this->response;
+        } elseif ($action == 'get_city_corporations') {
+            $district_id = $this->request->data('district_id');
+            $this->loadModel('CityCorporations');
+            $cityCorporations = $this->CityCorporations->find('list', ['keyField' => 'citycorporationid', 'keyValue' => 'citycorporationname'])
+                ->where(['zillaid' => $district_id])
+                ->toArray();
+
+            $this->response->body(json_encode($cityCorporations));
+            return $this->response;
+
+        } elseif ($action == 'get_municipals') {
+            $district_id = $this->request->data('district_id');
+            $this->loadModel('Municipals');
+            $municipals = $this->Municipals->find('list', ['keyField' => 'municipalid', 'keyValue' => 'municipalname'])
+                ->where(['zillaid' => $district_id])
+                ->toArray();
+
+            $this->response->body(json_encode($municipals));
+            return $this->response;
+        } elseif ($action == 'get_unions') {
+            $district_id = $this->request->data('district_id');
+            $upazila_id = $this->request->data('upazila_id');
+
+            $this->loadModel('Unions');
+            $unions = $this->Unions->find('list', ['conditions' => ['upazilaid' => $upazila_id, 'zillaid' => $district_id]])->toArray();
+
+            $this->response->body(json_encode($unions));
+            return $this->response;
+        } elseif ($action == 'get_city_corporation_wards') {
+            $district_id = $this->request->data('district_id');
+            $city_corporation_id = $this->request->data('city_corporation_id');
+
+            $this->loadModel('CityCorporationWards');
+
+            $cityCorporationWards = $this->CityCorporationWards->find('list', ['keyField' => 'citycorporationwardid', 'keyValue' => 'wardname'])
+                ->where(['zillaid' => $district_id, 'citycorporationid' => $city_corporation_id])
+                ->toArray();
 
 
+            $this->response->body(json_encode($cityCorporationWards));
+            return $this->response;
+        } elseif ($action == 'get_municipal_wards') {
+            $district_id = $this->request->data('district_id');
+            $municipal_id = $this->request->data('municipal_id');
 
+            $this->loadModel('MunicipalWards');
+
+            $municipalWards = $this->MunicipalWards->find('list', ['keyField' => 'wardid', 'keyValue' => 'wardname'])
+                ->where(['zillaid' => $district_id, 'municipalid' => $municipal_id])
+                ->toArray();
+
+            $this->response->body(json_encode($municipalWards));
+            return $this->response;
+        }
     }
 
 

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="dashboard-stat blue-madison ">
                 <div class="visual">
@@ -109,26 +109,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="portlet solid grey-cararra bordered">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-bullhorn"></i><?= __('Recent Application Status') ?>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div id="site_activities_loading">
-                    <img src="<?php echo $this->request->webroot; ?>assets/admin/layout/img/loading.gif" alt="loading"/>
-                </div>
-                <div id="site_activities_content" class="display-none">
-                    <div id="site_activities" style="height: 145px;">
-                    </div>
-                </div>
-                <div style="margin: 5px 0 10px 5px">
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 <div class="row">
     <div class="col-md-6 col-sm-12">
