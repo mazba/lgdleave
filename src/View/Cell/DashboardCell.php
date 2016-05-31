@@ -120,15 +120,7 @@ class DashboardCell extends Cell
         $this->loadModel('Users');
         $this->loadModel('Applications');
         $this->loadModel('ApplicationTypes');
-//        //count
-        $user_number = $this->Users->find('all')->where(['status'=>1])->count();
-        $application_number = $this->Applications->find('all')->count();
-        $pending_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Pending']])->count();
-        $approve_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Approve']])->count();
-        $reject_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Reject']])->count();
-        $number_of_application_type = $this->ApplicationTypes->find('all')->where(['status'=>1])->count();
-
-        //table data
+        //find application type
         $usrUnits = TableRegistry::get('user_designations');
         $userUnits = $usrUnits->find()
             ->select(['office_unit_id'])
@@ -143,6 +135,17 @@ class DashboardCell extends Cell
         $collection = new Collection($applicantType);
         $applicantType = $collection->extract('applicant_type_id');
         $applicantTypes = $applicantType->toArray();
+
+//        //count
+        $user_number = $this->Users->find('all')->where(['status'=>1])->count();
+        $application_number = $this->Applications->find('all')->where(['Applications.applicant_type_id IN'=>$applicantTypes])->count();
+        $pending_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Pending'],'Applications.applicant_type_id IN'=>$applicantTypes])->count();
+        $approve_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Approve'],'Applications.applicant_type_id IN'=>$applicantTypes])->count();
+        $reject_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Reject'],'Applications.applicant_type_id IN'=>$applicantTypes])->count();
+        $number_of_application_type = $this->ApplicationTypes->find('all')->where(['status'=>1])->count();
+
+        //table data
+
         $this->loadModel('Applications');
         $new_applications = $this->Applications->find()
             ->select(
@@ -172,13 +175,7 @@ class DashboardCell extends Cell
 
 
         //for accepted application
-        $applicantType = TableRegistry::get('applicant_types_office_units');
-        $applicantType = $applicantType->find()
-            ->where(['office_unit_id IN'=>$userUnits]);
-        $collection = new Collection($applicantType);
-        $applicantType = $collection->extract('applicant_type_id');
-        $applicantTypes = $applicantType->toArray();
-        $this->loadModel('Applications');
+
         $new_approved_applications = $this->Applications->find()
             ->select(
                 [
