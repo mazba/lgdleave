@@ -7,7 +7,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $application_number; ?>
+                        <?php echo  $this->System->eng_to_bangla_code($application_number); ?>
                     </div>
                     <div class="desc">
                         <?= __('Total Applications') ?>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $district_council; ?>
+                        <?php echo $this->System->eng_to_bangla_code($district_council); ?>
                     </div>
                     <div class="desc">
                         <?= __('District po') ?>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $upazila_council; ?>
+                        <?php echo $this->System->eng_to_bangla_code($upazila_council); ?>
                     </div>
                     <div class="desc">
                         <?= __('Upazila po') ?>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $city_council; ?>
+                        <?php echo $this->System->eng_to_bangla_code($city_council); ?>
                     </div>
                     <div class="desc">
                         <?= __('City Corporation') ?>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $municipality_council; ?>
+                        <?php echo $this->System->eng_to_bangla_code($municipality_council); ?>
                     </div>
                     <div class="desc">
                         <?= __('Municipality') ?>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $union_council; ?>
+                        <?php echo $this->System->eng_to_bangla_code($union_council); ?>
                     </div>
                     <div class="desc">
                         <?= __('Union po') ?>
@@ -173,7 +173,7 @@
                             <tr>
                                 <th><?= __('Application Code') ?></th>
                                 <th><?= __('Applicant') ?></th>
-                                <th><?= __('Approve by') ?></th>
+                                <th><?= __('Applicant Type') ?></th>
                                 <th><?= __('Approved Time') ?></th>
                             </tr>
                             </thead>

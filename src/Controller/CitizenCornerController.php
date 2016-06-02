@@ -44,14 +44,14 @@ class CitizenCornerController extends AppController
 
         if ($this->request->is('post')) {
 
-
             try {
+
                 $data = $this->request->data;
                 $conn = ConnectionManager::get('default');
                 $conn->transactional(function () use ($data, $applications, $time) {
                     $data['create_time'] = $time;
                     $data['submission_time'] = $time;
-                    $data['temporary_id'] = 63;
+                    $data['temporary_id'] = $this->findMax()+1;
 
 
                     $data['status'] = Configure::read('application_status.Pending');
@@ -72,21 +72,22 @@ class CitizenCornerController extends AppController
                         //
                         $fileTable = TableRegistry::get('applications_files');
 
-                        if(is_array($files)){
-                            $i=0;
-                        foreach ($files as $file) {
-                            $result = $this->FileUpload->upload_file($file, 'u_load/application_file', ['jpg','jpeg','png','doc','pdf','xls','xlsx']);
-                            if ($result['status'] === true) {
-                                $fileEntity = $fileTable->newEntity();
-                                $fileEntity->file_label = $files_label[$i];
-                                $fileEntity->file = $result['file_path'];
-                                $fileEntity->application_id = $applications['id'];
-                                $fileTable->save($fileEntity);
-                                $i++;
-                            } else {
-                                throw new Exception('error');
+                        if (is_array($files)) {
+                            $i = 0;
+                            foreach ($files as $file) {
+                                $result = $this->FileUpload->upload_file($file, 'u_load/application_file', ['jpg', 'jpeg', 'png', 'doc', 'pdf', 'xls', 'xlsx']);
+                                if ($result['status'] === true) {
+                                    $fileEntity = $fileTable->newEntity();
+                                    $fileEntity->file_label = $files_label[$i];
+                                    $fileEntity->file = $result['file_path'];
+                                    $fileEntity->application_id = $applications['id'];
+                                    $fileTable->save($fileEntity);
+                                    $i++;
+                                } else {
+                                    throw new Exception('error');
+                                }
                             }
-                        }}else{
+                        } else {
                             $result = $this->FileUpload->upload_file($files, 'u_load/application_file', ['jpg', 'png']);
                             if ($result['status'] === true) {
                                 $fileEntity = $fileTable->newEntity();
@@ -103,7 +104,7 @@ class CitizenCornerController extends AppController
                     }
                 });
                 $this->Flash->success(__('The citizen corner has been saved.'));
-               return $this->redirect(['action' => 'success',$applications['id']]);
+                return $this->redirect(['action' => 'success', $applications['id']]);
 
             } catch (\Exception $e) {
                 $this->Flash->error(__('The citizen corner could not be saved. Please, try again.'));
@@ -111,8 +112,8 @@ class CitizenCornerController extends AppController
         }
 
 
-       // $applicantTypes = $this->ApplicantTypes->find('list', ['conditions' => ['status' => 1]]);
-        $applicationTypes =  $this->ApplicationTypes->find('list', ['conditions'=>['status'=>1]]);
+        // $applicantTypes = $this->ApplicantTypes->find('list', ['conditions' => ['status' => 1]]);
+        $applicationTypes = $this->ApplicationTypes->find('list', ['conditions' => ['status' => 1]]);
         $locationTypes = $this->LocationTypes->find('list', ['conditions' => ['status' => 1]]);
         $divisions = $this->AreaDivisions->find('list');
 
@@ -120,34 +121,36 @@ class CitizenCornerController extends AppController
         $this->viewBuilder()->layout('citizen_corner');
     }
 
-        public function success($id){
+    public function success($id)
+    {
 
-            $this->loadModel('Applications');
-            $application = $this->Applications->get($id, [
-                'contain' => [
-                    'ApplicationTypes',
-                    'ApplicantTypes',
-                    'LocationTypes',
-                    'AreaDivisions',
-                    'AreaDistricts',
-                    'AreaUpazilas',
-                    'CityCorporations',
-                    'Municipals',
-                    'Unions',
-                    'ApplicationsFiles'
-                ]
-            ]);
+        $this->loadModel('Applications');
+        $application = $this->Applications->get($id, [
+            'contain' => [
+                'ApplicationTypes',
+                'ApplicantTypes',
+                'LocationTypes',
+                'AreaDivisions',
+                'AreaDistricts',
+                'AreaUpazilas',
+                'CityCorporations',
+                'Municipals',
+                'Unions',
+                'ApplicationsFiles'
+            ]
+        ]);
 
-            $this->set(compact('application'));
-            $this->viewBuilder()->layout('citizen_corner');
+        $this->set(compact('application'));
+        $this->viewBuilder()->layout('citizen_corner');
 
-          //  $this->set('_serialize', ['application']);
-        }
+        //  $this->set('_serialize', ['application']);
+    }
 
     /*
         * pdf view
         */
-    public function pdfView($id){
+    public function pdfView($id)
+    {
         $this->loadModel('Applications');
         $application = $this->Applications->get($id, [
             'contain' => [
@@ -166,7 +169,7 @@ class CitizenCornerController extends AppController
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
-                'className'=>'CakePdf.WkHtmlToPdf',
+                'className' => 'CakePdf.WkHtmlToPdf',
                 'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
                 'options' => [
                     'print-media-type' => false,
@@ -175,13 +178,14 @@ class CitizenCornerController extends AppController
                 ],
             ]
         ]);
-       $this->RequestHandler->renderAs($this,'pdf');
-        $this->request->env('HTTP_ACCEPT','application/pdf');
+        $this->RequestHandler->renderAs($this, 'pdf');
+        $this->request->env('HTTP_ACCEPT', 'application/pdf');
         $this->set(compact('application'));
         $this->set('_serialize', ['application']);
     }
 
-    public function pdfViewApplication($id){
+    public function pdfViewApplication($id)
+    {
         $this->loadModel('Applications');
         $application = $this->Applications->get($id, [
             'contain' => [
@@ -200,7 +204,7 @@ class CitizenCornerController extends AppController
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
-                'className'=>'CakePdf.WkHtmlToPdf',
+                'className' => 'CakePdf.WkHtmlToPdf',
                 'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
                 'options' => [
                     'print-media-type' => false,
@@ -209,8 +213,8 @@ class CitizenCornerController extends AppController
                 ],
             ]
         ]);
-       $this->RequestHandler->renderAs($this,'pdf');
-        $this->request->env('HTTP_ACCEPT','application/pdf');
+        $this->RequestHandler->renderAs($this, 'pdf');
+        $this->request->env('HTTP_ACCEPT', 'application/pdf');
         $this->set(compact('application'));
         $this->set('_serialize', ['application']);
     }
@@ -222,17 +226,15 @@ class CitizenCornerController extends AppController
             $location_type_id = $this->request->data('location_type_id');
             $this->loadModel('ApplicantTypes');
             $application_types = $this->ApplicantTypes->find('list')
-                                                                    ->where(['type' => $location_type_id,'status'=>1])
-                                                                    ->toArray();
+                ->where(['type' => $location_type_id, 'status' => 1])
+                ->toArray();
             $this->response->body(json_encode($application_types));
             return $this->response;
-        }
-
-        elseif ($action == 'get_districts') {
+        } elseif ($action == 'get_districts') {
 
             $division_id = $this->request->data('division_id');
             $this->loadModel('AreaDistricts');
-            $districts = $this->AreaDistricts->find('list',['keyField' => 'zillaid', 'keyValue' => 'zillaname'])
+            $districts = $this->AreaDistricts->find('list', ['keyField' => 'zillaid', 'keyValue' => 'zillaname'])
                 ->where(['divid' => $division_id])
                 ->toArray();
             $this->response->body(json_encode($districts));
@@ -301,5 +303,21 @@ class CitizenCornerController extends AppController
             $this->response->body(json_encode($municipalWards));
             return $this->response;
         }
+    }
+    public function findMax(){
+        $this->loadModel('Applications');
+
+        $query = $this->Applications->find()
+            ->toArray();
+        $max= 0;
+        foreach($query as $max_temporary_id){
+            if($max <$max_temporary_id['temporary_id']){
+                $max= $max_temporary_id['temporary_id'];
+            }
+        }
+        if($max ==0){
+            $max=1000;
+        }
+       return $max;
     }
 }

@@ -75,7 +75,6 @@ $religions = Configure::read('religions');
                                 <tr><th><?= __('Application_reason') ?></th><td><?php echo $application['application_reason']; ?></td></tr>
                                 <tr><th><?= __('Start Date') ?></th><td><?php echo $application['start_date'] ? date('d-m-Y',$application['start_date']):''; ?></td></tr>
                                 <tr><th><?= __('End date') ?></th><td><?php echo $application['end_date'] ? date('d-m-Y',$application['end_date']):''; ?></td></tr>
-                                <tr><th><?= __('Application Create Time') ?></th><td><?php echo $application['create_time'] ? date('d-m-Y H:m:i',$application['create_time']):''; ?></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -102,10 +101,10 @@ $religions = Configure::read('religions');
                             <i class="fa fa-file-pdf-o"></i> PDF_APPLICATION
                         </a>
                     </div>
-                    <div class="col-md-6 col-md-offset-3" style="margin-top: 50px">
+                    <div class="col-md-9 col-md-offset-1" style="margin-top: 50px">
                         <?php
                         echo $this->Form->input('status', ['label'=>__('Action'),'options' => $status]);
-                        echo $this->Form->input('registration_number');
+                       // echo $this->Form->input('registration_number');
 
                         echo $this->Form->input('comment', ['type' => 'textarea']);
                         echo $this->Form->input('approve_time', ['type' => 'text', 'class' => 'form-control datepicker']);

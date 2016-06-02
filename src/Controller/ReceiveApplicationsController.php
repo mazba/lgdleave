@@ -28,6 +28,7 @@ class ReceiveApplicationsController extends AppController
     public function index()
     {
         if($this->request->is('ajax')){
+
             $user = $this->Auth->user();
             $usrUnits = TableRegistry::get('user_designations');
             $userUnits = $usrUnits->find()
@@ -66,6 +67,8 @@ class ReceiveApplicationsController extends AppController
                 )
                 ->contain(['ApplicationTypes','ApplicantTypes','LocationTypes','AreaDivisions','AreaDistricts','AreaUpazilas','CityCorporations','Municipals'])
                 ->toArray();
+
+         
             $this->response->body(json_encode($new_applications));
             return $this->response;
         }
@@ -114,7 +117,7 @@ class ReceiveApplicationsController extends AppController
             $inputs = $this->request->data;
             $receiveApplication = $this->Applications->patchEntity($application,
                                                                     [   'status'=>$inputs['status'],
-                                                                        'registration_number'=>$inputs['registration_number'],
+                                                                        //'registration_number'=>$inputs['registration_number'],
                                                                         'comment'=>$inputs['comment'],
                                                                         'approve_time'=>strtotime($inputs['approve_time']),
                                                                     ]);

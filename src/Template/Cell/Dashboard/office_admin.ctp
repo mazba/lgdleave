@@ -7,7 +7,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $user_number; ?>
+                        <?php echo $this->System->eng_to_bangla_code($user_number); ?>
                     </div>
                     <div class="desc">
                         <?= __('Total User') ?>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $application_number; ?>
+                        <?php echo $this->System->eng_to_bangla_code($application_number); ?>
                     </div>
                     <div class="desc">
                         <?= __('Total Applications') ?>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $pending_application_number; ?>
+                        <?php echo $this->System->eng_to_bangla_code($pending_application_number); ?>
                     </div>
                     <div class="desc">
                         <?= __('Pending') ?>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $approve_application_number; ?>
+                        <?php echo $this->System->eng_to_bangla_code($approve_application_number); ?>
                     </div>
                     <div class="desc">
                         <?= __('Approved') ?>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $reject_application_number; ?>
+                        <?php echo $this->System->eng_to_bangla_code($reject_application_number); ?>
                     </div>
                     <div class="desc">
                         <?= __(' Rejected') ?>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <?php echo $number_of_application_type; ?>
+                        <?php echo $this->System->eng_to_bangla_code($number_of_application_type); ?>
                     </div>
                     <div class="desc">
                         <?= __('Application Type') ?>
@@ -173,7 +173,7 @@
                                 <tr>
                                     <th><?= __('Application Code') ?></th>
                                     <th><?= __('Applicant') ?></th>
-                                    <th><?= __('Approve by') ?></th>
+                                    <th><?= __('Applicant Type') ?></th>
                                     <th><?= __('Approved Time') ?></th>
                                 </tr>
                             </thead>

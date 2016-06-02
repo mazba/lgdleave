@@ -31,6 +31,8 @@ class UsersController extends AppController
             'conditions' => ['Users.status !=' => 99],
             'contain' => ['Offices', 'UserGroups']
         ]);
+
+
         $this->set('users', $this->paginate($users));
         $this->set('_serialize', ['users']);
     }

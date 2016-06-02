@@ -14,7 +14,7 @@ foreach($status as &$value){
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <?= $this->Html->link(__('Item Assign Report'), ['action' => 'index']) ?>
+            <?= $this->Html->link(__(' Leave Report'), ['action' => 'index']) ?>
             <i class="fa fa-angle-right"></i>
         </li>
     </ul>
@@ -27,9 +27,7 @@ foreach($status as &$value){
                 <div class="caption">
                     <i class="fa fa-plus-square-o fa-lg"></i><?= __('Report') ?>
                 </div>
-                <div class="tools">
-                    <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class' => 'btn btn-sm btn-success']); ?>
-                </div>
+
             </div>
 
             <div class="portlet-body"  id="tab1">
@@ -157,7 +155,7 @@ foreach($status as &$value){
                                     <?php if(sizeof($reportData)>0):?>
                                         <?php foreach($reportData as $key=>$detail):?>
                                             <tr>
-                                                <td><?= $key+1;?></td>
+                                                <td><?php echo $this->System->eng_to_bangla_code($key+1) ;?></td>
                                                 <td><?= $detail['applicant_name_bn'];?></td>
                                                 <td><?= $detail['phone'];?></td>
                                                 <td><?= $detail['email'];?></td>

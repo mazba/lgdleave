@@ -39,21 +39,38 @@ class ReportleaveController extends AppController
 
 
         if ($this->request->is('post')) {
-        //    echo "<pre/>";print_r($this->request->data);die();
             $location_type_id = $this->request->data['location_type_id'];
             $application_type_id = $this->request->data['application_type_id'];
+
+            $divsion_id = $this->request->data['divsion_id'];
+            $district_id = $this->request->data['district_id'];
+            $upazila_id = $this->request->data['upazila_id'];
+            $city_corporation_id = $this->request->data['city_corporation_id'];
+            $city_corporation_ward_id = $this->request->data['city_corporation_ward_id'];
+            $municipal_id = $this->request->data['municipal_id'];
+            $municipal_ward_id = $this->request->data['municipal_ward_id'];
+            $union_id = $this->request->data['union_id'];
+            $union_ward = $this->request->data['union_ward'];
+
+            $applicant_type_id = $this->request->data['applicant_type_id'];
             $status = $this->request->data['status'];
             $start_date = strtotime($this->request->data['from_date']);
             $end_date = strtotime($this->request->data['to_date']);
 
             $leaves = TableRegistry::get('applications')->find();
 
-            if (!empty($location_type_id) ) {
-                $leaves->where(['location_type_id' => $location_type_id]);
+            if (!empty($application_type_id)) {
+                $leaves->where(['application_type_id' => $application_type_id ]);
             }
+
             if (!empty($applicant_type_id) ) {
                 $leaves->where(['applicant_type_id' => $applicant_type_id]);
             }
+
+            if (!empty($location_type_id) ) {
+                $leaves->where(['location_type_id' => $location_type_id]);
+            }
+
             if (!empty($divsion_id) ) {
                 $leaves->where(['divsion_id' => $divsion_id]);
             }
@@ -80,14 +97,6 @@ class ReportleaveController extends AppController
             }
             if (!empty($union_ward) ) {
                 $leaves->where(['union_ward' => $union_ward]);
-            }
-            if (!empty($location_type_id) ) {
-                $leaves->where(['location_type_id' => $location_type_id]);
-            }
-
-
-            if (!empty($application_type_id)) {
-                $leaves->where(['application_type_id' => $application_type_id ]);
             }
 
             if (!empty($status)) {
