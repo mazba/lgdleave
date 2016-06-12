@@ -54,12 +54,10 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('full_name_bn', 'create')
-            ->notEmpty('full_name_bn');
+            ->allowEmpty('full_name_bn');
 
         $validator
-            ->requirePresence('full_name_en', 'create')
-            ->notEmpty('full_name_en');
+            ->allowEmpty('full_name_en');
 
         $validator
             ->requirePresence('username', 'create')
@@ -100,7 +98,7 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['username']));
-        $rules->add($rules->existsIn(['office_id'], 'Offices'));
+       // $rules->add($rules->existsIn(['office_id'], 'Offices'));
         $rules->add($rules->existsIn(['user_group_id'], 'UserGroups'));
         return $rules;
     }

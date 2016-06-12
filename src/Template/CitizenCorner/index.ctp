@@ -30,18 +30,11 @@ $religions = \Cake\Core\Configure::read('religions');
                 <div class="form-wizard">
                     <div class="form-body">
                         <ul class="nav nav-pills nav-justified steps">
-                            <li>
-                                <a href="#tab1" data-toggle="tab" class="step">
-												<span class="number">
-												১ </span>
-												<span class="desc">
-												<i class="fa fa-check"></i><?= __('Account Setup') ?>  </span>
-                                </a>
-                            </li>
+
                             <li>
                                 <a href="#tab2" data-toggle="tab" class="step">
 												<span class="number">
-												২ </span>
+												১ </span>
 												<span class="desc">
 												<i class="fa fa-check"></i> <?= __('Profile_Setup') ?></span>
                                 </a>
@@ -49,7 +42,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             <li>
                                 <a href="#tab3" data-toggle="tab" class="step active">
 												<span class="number">
-												৩ </span>
+												২ </span>
 												<span class="desc">
 												<i class="fa fa-check"></i><?= __('Billing_Setup') ?>  </span>
                                 </a>
@@ -57,7 +50,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             <li>
                                 <a href="#tab4" data-toggle="tab" class="step">
 												<span class="number">
-												৪ </span>
+												৩ </span>
 												<span class="desc">
 												<i class="fa fa-check"></i> <?= __('Application') ?> </span>
                                 </a>
@@ -65,7 +58,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             <li>
                                 <a href="#tab5" data-toggle="tab" class="step">
 												<span class="number">
-												৫ </span>
+												৪ </span>
 												<span class="desc">
 												<i class="fa fa-check"></i> <?= __('Confirm') ?> </span>
                                 </a>
@@ -78,74 +71,6 @@ $religions = \Cake\Core\Configure::read('religions');
                         <div class="tab-content">
 
 
-                            <div class="tab-pane active" id="tab1">
-                                <h3 class="block"><?= __('') ?></h3>
-
-
-                                <?php
-                                echo $this->Form->input('location_type_id', ['options' => $locationTypes, 'empty' => __('Select'), 'class' => 'form-control  location_type', 'label' => [__('Location Type'), 'escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                ?>
-
-                                <div class="hide applicant_type" id="applicant_type">
-                                    <?php
-                                    echo $this->Form->input('applicant_type_id', ['options' => '', 'empty' => __('Select'), 'class' => 'form-control select_box applicantTypes', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-
-                                    echo $this->Form->input('divsion_id', ['options' => $divisions, 'empty' => __('Select'), 'class' => 'form-control select_box division divisions ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
-                                </div>
-
-
-                                <div class="hide district" id="district">
-                                    <?php
-                                    echo $this->Form->input('district_id', ['empty' => __('Select'), 'class' => 'form-control  select_box districts', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
-                                </div>
-
-
-                                <div class="hide upazila" id="upazila">
-                                    <?php
-                                    echo $this->Form->input('upazila_id', ['empty' => __('Select'), 'class' => 'form-control select_box upazilas', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
-                                </div>
-
-
-                                <div class="hide city_corporation" id="city_corporation">
-                                    <?php
-                                    echo $this->Form->input('city_corporation_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control  select_box  city_corporations', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
-                                </div>
-                                <div class="hide city_corporation_ward" id="city_corporation_ward">
-                                    <?php
-                                    echo $this->Form->input('city_corporation_ward_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control select_box city_corporation_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
-                                </div>
-                                <div class="hide municipal" id="municipal">
-                                    <?php
-                                    echo $this->Form->input('municipal_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control  select_box  municipals', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
-                                </div>
-
-                                <div class="hide municipal_ward" id="municipal_ward">
-                                    <?php
-                                    echo $this->Form->input('municipal_ward_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control select_box municipal_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
-                                </div>
-
-                                <div class="hide union" id="union">
-                                    <?php
-                                    echo $this->Form->input('union_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control  select_box  unions', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
-                                </div>
-
-
-                                <div class="hide ward" id="ward">
-                                    <?php
-                                    echo $this->Form->input('union_ward', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
-                                </div>
-
-
-                            </div>
                             <div class="tab-pane" id="tab2">
 
 

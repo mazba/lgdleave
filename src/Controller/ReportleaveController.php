@@ -39,80 +39,100 @@ class ReportleaveController extends AppController
 
 
         if ($this->request->is('post')) {
-            $location_type_id = $this->request->data['location_type_id'];
-            $application_type_id = $this->request->data['application_type_id'];
 
-            $divsion_id = $this->request->data['divsion_id'];
-            $district_id = $this->request->data['district_id'];
-            $upazila_id = $this->request->data['upazila_id'];
-            $city_corporation_id = $this->request->data['city_corporation_id'];
-            $city_corporation_ward_id = $this->request->data['city_corporation_ward_id'];
-            $municipal_id = $this->request->data['municipal_id'];
-            $municipal_ward_id = $this->request->data['municipal_ward_id'];
-            $union_id = $this->request->data['union_id'];
-            $union_ward = $this->request->data['union_ward'];
+            $input_data=$this->request->data;
+            $location_type_id = $input_data['location_type_id'];
+            $application_type_id = $input_data['application_type_id'];
 
-            $applicant_type_id = $this->request->data['applicant_type_id'];
-            $status = $this->request->data['status'];
-            $start_date = strtotime($this->request->data['from_date']);
-            $end_date = strtotime($this->request->data['to_date']);
+            $divsion_id = isset($input_data['divsion_id'])?$input_data['divsion_id']:'';
+            $district_id = isset($input_data['district_id'])?$input_data['district_id']:'';
+            $upazila_id = isset($input_data['upazila_id'])?$input_data['upazila_id']:$input_data['upazila_id'];
+            $city_corporation_id = isset($input_data['city_corporation_id'])?$input_data['city_corporation_id']:'';
+            $city_corporation_ward_id = isset($input_data['city_corporation_ward_id'])?$input_data['city_corporation_ward_id']:'';
+            $municipal_id = isset($input_data['municipal_id'])?$input_data['municipal_id']:'';
+            $municipal_ward_id = isset($input_data['municipal_ward_id'])?$input_data['municipal_ward_id']:'';
+            $union_id = isset($input_data['union_id'])?$input_data['union_id']:'';
+            $union_ward =isset($input_data['union_ward'])?$input_data['union_ward']:'';
+            $applicant_type_id = isset($input_data['applicant_type_id'])?$input_data['applicant_type_id']:'';
+            $status = isset($input_data['status'])?$input_data['status']:'';
+            $start_date = isset($input_data['from_date'])?strtotime($input_data['from_date']):'';
+            $end_date = isset($input_data['to_date'])?strtotime($input_data['to_date']):'';
 
-            $leaves = TableRegistry::get('applications')->find();
+
+            $applicants = TableRegistry::get('applications')->find();
+
+            $applicants->select(['applications.id','applications.applicant_id','applications.applicant_name_bn','applications.phone','applications.email','applications.application_type_id','applications.start_date','applications.end_date','applications.status']);
+            $applicants->select(['applicants.id','applicants.applicant_type_id','applicants.location_type_id','applicants.division_id','applicants.district_id','applicants.upazila_id','applicants.union_id','applicants.union_ward','applicants.city_corporation_id','applicants.city_corporation_ward_id','applicants.municipal_id','applicants.municipal_ward_id']);
+            $applicants->select(['location_types.id','location_types.title_bn']);
+            $applicants->select(['application_types.id','application_types.title_bn']);
+
 
             if (!empty($application_type_id)) {
-                $leaves->where(['application_type_id' => $application_type_id ]);
-            }
-
-            if (!empty($applicant_type_id) ) {
-                $leaves->where(['applicant_type_id' => $applicant_type_id]);
-            }
-
-            if (!empty($location_type_id) ) {
-                $leaves->where(['location_type_id' => $location_type_id]);
-            }
-
-            if (!empty($divsion_id) ) {
-                $leaves->where(['divsion_id' => $divsion_id]);
-            }
-            if (!empty($district_id) ) {
-                $leaves->where(['district_id' => $district_id]);
-            }
-            if (!empty($upazila_id) ) {
-                $leaves->where(['upazila_id' => $upazila_id]);
-            }
-            if (!empty($city_corporation_id) ) {
-                $leaves->where(['city_corporation_id' => $city_corporation_id]);
-            }
-            if (!empty($city_corporation_ward_id) ) {
-                $leaves->where(['city_corporation_ward_id' => $city_corporation_ward_id]);
-            }
-            if (!empty($municipal_id) ) {
-                $leaves->where(['municipal_id' => $municipal_id]);
-            }
-            if (!empty($municipal_ward_id) ) {
-                $leaves->where(['municipal_ward_id' => $municipal_ward_id]);
-            }
-            if (!empty($union_id) ) {
-                $leaves->where(['union_id' => $union_id]);
-            }
-            if (!empty($union_ward) ) {
-                $leaves->where(['union_ward' => $union_ward]);
+                $applicants->where(['application_type_id' => $application_type_id ]);
             }
 
             if (!empty($status)) {
-                $leaves->where(['applications.status' => $status]);
+                $applicants->where(['applications.status' => $status]);
             }
 
             if (!empty($start_date) && $start_date > 0) {
-                $leaves->where(['start_date  >=' => $start_date]);
+                $applicants->where(['start_date  >=' => $start_date]);
             }
             if (!empty($end_date) && $end_date > 0) {
-                $leaves->where(['end_date  <=' => $end_date]);
+                $applicants->where(['end_date  <=' => $end_date]);
             }
-            $leaves->contain(['LocationTypes']);
-            $leaves->contain(['ApplicationTypes']);
 
-            $reportData = $leaves->toArray();
+//
+
+            if (!empty($applicant_type_id) ) {
+                $applicants->where(['applicant_type_id' => $applicant_type_id]);
+            }
+
+            if (!empty($location_type_id) ) {
+                $applicants->where(['location_type_id' => $location_type_id]);
+            }
+
+            if (!empty($divsion_id) ) {
+                $applicants->where(['division_id' => $divsion_id]);
+            }
+            if (!empty($district_id) ) {
+                $applicants->where(['district_id' => $district_id]);
+            }
+            if (!empty($upazila_id) ) {
+                $applicants->where(['upazila_id' => $upazila_id]);
+            }
+            if (!empty($city_corporation_id) ) {
+                $applicants->where(['city_corporation_id' => $city_corporation_id]);
+            }
+            if (!empty($city_corporation_ward_id) ) {
+                $applicants->where(['city_corporation_ward_id' => $city_corporation_ward_id]);
+            }
+            if (!empty($municipal_id) ) {
+                $applicants->where(['municipal_id' => $municipal_id]);
+            }
+            if (!empty($municipal_ward_id) ) {
+                $applicants->where(['municipal_ward_id' => $municipal_ward_id]);
+            }
+            if (!empty($union_id) ) {
+                $applicants->where(['union_id' => $union_id]);
+            }
+            if (!empty($union_ward) ) {
+                $applicants->where(['union_ward' => $union_ward]);
+            }
+
+            $applicants->leftJoin('applicants', 'applicants.id=applications.applicant_id');
+            $applicants->leftJoin('location_types', 'location_types.id=applicants.location_type_id');
+            $applicants->leftJoin('application_types', 'application_types.id=applications.application_type_id');
+
+          //  echo "<pre>";print_r($applicants->toArray());die();
+            $reportData =$applicants->toArray();
+
+
+        //echo "<pre>";print_r($reportData);die();
+
+
+
+
             //   echo "<pre/>"; print_r($reportData);die();
             $this->set('reportData', $reportData);
             $this->set('_serialize', ['reportData']);

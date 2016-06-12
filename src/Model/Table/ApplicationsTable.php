@@ -45,40 +45,43 @@ class ApplicationsTable extends Table
             'foreignKey' => 'application_type_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('ApplicantTypes', [
-            'foreignKey' => 'applicant_type_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('LocationTypes', [
-            'foreignKey' => 'location_type_id'
-        ]);
-        $this->belongsTo('AreaDivisions', [
-            'foreignKey' => 'divsion_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('AreaDistricts', [
-            'foreignKey' => 'district_id'
-        ]);
-        $this->belongsTo('AreaUpazilas', [
-            'foreignKey' => ['district_id','upazila_id']
-        ]);
-        $this->belongsTo('CityCorporations', [
-            'foreignKey' => ['city_corporation_id','district_id']
-        ]);
-        $this->belongsTo('CityCorporationWards', [
-            'foreignKey' => 'city_corporation_ward_id'
-        ]);
-        $this->belongsTo('Municipals', [
-            'foreignKey' => ['municipal_id','district_id']
-        ]);
-        $this->belongsTo('MunicipalWards', [
-            'foreignKey' => 'municipal_ward_id'
-        ]);
-        $this->belongsTo('Unions', [
-            'foreignKey' => 'union_id'
-        ]);
+//        $this->belongsTo('ApplicantTypes', [
+//            'foreignKey' => 'applicant_type_id',
+//            'joinType' => 'INNER'
+//        ]);
+//        $this->belongsTo('LocationTypes', [
+//            'foreignKey' => 'location_type_id'
+//        ]);
+//        $this->belongsTo('AreaDivisions', [
+//            'foreignKey' => 'divsion_id',
+//            'joinType' => 'INNER'
+//        ]);
+//        $this->belongsTo('AreaDistricts', [
+//            'foreignKey' => 'district_id'
+//        ]);
+//        $this->belongsTo('AreaUpazilas', [
+//            'foreignKey' => ['district_id','upazila_id']
+//        ]);
+//        $this->belongsTo('CityCorporations', [
+//            'foreignKey' => ['city_corporation_id','district_id']
+//        ]);
+//        $this->belongsTo('CityCorporationWards', [
+//            'foreignKey' => 'city_corporation_ward_id'
+//        ]);
+//        $this->belongsTo('Municipals', [
+//            'foreignKey' => ['municipal_id','district_id']
+//        ]);
+//        $this->belongsTo('MunicipalWards', [
+//            'foreignKey' => 'municipal_ward_id'
+//        ]);
+//        $this->belongsTo('Unions', [
+//            'foreignKey' => 'union_id'
+//        ]);
         $this->hasMany('ApplicationsFiles', [
             'foreignKey' => 'application_id'
+        ]);
+        $this->belongsTo('Applicants', [
+            'foreignKey' => 'applicant_id'
         ]);
     }
 
@@ -99,8 +102,6 @@ class ApplicationsTable extends Table
             ->requirePresence('submission_time', 'create')
             ->notEmpty('submission_time');
 
-        $validator
-            ->allowEmpty('union_ward');
 
         $validator
             ->requirePresence('applicant_name_bn', 'create')

@@ -159,8 +159,8 @@ foreach($status as &$value){
                                                 <td><?= $detail['applicant_name_bn'];?></td>
                                                 <td><?= $detail['phone'];?></td>
                                                 <td><?= $detail['email'];?></td>
-                                                <td><?= $detail['location_type']['title_bn'];?></td>
-                                                <td><?= $detail['application_type']['title_bn'];?></td>
+                                                <td><?= $detail['location_types']['title_bn'];?></td>
+                                                <td><?= $detail['application_types']['title_bn'];?></td>
                                                 <td><?= $detail['start_date']?date('d-m-y', $detail['start_date']):'Not Set';?></td>
                                                 <td><?= $detail['end_date']?date('d-m-y', $detail['end_date']):'Not Set';?></td>
                                                 <td><?= $status[$detail['status']];?></td>

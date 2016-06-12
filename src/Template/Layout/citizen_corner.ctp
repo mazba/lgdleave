@@ -71,8 +71,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
-    <script src="<?= $this->request->webroot; ?>assets/global/plugins/ckeditor/ckeditor.js"
-            type="text/javascript"></script>
+    <script src="<?= $this->request->webroot; ?>assets/global/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
 
 <!--    jquery -->
 
