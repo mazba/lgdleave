@@ -38,7 +38,7 @@ $religions = \Cake\Core\Configure::read('religions');
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New User') ?>
+                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Edit Applicant') ?>
                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
@@ -46,79 +46,21 @@ $religions = \Cake\Core\Configure::read('religions');
 
             </div>
             <div class="portlet-body">
-                <?= $this->Form->create($applicant,['type' => 'file', 'class'=>'form-horizontal myForm']) ?>
+                <?= $this->Form->create($user,['type' => 'file', 'class'=>'form-horizontal myForm']) ?>
                 <div class="tabbable-custom ">
                     <ul class="nav nav-tabs ">
-                        <li class="active"><a href="#tab_5_1" data-toggle="tab"><?= __('Basic')?></a></li>
-                        <li><a href="#tab_5_9" data-toggle="tab"><?= __('Login Info');?></a></li>
+                        <li class="active"><a href="#tab_5_1" data-toggle="tab"><?= __('Login information')?></a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_5_1">
                             <div class="row whiteWrapper basicWrapper">
                                 <div class="col-md-8 col-md-offset-2">
 
+
                                     <?php
-                                    echo $this->Form->input('location_type_id', ['required' => 'required','options' => $locationTypes, 'empty' => __('Select'), 'class' => 'form-control  location_type', 'label' => [__('Location Type'), 'escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    echo $this->Form->input('username',['required' => 'required','class'=>'form-control','label'=>__('Username')]);
+                                    echo $this->Form->input('new_password',['class'=>'form-control','label'=>__('Password'),'required' => 'required']);
                                     ?>
-
-                                    <div class="hide applicant_type" id="applicant_type">
-                                        <?php
-                                        echo $this->Form->input('applicant_type_id', ['required' => 'required','options' => '', 'empty' => __('Select'), 'class' => 'form-control select_box applicantTypes', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-
-                                        echo $this->Form->input('division_id', ['options' => $divisions, 'empty' => __('Select'), 'class' => 'form-control select_box division divisions ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                        ?>
-                                    </div>
-
-
-                                    <div class="hide district" id="district">
-                                        <?php
-                                        echo $this->Form->input('district_id', ['empty' => __('Select'), 'class' => 'form-control  select_box districts', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                        ?>
-                                    </div>
-
-
-                                    <div class="hide upazila" id="upazila">
-                                        <?php
-                                        echo $this->Form->input('upazila_id', ['empty' => __('Select'), 'class' => 'form-control select_box upazilas', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                        ?>
-                                    </div>
-
-
-                                    <div class="hide city_corporation" id="city_corporation">
-                                        <?php
-                                        echo $this->Form->input('city_corporation_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control  select_box  city_corporations', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                        ?>
-                                    </div>
-                                    <div class="hide city_corporation_ward" id="city_corporation_ward">
-                                        <?php
-                                        echo $this->Form->input('city_corporation_ward_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control select_box city_corporation_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                        ?>
-                                    </div>
-                                    <div class="hide municipal" id="municipal">
-                                        <?php
-                                        echo $this->Form->input('municipal_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control  select_box  municipals', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                        ?>
-                                    </div>
-
-                                    <div class="hide municipal_ward" id="municipal_ward">
-                                        <?php
-                                        echo $this->Form->input('municipal_ward_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control select_box municipal_wards', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                        ?>
-                                    </div>
-
-                                    <div class="hide union" id="union">
-                                        <?php
-                                        echo $this->Form->input('union_id', ['options' => [], 'empty' => __('Select'), 'class' => 'form-control  select_box  unions', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                        ?>
-                                    </div>
-
-
-                                    <div class="hide ward" id="ward">
-                                        <?php
-                                        echo $this->Form->input('union_ward', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                        ?>
-                                    </div>
-
 
                                 </div>
                             </div>
@@ -130,10 +72,7 @@ $religions = \Cake\Core\Configure::read('religions');
                         <div class="tab-pane" id="tab_5_9">
                             <div class="row whiteWrapper loginWrapper">
                                 <div class="col-md-6 col-md-offset-2">
-                                    <?php
-                                    echo $this->Form->input('user.username',['required' => 'required','class'=>'form-control','label'=>__('Username')]);
-                                    echo $this->Form->input('user.password',['class'=>'form-control','label'=>__('Password'),'required' => 'required']);
-                                    ?>
+
                                 </div>
                             </div>
                         </div>

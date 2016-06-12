@@ -118,30 +118,41 @@ class ApplicantsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->loadModel('Users');
         $applicant = $this->Applicants->get($id, [
             'contain' => []
         ]);
+
+        $user = $this->Users->get($applicant['user_id'], [
+            'contain' => []
+        ]);
+
+        $auth = $this->Auth->user();
+        $time = time();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $applicant = $this->Applicants->patchEntity($applicant, $this->request->data);
-            if ($this->Applicants->save($applicant)) {
+            $data= $this->request->data;
+            $data['update_by']=$auth['id'];
+            $data['update_date']=$time;
+
+            if ($data['new_password']) {
+                $data['password'] = $data['new_password'];
+            } else {
+                $data['password'] = $user['password'];
+            }
+
+            $user = $this->Users->patchEntity($user,$data);
+
+            if ($this->Users->save($user)) {
                 $this->Flash->success(__('The applicant has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
             }
         }
-        $applicantTypes = $this->Applicants->ApplicantTypes->find('list', ['limit' => 200]);
-        $locationTypes = $this->Applicants->LocationTypes->find('list', ['limit' => 200]);
-        $divisions = $this->Applicants->AreaDivisions->find('list', ['limit' => 200]);
-        $districts = $this->Applicants->AreaDistricts->find('list', ['limit' => 200]);
-        $upazilas = $this->Applicants->AreaUpazilas->find('list', ['limit' => 200]);
-        $unions = $this->Applicants->Unions->find('list', ['limit' => 200]);
-        $cityCorporations = $this->Applicants->CityCorporations->find('list', ['limit' => 200]);
-        $cityCorporationWards = $this->Applicants->CityCorporationWards->find('list', ['limit' => 200]);
-        $municipals = $this->Applicants->Municipals->find('list', ['limit' => 200]);
-        $municipalWards = $this->Applicants->MunicipalWards->find('list', ['limit' => 200]);
-        $this->set(compact('applicant', 'applicantTypes', 'locationTypes', 'divisions', 'districts', 'upazilas', 'unions', 'cityCorporations', 'cityCorporationWards', 'municipals', 'municipalWards'));
-        $this->set('_serialize', ['applicant']);
+
+        $this->set(compact('user'));
+        $this->set('_serialize', ['user']);
     }
 
     /**
