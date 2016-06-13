@@ -120,7 +120,8 @@ class CitizenCornerController extends AppController
         $divisions = $this->AreaDivisions->find('list');
 
         $this->set(compact('locationTypes', 'applicationTypes', 'divisions', 'applications'));
-        $this->viewBuilder()->layout('citizen_corner');
+      //  $this->viewBuilder()->layout('citizen_corner');
+        $this->set('_serialize', ['applications']);
     }
 
     public function success($id)
@@ -173,7 +174,7 @@ class CitizenCornerController extends AppController
       //  echo "<pre>";print_r($applications);die();
 
         $this->set(compact('applications'));
-        $this->viewBuilder()->layout('citizen_corner');
+      //  $this->viewBuilder()->layout('citizen_corner');
 
         //  $this->set('_serialize', ['application']);
     }

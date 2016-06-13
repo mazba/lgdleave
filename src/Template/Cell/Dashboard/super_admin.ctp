@@ -185,7 +185,7 @@
                                         <th><?php echo $application['temporary_id'] ?></th>
                                         <td><?php echo $application['applicant_name_bn'] ?></td>
                                         <td><?php echo $application ['applicant_type']; ?></td>
-                                        <td><?php echo $application['submission']; ?></td>
+                                        <td><?php echo $application['approved_time']; ?></td>
                                     </tr>
                                     <?php
                                 endforeach;

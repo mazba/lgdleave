@@ -210,7 +210,6 @@ License: You must have a valid license purchased only from themeforest(the above
         // initiate layout and plugins
         Metronic.init(); // init metronic core components
         Layout.init(); // init current layout
-
         Demo.init(); // init demo features
         FormWizard.init();
     });

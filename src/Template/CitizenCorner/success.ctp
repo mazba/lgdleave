@@ -21,7 +21,7 @@ $religions = \Cake\Core\Configure::read('religions');
     }
 </style>
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12 col-md-offset-0">
         <!-- BEGIN BORDERED TABLE PORTLET-->
         <div class="portlet box blue-hoki">
             <div class="portlet-title">

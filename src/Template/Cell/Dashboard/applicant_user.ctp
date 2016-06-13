@@ -1,24 +1,7 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="dashboard-stat blue-madison ">
-                <div class="visual">
-                    <i class="fa fa-users"></i>
-                </div>
-                <div class="details">
-                    <div class="number">
-                        <?php echo $this->System->eng_to_bangla_code($user_number); ?>
-                    </div>
-                    <div class="desc">
-                        <?= __('Total User') ?>
-                    </div>
-                </div>
-                <?php
-//                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'users'], ['class' => 'more']);
-                ?>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="dashboard-stat red-intense ">
                 <div class="visual">
                     <i class="fa fa-shopping-cart"></i>
@@ -36,7 +19,7 @@
                 ?>
             </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="dashboard-stat red-haze">
                 <div class="visual">
                     <i class="fa fa-shopping-cart"></i>
@@ -54,7 +37,7 @@
                 ?>
             </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="dashboard-stat blue-hoki">
                 <div class="visual">
                     <i class="fa fa-bank"></i>
@@ -72,7 +55,7 @@
                 ?>
             </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="dashboard-stat yellow-casablanca">
                 <div class="visual">
                     <i class="fa fa-cube "></i>
@@ -90,24 +73,7 @@
                 ?>
             </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <div class="dashboard-stat green-seagreen">
-                <div class="visual">
-                    <i class="fa fa-mortar-board "></i>
-                </div>
-                <div class="details">
-                    <div class="number">
-                        <?php echo $this->System->eng_to_bangla_code($number_of_application_type); ?>
-                    </div>
-                    <div class="desc">
-                        <?= __('Application Type') ?>
-                    </div>
-                </div>
-                <?php
-//                echo $this->Html->link(__('View More'), ['action' => 'index','controller'=>'committees'], ['class' => 'more']);
-                ?>
-            </div>
-        </div>
+
     </div>
 
 </div>
@@ -139,7 +105,7 @@
                                     <th><?php echo $application['temporary_id'] ?></th>
                                     <td><?php echo $application['applicant_name_bn'] ?></td>
                                     <td><?php echo $application ['applicant_type']; ?></td>
-                                    <td><?php echo $application['submission']; ?></td>
+                                    <td><?php echo date('d-M-Y',$application['submission']); ?></td>
                                 </tr>
                                 <?php
                                     endforeach;
@@ -185,7 +151,7 @@
                                         <th><?php echo $application['temporary_id'] ?></th>
                                         <td><?php echo $application['applicant_name_bn'] ?></td>
                                         <td><?php echo $application ['applicant_type']; ?></td>
-                                        <td><?php echo $application['approve_time']; ?></td>
+                                        <td><?php echo date('d-M-Y',$application['approve_time']) ; ?></td>
                                     </tr>
                                 <?php
                                 endforeach;

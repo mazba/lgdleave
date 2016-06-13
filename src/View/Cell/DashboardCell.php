@@ -3,8 +3,6 @@ namespace App\View\Cell;
 
 use Cake\Collection\Collection;
 use Cake\Core\Configure;
-use Cake\Database\Query;
-use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\View\Cell;
 
@@ -35,64 +33,68 @@ class DashboardCell extends Cell
         $this->loadModel('ApplicationTypes');
         $this->loadModel('LocationTypes');
         //count
-        $application_number = $this->Applications->find('all')->where(['status'=>Configure::read('application_status.Pending')])->count();
-        $district_council = $this->Applications->find('all')->where(['location_type_id'=>1,'status'=>Configure::read('application_status.Pending')])->count();
-        $upazila_council = $this->Applications->find('all')->where(['location_type_id'=>2,'status'=>Configure::read('application_status.Pending')])->count();
-        $city_council = $this->Applications->find('all')->where(['location_type_id'=>3,'status'=>Configure::read('application_status.Pending')])->count();
-        $municipality_council = $this->Applications->find('all')->where(['location_type_id'=>5,'status'=>Configure::read('application_status.Pending')])->count();
-        $union_council = $this->Applications->find('all')->where(['location_type_id'=>7,'status'=>Configure::read('application_status.Pending')])->count();
-        //table data
-        $this->loadModel('Applications');
-        $new_applications = $this->Applications->find()
-            ->select(
-                [
-                    'location_type'=>'LocationTypes.title_bn',
-                    'area_district'=>'AreaDistricts.zillaname',
-                    'area_division'=>'AreaDivisions.divname',
-                    'applicant_type'=>'ApplicantTypes.title_bn',
-                    'application_type'=>'ApplicationTypes.title_bn',
-                    'applicant_name_bn'=>'Applications.applicant_name_bn',
-                    'id'=>'Applications.id',
-                    'temporary_id'=>'Applications.temporary_id',
-                    'submission'=>"FROM_UNIXTIME(Applications.submission_time,'%D, %M, %Y')",
-                ]
-            )
-            ->where(
-                [
-                    'Applications.status'=>Configure::read('application_status.Pending')
-                ]
-            )
-            ->limit(10)
-            ->contain(['ApplicationTypes','ApplicantTypes','LocationTypes','AreaDivisions','AreaDistricts','AreaUpazilas','CityCorporations','Municipals'])
-            ->toArray();
+        $application_number = $this->Applications->find('all')->where(['status' => Configure::read('application_status.Pending')])->count();
+        $district_council = $this->Applications->find('all')
+            ->where(['applicants.location_type_id' => 1, 'Applications.status' => Configure::read('application_status.Pending')])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $upazila_council = $this->Applications->find('all')
+            ->where(['applicants.location_type_id' => 2, 'Applications.status' => Configure::read('application_status.Pending')])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $city_council = $this->Applications->find('all')
+            ->where(['applicants.location_type_id' => 3, 'Applications.status' => Configure::read('application_status.Pending')])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $municipality_council = $this->Applications->find('all')
+            ->where(['applicants.location_type_id' => 5, 'Applications.status' => Configure::read('application_status.Pending')])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $union_council = $this->Applications->find('all')
+            ->where(['applicants.location_type_id'=>7,'Applications.status'=>Configure::read('application_status.Pending')])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+       //table data
+
+        $new_applications = TableRegistry::get('applications')->find();
+
+        $new_applications->select([
+            'applicant_type' => 'applicant_types.title_bn',
+            'applicant_name_bn' => 'applications.applicant_name_bn',
+            'id' => 'applications.id',
+            'temporary_id' => 'applications.temporary_id',
+            'submission' => "FROM_UNIXTIME(applications.submission_time,'%D, %M, %Y')",
+        ]);
+        $new_applications->select(['applications.id', 'applications.applicant_id', 'applications.applicant_name_bn', 'applications.phone', 'applications.email', 'applications.application_type_id', 'applications.start_date', 'applications.end_date', 'applications.status']);
+        $new_applications->select(['applicants.id', 'applicants.applicant_type_id', 'applicants.location_type_id', 'applicants.division_id', 'applicants.district_id', 'applicants.upazila_id', 'applicants.union_id', 'applicants.union_ward', 'applicants.city_corporation_id', 'applicants.city_corporation_ward_id', 'applicants.municipal_id', 'applicants.municipal_ward_id']);
+        $new_applications->where(['applications.status' => Configure::read('application_status.Pending')]);
+
+        $new_applications->leftJoin('applicants', 'applicants.id=applications.applicant_id');
+        $new_applications->leftJoin('applicant_types', 'applicant_types.id=applicants.applicant_type_id');
+        $new_applications->order(['applications.id' => 'DESC']);
+        $new_applications->limit(10);
+        $new_applications->toArray();
+
+
         //for accepted application
-        $this->loadModel('Applications');
-        $new_approved_applications = $this->Applications->find()
-            ->select(
-                [
-                    'location_type'=>'LocationTypes.title_bn',
-                    'area_district'=>'AreaDistricts.zillaname',
-                    'area_division'=>'AreaDivisions.divname',
-                    'applicant_type'=>'ApplicantTypes.title_bn',
-                    'application_type'=>'ApplicationTypes.title_bn',
-                    'applicant_name_bn'=>'Applications.applicant_name_bn',
-                    'id'=>'Applications.id',
-                    'temporary_id'=>'Applications.temporary_id',
-                    'submission'=>"FROM_UNIXTIME(Applications.submission_time,'%D, %M, %Y')",
-                ]
-            )
-            ->where(
-                [
-                    'Applications.status'=>Configure::read('application_status.Approve')
-                ]
-            )
-            ->limit(10)
-            ->contain(['ApplicationTypes','ApplicantTypes','LocationTypes','AreaDivisions','AreaDistricts','AreaUpazilas','CityCorporations','Municipals'])
-            ->toArray();
-//        echo '<pre>';
-//        print_r($new_applications);
-//        echo '</pre>';
-//        die;
+        $new_approved_applications = TableRegistry::get('applications')->find();
+
+        $new_approved_applications->select([
+            'applicant_type' => 'applicant_types.title_bn',
+            'applicant_name_bn' => 'applications.applicant_name_bn',
+            'id' => 'applications.id',
+            'temporary_id' => 'applications.temporary_id',
+            'approved_time' => "FROM_UNIXTIME(applications.approve_time,'%D, %M, %Y')",
+        ]);
+        $new_approved_applications->select(['applications.id', 'applications.applicant_id', 'applications.applicant_name_bn', 'applications.phone', 'applications.email', 'applications.application_type_id', 'applications.start_date', 'applications.end_date', 'applications.status']);
+        $new_approved_applications->select(['applicants.id', 'applicants.applicant_type_id', 'applicants.location_type_id', 'applicants.division_id', 'applicants.district_id', 'applicants.upazila_id', 'applicants.union_id', 'applicants.union_ward', 'applicants.city_corporation_id', 'applicants.city_corporation_ward_id', 'applicants.municipal_id', 'applicants.municipal_ward_id']);
+        $new_approved_applications->where(['applications.status' => Configure::read('application_status.Approve')]);
+
+        $new_approved_applications->leftJoin('applicants', 'applicants.id=applications.applicant_id');
+        $new_approved_applications->leftJoin('applicant_types', 'applicant_types.id=applicants.applicant_type_id');
+        $new_approved_applications->order(['applications.id' => 'DESC']);
+        $new_approved_applications->limit(10);
+        $new_approved_applications->toArray();
 
 
 
@@ -112,6 +114,7 @@ class DashboardCell extends Cell
             'union_council'
         ));
     }
+
     public function officeAdmin()
     {
         $user = $this->request->session()->read('Auth.User');
@@ -124,85 +127,84 @@ class DashboardCell extends Cell
         $usrUnits = TableRegistry::get('user_designations');
         $userUnits = $usrUnits->find()
             ->select(['office_unit_id'])
-            ->where(['user_id'=>$user['id'],'is_basic IS'=>null]);
+            ->where(['user_id' => $user['id'], 'is_basic IS' => null]);
         $collection = new Collection($userUnits);
         $userUnits = $collection->extract('office_unit_id');
         $userUnits = $userUnits->toArray();
 
         $applicantType = TableRegistry::get('applicant_types_office_units');
         $applicantType = $applicantType->find()
-            ->where(['office_unit_id IN'=>$userUnits]);
+            ->where(['office_unit_id IN' => $userUnits]);
         $collection = new Collection($applicantType);
         $applicantType = $collection->extract('applicant_type_id');
         $applicantTypes = $applicantType->toArray();
 
 //        //count
-        $user_number = $this->Users->find('all')->where(['status'=>1])->count();
-        $application_number = $this->Applications->find('all')->where(['Applications.applicant_type_id IN'=>$applicantTypes])->count();
-        $pending_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Pending'],'Applications.applicant_type_id IN'=>$applicantTypes])->count();
-        $approve_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Approve'],'Applications.applicant_type_id IN'=>$applicantTypes])->count();
-        $reject_application_number = $this->Applications->find('all')->where(['status'=>$application_status['Reject'],'Applications.applicant_type_id IN'=>$applicantTypes])->count();
-        $number_of_application_type = $this->ApplicationTypes->find('all')->where(['status'=>1])->count();
+        $user_number = $this->Users->find('all')->where(['status' => 1, 'user_group_id !='=> 4])->count();
+        $application_number = $this->Applications->find('all')
+            ->where(['applicants.applicant_type_id IN' => $applicantTypes])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $pending_application_number = $this->Applications->find('all')
+            ->where(['Applications.status' => $application_status['Pending'], 'applicants.applicant_type_id IN' => $applicantTypes])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $approve_application_number = $this->Applications->find('all')
+            ->where(['Applications.status' => $application_status['Approve'], 'applicants.applicant_type_id IN' => $applicantTypes])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $reject_application_number = $this->Applications->find('all')
+            ->where(['Applications.status' => $application_status['Reject'], 'applicants.applicant_type_id IN' => $applicantTypes])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $number_of_application_type = $this->ApplicationTypes->find('all')->where(['status' => 1])->count();
 
-        //table data
+//        //table data
+        $new_applications = TableRegistry::get('applications')->find();
 
-        $this->loadModel('Applications');
-        $new_applications = $this->Applications->find()
-            ->select(
-                [
-                    'location_type'=>'LocationTypes.title_bn',
-                    'area_district'=>'AreaDistricts.zillaname',
-                    'area_division'=>'AreaDivisions.divname',
-                    'applicant_type'=>'ApplicantTypes.title_bn',
-                    'application_type'=>'ApplicationTypes.title_bn',
-                    'applicant_name_bn'=>'Applications.applicant_name_bn',
-                    'id'=>'Applications.id',
-                    'temporary_id'=>'Applications.temporary_id',
-                    'submission'=>"FROM_UNIXTIME(Applications.submission_time,'%D, %M, %Y')",
-                ]
-            )
-            ->where(
-                [
-                    'Applications.status'=>Configure::read('application_status.Pending'),
-                    'Applications.applicant_type_id IN'=>$applicantTypes
-                ]
-            )
-            ->limit(10)
-            ->contain(['ApplicationTypes','ApplicantTypes','LocationTypes','AreaDivisions','AreaDistricts','AreaUpazilas','CityCorporations','Municipals'])
-            ->toArray();
+        $new_applications->select([
+            'applicant_type' => 'applicant_types.title_bn',
+            'applicant_name_bn' => 'applications.applicant_name_bn',
+            'id' => 'applications.id',
+            'temporary_id' => 'applications.temporary_id',
+            'submission' => "FROM_UNIXTIME(applications.submission_time,'%D, %M, %Y')",
+        ]);
+        $new_applications->select(['applications.id', 'applications.applicant_id', 'applications.applicant_name_bn', 'applications.phone', 'applications.email', 'applications.application_type_id', 'applications.start_date', 'applications.end_date', 'applications.status']);
+        $new_applications->select(['applicants.id', 'applicants.applicant_type_id', 'applicants.location_type_id', 'applicants.division_id', 'applicants.district_id', 'applicants.upazila_id', 'applicants.union_id', 'applicants.union_ward', 'applicants.city_corporation_id', 'applicants.city_corporation_ward_id', 'applicants.municipal_id', 'applicants.municipal_ward_id']);
+        $new_applications->where([
+                                  'applications.status' => Configure::read('application_status.Pending'),
+                                  'applicants.applicant_type_id IN' => $applicantTypes
+        ]);
+
+        $new_applications->leftJoin('applicants', 'applicants.id=applications.applicant_id');
+        $new_applications->leftJoin('applicant_types', 'applicant_types.id=applicants.applicant_type_id');
+        $new_applications->order(['applications.id' => 'DESC']);
+        $new_applications->limit(10);
+        $new_application=  $new_applications->toArray();
 
 
+//        //for accepted application
+        $new_approved_application = TableRegistry::get('applications')->find();
 
+        $new_approved_application->select([
+            'applicant_type' => 'applicant_types.title_bn',
+            'applicant_name_bn' => 'applications.applicant_name_bn',
+            'id' => 'applications.id',
+            'temporary_id' => 'applications.temporary_id',
+            'approve_time' => "FROM_UNIXTIME(applications.approve_time,'%D, %M, %Y')",
+        ]);
+        $new_approved_application->select(['applications.id', 'applications.applicant_id', 'applications.applicant_name_bn', 'applications.phone', 'applications.email', 'applications.application_type_id', 'applications.start_date', 'applications.end_date', 'applications.status']);
+        $new_approved_application->select(['applicants.id', 'applicants.applicant_type_id', 'applicants.location_type_id', 'applicants.division_id', 'applicants.district_id', 'applicants.upazila_id', 'applicants.union_id', 'applicants.union_ward', 'applicants.city_corporation_id', 'applicants.city_corporation_ward_id', 'applicants.municipal_id', 'applicants.municipal_ward_id']);
+        $new_approved_application->where([
+            'applications.status' => Configure::read('application_status.Approve'),
+            'applicants.applicant_type_id IN' => $applicantTypes
+        ]);
 
-        //for accepted application
-
-        $new_approved_applications = $this->Applications->find()
-            ->select(
-                [
-                    'location_type'=>'LocationTypes.title_bn',
-                    'area_district'=>'AreaDistricts.zillaname',
-                    'area_division'=>'AreaDivisions.divname',
-                    'applicant_type'=>'ApplicantTypes.title_bn',
-                    'application_type'=>'ApplicationTypes.title_bn',
-                    'applicant_name_bn'=>'Applications.applicant_name_bn',
-                    'id'=>'Applications.id',
-                    'temporary_id'=>'Applications.temporary_id',
-                    'submission'=>"FROM_UNIXTIME(Applications.submission_time,'%D, %M, %Y')",
-                ]
-            )
-            ->where(
-                [
-                    'Applications.status'=>Configure::read('application_status.Approve'),
-                    'Applications.applicant_type_id IN'=>$applicantTypes
-                ]
-            )
-            ->limit(10)
-            ->contain(['ApplicationTypes','ApplicantTypes','LocationTypes','AreaDivisions','AreaDistricts','AreaUpazilas','CityCorporations','Municipals'])
-            ->toArray();
-//        echo '<pre>';
-//        print_r($new_applications);
-//        echo '</pre>';
-//        die;
+        $new_approved_application->leftJoin('applicants', 'applicants.id=applications.applicant_id');
+        $new_approved_application->leftJoin('applicant_types', 'applicant_types.id=applicants.applicant_type_id');
+        $new_approved_application->order(['applications.id' => 'DESC']);
+        $new_approved_application->limit(10);
+        $new_approved_applications=  $new_approved_application->toArray();
 
 
 
@@ -213,10 +215,101 @@ class DashboardCell extends Cell
             'approve_application_number',
             'reject_application_number',
             'new_approved_applications',
-            'new_applications',
+            'new_application',
             'number_of_application_type'
         ));
     }
+
+    public function applicantUser()
+    {
+        $user = $this->request->session()->read('Auth.User');
+        $application_status = Configure::read('application_status');
+        $this->loadModel('Offices');
+        $this->loadModel('Users');
+        $this->loadModel('Applications');
+        $this->loadModel('ApplicationTypes');
+
+//
+////        //count
+        $application_number = $this->Applications->find('all')
+            ->where(['applicants.user_id IN' => $user['id']])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+           // ->innerJoin('users', 'users.id=applicants.user_id')
+            ->count();
+        $pending_application_number = $this->Applications->find('all')
+            ->where(['Applications.status' => $application_status['Pending'], 'applicants.user_id IN' => $user['id']])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $approve_application_number = $this->Applications->find('all')
+            ->where(['Applications.status' => $application_status['Approve'],'applicants.user_id IN' => $user['id']])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+        $reject_application_number = $this->Applications->find('all')
+            ->where(['Applications.status' => $application_status['Reject'], 'applicants.user_id IN' => $user['id']])
+            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->count();
+//
+////        //table data
+        $new_applications = TableRegistry::get('applications')->find();
+
+        $new_applications->select([
+            'applicant_type' => 'applicant_types.title_bn',
+            'applicant_name_bn' => 'applications.applicant_name_bn',
+            'id' => 'applications.id',
+            'temporary_id' => 'applications.temporary_id',
+            'submission' => 'applications.submission_time',
+        ]);
+        $new_applications->select(['applications.id', 'applications.applicant_id', 'applications.applicant_name_bn', 'applications.phone', 'applications.email', 'applications.application_type_id', 'applications.start_date', 'applications.end_date', 'applications.status']);
+        $new_applications->select(['applicants.id', 'applicants.applicant_type_id', 'applicants.location_type_id', 'applicants.division_id', 'applicants.district_id', 'applicants.upazila_id', 'applicants.union_id', 'applicants.union_ward', 'applicants.city_corporation_id', 'applicants.city_corporation_ward_id', 'applicants.municipal_id', 'applicants.municipal_ward_id']);
+        $new_applications->where([
+                                  'applications.status' => Configure::read('application_status.Pending'),
+                                    'applicants.user_id IN' => $user['id']
+        ]);
+
+        $new_applications->leftJoin('applicants', 'applicants.id=applications.applicant_id');
+        $new_applications->leftJoin('applicant_types', 'applicant_types.id=applicants.applicant_type_id');
+        $new_applications->order(['applications.id' => 'DESC']);
+        $new_applications->limit(10);
+        $new_application=  $new_applications->toArray();
+//
+//
+//        //for accepted application
+        $new_approved_application = TableRegistry::get('applications')->find();
+
+        $new_approved_application->select([
+            'applicant_type' => 'applicant_types.title_bn',
+            'applicant_name_bn' => 'applications.applicant_name_bn',
+            'id' => 'applications.id',
+            'temporary_id' => 'applications.temporary_id',
+            'approve_time' => 'applications.approve_time',
+        ]);
+        $new_approved_application->select(['applications.id', 'applications.applicant_id', 'applications.applicant_name_bn', 'applications.phone', 'applications.email', 'applications.application_type_id', 'applications.start_date', 'applications.end_date', 'applications.status']);
+        $new_approved_application->select(['applicants.id', 'applicants.applicant_type_id', 'applicants.location_type_id', 'applicants.division_id', 'applicants.district_id', 'applicants.upazila_id', 'applicants.union_id', 'applicants.union_ward', 'applicants.city_corporation_id', 'applicants.city_corporation_ward_id', 'applicants.municipal_id', 'applicants.municipal_ward_id']);
+        $new_approved_application->where([
+            'applications.status' => Configure::read('application_status.Approve'),
+            'applicants.user_id IN' => $user['id']
+        ]);
+
+        $new_approved_application->leftJoin('applicants', 'applicants.id=applications.applicant_id');
+        $new_approved_application->leftJoin('applicant_types', 'applicant_types.id=applicants.applicant_type_id');
+        $new_approved_application->order(['applications.id' => 'DESC']);
+        $new_approved_application->limit(10);
+        $new_approved_applications=  $new_approved_application->toArray();
+
+
+
+        $this->set(compact(
+            'application_number',
+            'user_number',
+            'pending_application_number',
+            'approve_application_number',
+            'reject_application_number',
+            'new_approved_applications',
+            'new_application',
+            'number_of_application_type'
+        ));
+    }
+
     public function officeUser()
     {
 

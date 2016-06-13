@@ -15,11 +15,26 @@ $religions = \Cake\Core\Configure::read('religions');
         padding-left: 50px;
     }
 </style>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="<?= $this->Url->build(('/Dashboard'), true); ?>"><?= __('Dashboard') ?></a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <?= $this->Html->link(__('Users'), ['action' => 'index']) ?>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li><?= __('New User') ?></li>
+
+    </ul>
+</div>
 
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-        <div class="portlet box blue" id="form_wizard_1">
+    <div class="col-md-12 col-md-offset-0">
+        <div class="portlet box blue-hoki" id="form_wizard_1">
             <div class="portlet-title">
 
 

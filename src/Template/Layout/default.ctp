@@ -71,6 +71,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
+    <script src="<?= $this->request->webroot; ?>assets/global/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
 
 <!--    jquery -->
 
@@ -233,6 +234,14 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="<?php echo $this->request->webroot; ?>assets/global/plugins/select2/select2.min.js" type="text/javascript"></script>
 <link href="<?php echo $this->request->webroot; ?>assets/global/plugins/select2/select2.css" type="text/css" rel="stylesheet"/>
 
+<!---for form wizer-->
+<script src="<?= $this->request->webroot; ?>assets/admin/pages/scripts/form-wizard.js" type="text/javascript"></script>
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="<?= $this->request->webroot; ?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?= $this->request->webroot; ?>assets/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
+<script type="text/javascript" src="<?= $this->request->webroot; ?>assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+
 
 <script src="<?= $this->request->webroot; ?>js/sys_mcake.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
@@ -240,8 +249,10 @@ License: You must have a valid license purchased only from themeforest(the above
     jQuery(document).ready(function () {
         Metronic.init(); // init metronic core componets
         Layout.init(); // init layout
+        FormWizard.init();
     });
 </script>
+
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
