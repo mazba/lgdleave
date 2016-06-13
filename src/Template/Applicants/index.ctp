@@ -51,8 +51,6 @@ $status = \Cake\Core\Configure::read('status_options');
                                 <td><?= $applicant['area_upazila']['upazilaname'] ?></td>
                                 <td class="actions">
                                     <?php
-                                    echo $this->Html->link(__('View'), ['action' => 'view', $applicant->id], ['class' => 'btn btn-sm btn-info']);
-
                                     echo $this->Html->link(__('Edit'), ['action' => 'edit', $applicant->id], ['class' => 'btn btn-sm btn-warning']);
 
                                     echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $applicant->id], ['class' => 'btn btn-sm btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $applicant->id)]);
