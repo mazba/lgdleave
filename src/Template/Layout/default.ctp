@@ -98,7 +98,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <a href="#">
                 <img src="<?= $this->request->webroot; ?>img/logo-light.png" alt="logo" class="logo-default"/>
             </a>
-      <h3>স্থানীয় সরকার পল্লী উন্নয়ন বিভাগ</h3>
+      <h3>স্থানীয় সরকার বিভাগ</h3>
 <!--            <div class="menu-toggler sidebar-toggler"></div>-->
         </div>
         <!-- END LOGO -->
