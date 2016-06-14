@@ -9,7 +9,8 @@ return [
     'user_group' => [
         'super_admin' => 1,
         'office_admin' => 2,
-        'office_user' => 3
+        'office_user' => 3,
+        'applicant_user' => 4
     ],
     'blood_groups'=>[
         'A+'=>'A+','A-'=>'A-','B+'=>'B+','B-'=>'B-','AB+'=>'AB+','AB-'=>'AB-','O+'=>'O+','O-'=>'O-'
@@ -22,10 +23,10 @@ return [
         2=>'Female'
     ],
     'religions'=>[
-        1=>'Islam',
-        2=>'Hindu',
-        3=>'Buddhist',
-        4=>'Christian',
+        1=>'ইসলাম',
+        2=>'হিন্দু',
+        3=>'বৌদ্ধ',
+        4=>'খ্রীষ্টান',
     ],
 
     'status_options' => [
@@ -35,6 +36,7 @@ return [
     'application_status'=>[
         'Pending'=>0,
         'Approve'=>1,
-        'Reject'=>2
+        'Reject'=>2,
+        'On Process'=>3
     ]
 ];
