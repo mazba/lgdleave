@@ -23,10 +23,10 @@ $religions = \Cake\Core\Configure::read('religions');
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <?= $this->Html->link(__('Users'), ['action' => 'index']) ?>
+            <?= $this->Html->link(__('Applicants'), ['action' => 'index']) ?>
             <i class="fa fa-angle-right"></i>
         </li>
-                    <li><?= __('New User') ?></li>
+                    <li><?= __('New Applicant') ?></li>
         
     </ul>
 </div>
@@ -38,7 +38,7 @@ $religions = \Cake\Core\Configure::read('religions');
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New User') ?>
+                                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New Applicant') ?>
                                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
@@ -65,7 +65,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                         <?php
                                         echo $this->Form->input('applicant_type_id', ['required' => 'required','options' => '', 'empty' => __('Select'), 'class' => 'form-control select_box applicantTypes', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
 
-                                        echo $this->Form->input('division_id', ['options' => $divisions, 'empty' => __('Select'), 'class' => 'form-control select_box division divisions ', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                        echo $this->Form->input('division_id', ['options' => $divisions, 'empty' => __('Select'), 'class' => 'form-control select_box division divisions ', 'label' => [__('Divisions'),'escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                         ?>
                                     </div>
 

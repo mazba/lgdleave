@@ -23,10 +23,10 @@ $religions = \Cake\Core\Configure::read('religions');
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <?= $this->Html->link(__('Users'), ['action' => 'index']) ?>
+            <?= $this->Html->link(__('Applicants'), ['action' => 'index']) ?>
             <i class="fa fa-angle-right"></i>
         </li>
-        <li><?= __('New User') ?></li>
+        <li><?= __('Edit Applicant') ?></li>
 
     </ul>
 </div>

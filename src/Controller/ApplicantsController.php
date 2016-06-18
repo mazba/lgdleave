@@ -21,20 +21,20 @@ class ApplicantsController extends AppController
         $applicants = $this->Applicants->find('all', [
             'conditions' => ['Applicants.status =' => 1],
             'contain' => [
-                            'Users',
-                            'ApplicantTypes',
-                            'LocationTypes',
-                            'AreaDivisions',
-                            'AreaDistricts',
-                            'AreaUpazilas',
-                            'Unions',
-                            'CityCorporations',
-                            'CityCorporationWards',
-                            'Municipals',
-                            'MunicipalWards'
+                'Users',
+                'ApplicantTypes',
+                'LocationTypes',
+                'AreaDivisions',
+                'AreaDistricts',
+                'AreaUpazilas',
+                'Unions',
+                'CityCorporations',
+                'CityCorporationWards',
+                'Municipals',
+                'MunicipalWards'
             ]
         ]);
-    //    echo "<pre>";print_r($applicants);die();
+        //    echo "<pre>";print_r($applicants);die();
 
         $this->set('applicants', $this->paginate($applicants));
         $this->set('_serialize', ['applicants']);
@@ -51,9 +51,20 @@ class ApplicantsController extends AppController
     public function view($id = null)
     {
         $applicant = $this->Applicants->get($id, [
-            'contain' => ['ApplicantTypes', 'LocationTypes', 'Divisions', 'Districts', 'Upazilas', 'Unions', 'CityCorporations', 'CityCorporationWards', 'Municipals', 'MunicipalWards', 'Applications']
+            'contain' => ['ApplicantTypes',
+                'LocationTypes',
+                'AreaDivisions',
+                'AreaDistricts',
+                'AreaUpazilas',
+                'Unions',
+                'CityCorporations',
+                'CityCorporationWards',
+                'Municipals',
+                'MunicipalWards',
+                'Applications'
+            ]
         ]);
-
+//echo "<pre>";print_r($applicant);die();
         $this->set('applicant', $applicant);
         $this->set('_serialize', ['applicant']);
     }
@@ -67,6 +78,8 @@ class ApplicantsController extends AppController
     {
         $Users = TableRegistry::get('Users');
         $applicant = $this->Applicants->newEntity();
+        $auth = $this->Auth->user();
+
         if ($this->request->is('post')) {
             $time = time();
             $data = $this->request->data;
@@ -78,6 +91,7 @@ class ApplicantsController extends AppController
             $userEntity->user_group_id = 4;
             $userEntity->office_id = 0;
             $userEntity->status = 1;
+            $userEntity->create_by = $auth['id'];
             $userEntity->create_date = $time;
 
             $user_id = $Users->save($userEntity);
@@ -131,9 +145,9 @@ class ApplicantsController extends AppController
         $time = time();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $data= $this->request->data;
-            $data['update_by']=$auth['id'];
-            $data['update_date']=$time;
+            $data = $this->request->data;
+            $data['update_by'] = $auth['id'];
+            $data['update_date'] = $time;
 
             if ($data['new_password']) {
                 $data['password'] = $data['new_password'];
@@ -141,7 +155,7 @@ class ApplicantsController extends AppController
                 $data['password'] = $user['password'];
             }
 
-            $user = $this->Users->patchEntity($user,$data);
+            $user = $this->Users->patchEntity($user, $data);
 
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The applicant has been saved.'));

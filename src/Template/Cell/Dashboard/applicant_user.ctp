@@ -102,7 +102,7 @@
                                 if($new_application):
                                 foreach($new_application as $application):?>
                                 <tr>
-                                    <th><?php echo $application['temporary_id'] ?></th>
+                                    <td><?=  $this->Html->link($application['temporary_id'], ['controller' => 'CitizenCorner', 'action' => 'success', $application['id']]) ?> </td>
                                     <td><?php echo $application['applicant_name_bn'] ?></td>
                                     <td><?php echo $application ['applicant_type']; ?></td>
                                     <td><?php echo date('d-M-Y',$application['submission']); ?></td>
@@ -148,6 +148,7 @@
                                 if($new_approved_applications):
                                 foreach($new_approved_applications as $application):?>
                                     <tr>
+                                        <td><?=  $this->Html->link($application['temporary_id'], ['controller' => 'CitizenCorner', 'action' => 'success', $application['id']]) ?> </td>
                                         <th><?php echo $application['temporary_id'] ?></th>
                                         <td><?php echo $application['applicant_name_bn'] ?></td>
                                         <td><?php echo $application ['applicant_type']; ?></td>

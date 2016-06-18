@@ -82,7 +82,7 @@
                         <?php echo $this->System->eng_to_bangla_code($reject_application_number); ?>
                     </div>
                     <div class="desc">
-                        <?= __(' Rejected') ?>
+                        <?= __('Rejected') ?>
                     </div>
                 </div>
                 <?php

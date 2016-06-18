@@ -27,7 +27,7 @@ $religions = \Cake\Core\Configure::read('religions');
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New User') ?>
+                                    <i class="fa fa-plus-square-o fa-lg"></i><?php echo __('Add New User') ?>
                                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
@@ -47,15 +47,15 @@ $religions = \Cake\Core\Configure::read('religions');
                             <div class="row whiteWrapper basicWrapper">
                                 <div class="col-md-8 col-md-offset-2">
                                     <?php
-                                    echo $this->Form->input('full_name_bn');
-                                    echo $this->Form->input('full_name_en');
-                                    echo $this->Form->input('user_basic.father_name_bn');
-                                    echo $this->Form->input('user_basic.father_name_en');
-                                    echo $this->Form->input('user_basic.mother_name_bn');
-                                    echo $this->Form->input('user_basic.mother_name_en');
-                                    echo $this->Form->input('user_basic.nid');
-                                    echo $this->Form->input('user_basic.bin_brn');
-                                    echo $this->Form->input('user_basic.date_of_birth',['class'=>'form-control datepicker','type'=>'text']);
+                                    echo $this->Form->input('full_name_bn',['class'=>'form-control','label'=>__('Name Bangla')]);
+                                    echo $this->Form->input('full_name_en',['class'=>'form-control','label'=>__('Name English')]);
+                                    echo $this->Form->input('user_basic.father_name_bn',['class'=>'form-control','label'=>__('Father_name_bn')]);
+                                    echo $this->Form->input('user_basic.father_name_en',['class'=>'form-control','label'=>__('Father_name_en')]);
+                                    echo $this->Form->input('user_basic.mother_name_bn',['class'=>'form-control','label'=>__('Mother_name_bn')]);
+                                    echo $this->Form->input('user_basic.mother_name_en',['class'=>'form-control','label'=>__('Mother_name_en')]);
+                                    echo $this->Form->input('user_basic.nid',['class'=>'form-control','label'=>__('NID')]);
+                                    echo $this->Form->input('user_basic.bin_brn',['class'=>'form-control','label'=>__('Brn')]);
+                                    echo $this->Form->input('user_basic.date_of_birth',['class'=>'form-control datepicker','type'=>'text','label'=>__('DOB')]);
                                     echo $this->Form->input('user_basic.place_of_birth',['class'=>'form-control','label'=>__('Place Of Birth')]);
                                     echo $this->Form->input('user_basic.nationality',['class'=>'form-control','label'=>__('Nationality')]);
 
@@ -67,11 +67,11 @@ $religions = \Cake\Core\Configure::read('religions');
                                     echo $this->Form->input('user_basic.home_phone',['class'=>'form-control','label'=>__('Home Phone')]);
                                     echo $this->Form->input('user_basic.cell_phone',['class'=>'form-control','label'=>__('Cell Phone')]);
                                     echo $this->Form->input('user_basic.email',['class'=>'form-control','label'=>__('Email')]);
-                                    echo $this->Form->input('user_basic.passport_number',['class'=>'form-control','label'=>__('Passport Number')]);
+                                    echo $this->Form->input('user_basic.passport_number',['class'=>'form-control','label'=>__('Pasport Number')]);
                                     echo $this->Form->input('user_basic.driving_license_number',['class'=>'form-control','label'=>__('Driving License Number')]);
                                     echo $this->Form->input('user_basic.tin_number',['class'=>'form-control','label'=>__('TIN Number')]);
-                                    echo $this->Form->input('user_basic.present_address',['type'=>'textarea','rows'=>'2','class'=>'form-control','label'=>__('Present Address')]);
-                                    echo $this->Form->input('user_basic.permanent_address',['type'=>'textarea','rows'=>'2','class'=>'form-control','label'=>__('Permanent Address')]);
+                                    echo $this->Form->input('user_basic.present_address',['type'=>'textarea','rows'=>'2','class'=>'form-control','label'=>__('Present_address')]);
+                                    echo $this->Form->input('user_basic.permanent_address',['type'=>'textarea','rows'=>'2','class'=>'form-control','label'=>__('Permanent_address')]);
                                     echo $this->Form->input('picture_name_file',['class'=>'','type'=>'file','label'=>__('Photo')]);
                                     ?>
                                 </div>
@@ -83,7 +83,7 @@ $religions = \Cake\Core\Configure::read('religions');
                             <div class="row " >
                                 <div class="designationWrapper">
                                     <div class="col-md-12 designation">
-                                        <h3>Office Designation</h3>
+                                        <h3><?php echo __('Office Designation')?></h3>
                                         <hr/>
                                         <div class="col-md-6">
                                             <?php
@@ -94,8 +94,8 @@ $religions = \Cake\Core\Configure::read('religions');
                                         <div class="col-md-6">
                                             <?php
                                             echo $this->Form->input('user_designations.0.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
-                                            echo $this->Form->input('user_designations.0.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
-                                            echo $this->Form->input('user_designations.0.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
+                                            echo $this->Form->input('user_designations.0.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting_Date')]);
+                                            echo $this->Form->input('user_designations.0.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending_Date')]);
                                             echo $this->Form->hidden('user_designations.0.is_basic',['value'=>1]);
                                             ?>
                                         </div>
@@ -103,7 +103,7 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                                     <div class="col-md-12 single_list_designation list_designation" data-index_no="1">
-                                        <h3>Unit Designation</h3>
+                                        <h3><?php echo __('Unit Designation')?></h3>
                                         <hr/>
                                         <div class="form-group "><span class="btn btn-sm btn-circle btn-danger remove pull-right"><i class="fa fa-close"></i></span></div>
                                         <div class="col-md-6">
@@ -118,8 +118,8 @@ $religions = \Cake\Core\Configure::read('religions');
                                             <?php
                                             echo $this->Form->input('user_designations.1.designation_order',['type'=>'text','options'=>[],'empty'=>'Select','class'=>'form-control','label'=>__('Designation Order')]);
 
-                                            echo $this->Form->input('user_designations.1.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting Date')]);
-                                            echo $this->Form->input('user_designations.1.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending Date')]);
+                                            echo $this->Form->input('user_designations.1.starting_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Starting_Date')]);
+                                            echo $this->Form->input('user_designations.1.ending_date',['type'=>'text','class'=>'form-control datepicker','label'=>__('Ending_Date')]);
                                             ?>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                 </div>
                             </div>
                             <div class="row col-md-offset-11">
-                                <input type="button" class="btn btn-circle green add_more_designation" value="Add" />
+                                <input type="button" class="btn btn-circle green add_more_designation" value="+" />
                             </div>
                         </div>
 

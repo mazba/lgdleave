@@ -15,21 +15,7 @@ $religions = \Cake\Core\Configure::read('religions');
         padding-left: 50px;
     }
 </style>
-<div class="page-bar">
-    <ul class="page-breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="<?= $this->Url->build(('/Dashboard'), true); ?>"><?= __('Dashboard') ?></a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
-            <?= $this->Html->link(__('Users'), ['action' => 'index']) ?>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li><?= __('New User') ?></li>
 
-    </ul>
-</div>
 
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
@@ -98,7 +84,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                 echo $this->Form->input('mother_name_en');
                                 echo $this->Form->input('father_name_bn', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('father_name_en');
-                                echo $this->Form->input('phone', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('phone', ['type'=>'text','label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('cellphone', ['label' => __('Cellphone')]);
                                 echo $this->Form->input('emergency_contact', ['label' => __('Emergency_contact')]);
                                 echo $this->Form->input('email', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
@@ -237,10 +223,10 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-6"><?= __('Cellphone') ?>:</label>
+                                    <label class="control-label col-md-6"><?= __('Phone') ?>:</label>
 
                                     <div class="col-md-4">
-                                        <p class="form-control-static" data-display="cellphone">
+                                        <p class="form-control-static" data-display="phone">
                                         </p>
                                     </div>
                                 </div>

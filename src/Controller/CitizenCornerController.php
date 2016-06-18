@@ -42,15 +42,21 @@ class CitizenCornerController extends AppController
         $applications = $this->Applications->newEntity();
         $applcationFile = $this->ApplicationsFiles->newEntity();
         $auth = $this->Auth->user();
-      //  echo "<pre>";print_r($auth);die();
+
+        $applicant = TableRegistry::get('applicants')->find()
+            ->where(['user_id' => $auth['id']]);
+        $applicant_id=$applicant->toArray();
+
+
+        //  echo "<pre>";print_r($auth);die();
         if ($this->request->is('post')) {
 
             try {
 
                 $data = $this->request->data;
                 $conn = ConnectionManager::get('default');
-                $conn->transactional(function () use ($data, $applications, $time,$auth) {
-                    $data['applicant_id']= $auth['id'];
+                $conn->transactional(function () use ($data, $applications, $time,$auth,$applicant_id) {
+                    $data['applicant_id']= $applicant_id['id'];
                     $data['create_time'] = $time;
                     $data['submission_time'] = $time;
                     $data['temporary_id'] = $this->findMax()+1;
@@ -135,7 +141,7 @@ class CitizenCornerController extends AppController
                 'ApplicationsFiles'
             ]
         ]);
-
+//echo "<pre>";print_r($application);die();
     $applications=  $application->toArray();;
 
         $Area_division = TableRegistry::get('AreaDivisions')->find();
@@ -164,13 +170,13 @@ class CitizenCornerController extends AppController
          //  echo "<pre>";print_r($Applicant_type->toArray());die();
 
 
-        $applications['area_division']= $Area_division->first()->toArray();
-        $applications['area_district']= $Area_district->first()->toArray();
-        $applications['area_upazila']= $Area_upazila->first()->toArray();
+        $applications['area_division']= $Area_division->first();
+        $applications['area_district']= $Area_district->first();
+        $applications['area_upazila']= $Area_upazila->first();
         $applications['municipal']= $Municipal->toArray()? $Municipal->toArray():[];
         $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
         $applications['union']= $Union->toArray()? $Union->toArray():[];
-        $applications['applicant_type']= $Applicant_type->first()->toArray();
+        $applications['applicant_type']= $Applicant_type->first();
       //  echo "<pre>";print_r($applications);die();
 
         $this->set(compact('applications'));
@@ -221,13 +227,13 @@ class CitizenCornerController extends AppController
         //  echo "<pre>";print_r($Applicant_type->toArray());die();
 
 
-        $applications['area_division']= $Area_division->first()->toArray();
-        $applications['area_district']= $Area_district->first()->toArray();
-        $applications['area_upazila']= $Area_upazila->first()->toArray();
+        $applications['area_division']= $Area_division->first();
+        $applications['area_district']= $Area_district->first();
+        $applications['area_upazila']= $Area_upazila->first();
         $applications['municipal']= $Municipal->toArray()? $Municipal->toArray():[];
         $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
         $applications['union']= $Union->toArray()? $Union->toArray():[];
-        $applications['applicant_type']= $Applicant_type->first()->toArray();
+        $applications['applicant_type']= $Applicant_type->first();
 
         //generating the pdf
         Configure::write('CakePdf', [
@@ -290,14 +296,14 @@ class CitizenCornerController extends AppController
         //  echo "<pre>";print_r($Applicant_type->toArray());die();
 
 
-        $applications['location_type']= $Location_type->first()->toArray();
-        $applications['area_division']= $Area_division->first()->toArray();
-        $applications['area_district']= $Area_district->first()->toArray();
-        $applications['area_upazila']= $Area_upazila->first()->toArray();
+        $applications['location_type']= $Location_type->first();
+        $applications['area_division']= $Area_division->first();
+        $applications['area_district']= $Area_district->first();
+        $applications['area_upazila']= $Area_upazila->first();
         $applications['municipal']= $Municipal->toArray()? $Municipal->toArray():[];
         $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
         $applications['union']= $Union->toArray()? $Union->toArray():[];
-        $applications['applicant_type']= $Applicant_type->first()->toArray();
+        $applications['applicant_type']= $Applicant_type->first();
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [

@@ -247,11 +247,11 @@ $religions = \Cake\Core\Configure::read('religions');
                         <h3><?= __('To View Pdf') ?></h3>
                         <a href="<?= $this->Url->build(('/CitizenCorner/pdf_view/' . $applications['id']), true) ?>"
                            target="_blank" class="btn green-haze btn-circle btn-sm todo-projects-config">
-                            <i class="fa fa-file-pdf-o"></i> PDF
+                            <i class="fa fa-file-pdf-o"></i> <?= __('Applicant_info')?>
                         </a>
                         <a href="<?= $this->Url->build(('/CitizenCorner/pdfViewApplication/' . $applications['id']), true) ?>"
                            target="_blank" class="btn green-haze btn-circle btn-sm todo-projects-config">
-                            <i class="fa fa-file-pdf-o"></i> PDF_APPLICATION
+                            <i class="fa fa-file-pdf-o"></i> <?= __('Applicant_Application')?>
                         </a>
                     </div>
 

@@ -10,7 +10,7 @@ $status = \Cake\Core\Configure::read('status_options');
             <a href="<?= $this->Url->build(('/Dashboard'), true); ?>"><?= __('Dashboard') ?></a>
             <i class="fa fa-angle-right"></i>
         </li>
-        <li><?= $this->Html->link(__('Users'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Applicants'), ['action' => 'index']) ?></li>
     </ul>
 </div>
 
@@ -20,10 +20,10 @@ $status = \Cake\Core\Configure::read('status_options');
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-list-alt fa-lg"></i><?= __('User List') ?>
+                    <i class="fa fa-list-alt fa-lg"></i><?= __('Applicant List') ?>
                 </div>
                 <div class="tools">
-                    <?= $this->Html->link(__('New Applicants'), ['action' => 'add'], ['class' => 'btn btn-sm btn-primary']); ?>
+                    <?= $this->Html->link(__('New Applicant'), ['action' => 'add'], ['class' => 'btn btn-sm btn-primary']); ?>
                 </div>
             </div>
             <div class="portlet-body">
@@ -32,11 +32,11 @@ $status = \Cake\Core\Configure::read('status_options');
                         <thead>
                         <tr>
                             <th><?= __('Sl. No.') ?></th>
-                            <th><?= __('location_type') ?></th>
-                            <th><?= __('applicant_type') ?></th>
-                            <th><?= __('area_division') ?></th>
-                            <th><?= __('area_district') ?></th>
-                            <th><?= __('area_upazila') ?></th>
+                            <th><?= __('Location Type') ?></th>
+                            <th><?= __('Applicant Types') ?></th>
+                            <th><?= __('Divisions') ?></th>
+                            <th><?= __('District') ?></th>
+                            <th><?= __('Upazilas') ?></th>
                             <th><?= __('Actions') ?></th>
                         </tr>
                         </thead>
@@ -51,6 +51,7 @@ $status = \Cake\Core\Configure::read('status_options');
                                 <td><?= $applicant['area_upazila']['upazilaname'] ?></td>
                                 <td class="actions">
                                     <?php
+                                    echo $this->Html->link(__('View'), ['action' => 'view', $applicant->id], ['class' => 'btn btn-sm btn-success']);
                                     echo $this->Html->link(__('Edit'), ['action' => 'edit', $applicant->id], ['class' => 'btn btn-sm btn-warning']);
                                     echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $applicant->id], ['class' => 'btn btn-sm btn-danger', 'confirm' => __('Are you sure you want to delete # {0}?', $applicant->id)]);
                                     ?>

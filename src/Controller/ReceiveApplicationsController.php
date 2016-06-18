@@ -139,14 +139,14 @@ class ReceiveApplicationsController extends AppController
         //  echo "<pre>";print_r($Applicant_type->toArray());die();
 
 
-        $applications['area_division']= $Area_division->first()->toArray();
-        $applications['area_district']= $Area_district->first()->toArray();
-        $applications['area_upazila']= $Area_upazila->first()->toArray();
+        $applications['area_division']= $Area_division->first();
+        $applications['area_district']= $Area_district->first();
+        $applications['area_upazila']= $Area_upazila->first();
         $applications['municipal']= $Municipal->toArray()? $Municipal->toArray():[];
         $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
-        $applications['union']= $Union->toArray()? $Union->toArray():[];
-        $applications['applicant_type']= $Location_type->first()->toArray();
-        $applications['location_type']= $Applicant_type->first()->toArray();
+        $applications['union']= $Union->first()? $Union->first():[];
+        $applications['applicant_type']= $Location_type->first();
+        $applications['location_type']= $Applicant_type->first();
 
         if ($this->request->is('post')) {
             $inputs = $this->request->data;
@@ -206,13 +206,13 @@ class ReceiveApplicationsController extends AppController
         //  echo "<pre>";print_r($Applicant_type->toArray());die();
 
 
-        $applications['area_division']= $Area_division->first()->toArray();
-        $applications['area_district']= $Area_district->first()->toArray();
-        $applications['area_upazila']= $Area_upazila->first()->toArray();
-        $applications['municipal']= $Municipal->toArray()? $Municipal->toArray():[];
+        $applications['area_division']= $Area_division->first();
+        $applications['area_district']= $Area_district->first();
+        $applications['area_upazila']= $Area_upazila->first();
+        $applications['municipal']= $Municipal->first()? $Municipal->first():[];
         $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
-        $applications['union']= $Union->toArray()? $Union->toArray():[];
-        $applications['applicant_type']= $Applicant_type->first()->toArray();
+        $applications['union']= $Union->first()? $Union->first():[];
+        $applications['applicant_type']= $Applicant_type->first();
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
