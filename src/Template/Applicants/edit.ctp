@@ -1,8 +1,7 @@
 <?php
 use Cake\Core\Configure;
 
-$genders = \Cake\Core\Configure::read('genders');
-$religions = \Cake\Core\Configure::read('religions');
+$user_status = Configure::read('user_status');
 ?>
 <style>
     label.mandetory:after {
@@ -48,9 +47,7 @@ $religions = \Cake\Core\Configure::read('religions');
             <div class="portlet-body">
                 <?= $this->Form->create($user,['type' => 'file', 'class'=>'form-horizontal myForm']) ?>
                 <div class="tabbable-custom ">
-                    <ul class="nav nav-tabs ">
-                        <li class="active"><a href="#tab_5_1" data-toggle="tab"><?= __('Login information')?></a></li>
-                    </ul>
+                   
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_5_1">
                             <div class="row whiteWrapper basicWrapper">
@@ -58,8 +55,11 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
                                     <?php
-                                    echo $this->Form->input('username',['required' => 'required','class'=>'form-control','label'=>__('Username')]);
-                                    echo $this->Form->input('new_password',['class'=>'form-control','label'=>__('Password'),'required' => 'required']);
+                                    echo $this->Form->input('username',['required' => 'required','class'=>'form-control','label'=>[__('Username'),'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                    //echo $this->Form->input('username',['required' => 'required','class'=>'form-control','label'=>[__('Username','class' => 'mandetory col-sm-3 control-label text-right')]]);
+                                    echo $this->Form->input('new_password',['type'=>'password','class'=>'form-control','label'=>__('Password')]);
+                                    echo $this->Form->input('status', ['options' => $user_status,'class'=>'form-control','label'=>__('Status')]);
+
                                     ?>
 
                                 </div>

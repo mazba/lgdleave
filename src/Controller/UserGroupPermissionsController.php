@@ -32,10 +32,7 @@ class UserGroupPermissionsController extends AppController
 //                    }
 //                ]
 //            ]);
-        $user_groups = $this->UserGroupPermissions->UserGroups->find('all',[
-      //  'conditions'=>['UserGroups.status'=>1],
-        'contain'=>['CreatedBy','UpdatedBy']
-        ]);
+        $user_groups = $this->UserGroupPermissions->UserGroups->find('all');
 //        $user_groups->select(['user_groups.id','user_groups.title','UserGroupPermissions.id','total_method'=>$user_groups->func()->count('UserGroupPermissions.id'),'total_controller'=>$user_groups->func()->count('DISTINCT UserGroupPermissions.controller')])
 //            ->where(['UserGroupPermissions.status'=>1])
 //            ->group(['UserGroupPermissions.user_group_id'])

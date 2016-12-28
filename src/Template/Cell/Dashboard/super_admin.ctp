@@ -10,7 +10,7 @@
                         <?php echo  $this->System->eng_to_bangla_code($application_number); ?>
                     </div>
                     <div class="desc">
-                        <?= __('Total Applications') ?>
+                        <?= __('Pending po') ?>
                     </div>
                 </div>
                 <?php
@@ -64,7 +64,7 @@
                         <?php echo $this->System->eng_to_bangla_code($city_council); ?>
                     </div>
                     <div class="desc">
-                        <?= __('City Corporation') ?>
+                        <?= __('City Corporation po') ?>
                     </div>
                 </div>
                 <?php
@@ -82,7 +82,7 @@
                         <?php echo $this->System->eng_to_bangla_code($municipality_council); ?>
                     </div>
                     <div class="desc">
-                        <?= __('Municipality') ?>
+                        <?= __('Municipality po') ?>
                     </div>
                 </div>
                 <?php

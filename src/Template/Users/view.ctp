@@ -43,11 +43,11 @@ $status = \Cake\Core\Configure::read('status_options');
                                 <td><?= $user->user_group->title_bn ?></td>
                             </tr>
                             <tr>
-                                <th><?= __('Full Name Bn') ?></th>
+                                <th><?= __('Name_bn') ?></th>
                                 <td><?= h($user->full_name_bn) ?></td>
                             </tr>
                             <tr>
-                                <th><?= __('Full Name En') ?></th>
+                                <th><?= __('Name_en') ?></th>
                                 <td><?= h($user->full_name_en) ?></td>
                             </tr>
                             <tr>

@@ -93,30 +93,24 @@ class ApplicantsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
             ->allowEmpty('union_ward');
 
         $validator
-            ->integer('status')
             ->allowEmpty('status');
 
         $validator
-            ->integer('create_time')
             ->allowEmpty('create_time');
 
         $validator
-            ->integer('update_time')
             ->allowEmpty('update_time');
 
         $validator
-            ->integer('create_by')
             ->allowEmpty('create_by');
 
         $validator
-            ->integer('update_by')
             ->allowEmpty('update_by');
 
         return $validator;

@@ -69,7 +69,7 @@ class UsersController extends AppController
 
         if ($this->request->is('post')) {
             $data = $this->request->data;
-
+			$data['office_id']=1;
             $data['user_basic']['date_of_birth'] = strtotime($data['user_basic']['date_of_birth']);
 
             $data['create_by'] = $auth['id'];
@@ -92,7 +92,7 @@ class UsersController extends AppController
 
                 ]
             ]);
-
+      // echo "<pre>"; print_r($user);die();
 
             if ($this->Users->save($user)) {
                 $this->Flash->success('The user has been saved.');

@@ -4,7 +4,7 @@
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-coffee"></i>All Pending Applications
+                    <i class="fa fa-coffee"></i><?= __('All Pending Applications')?>
                 </div>
             </div>
             <div class="portlet-body">
@@ -84,32 +84,32 @@ echo $this->element('jq_grid');
                         width:'7%'
                     },
                     {
-                        text: '<?= __('View') ?>',
+                        text: '<?= __('') ?>',
 
                         filtertype: 'none',
                         columntype: 'button',
                         cellsrenderer: function () {
-                            return "<?= __('View Pdf') ?>";
+                            return "<?= __('Applicant_info') ?>";
                         },
                         buttonclick: function (row) {
                             id = $("#dataTable").jqxGrid('getrowid', row);
                             window.location = "<?php echo $this->request->webroot; ?>ReceiveApplications/pdf_view/" + id;
                         },
-                        width:'7%'
+                        width:'12%'
                     } ,
                     {
-                        text: '<?= __('View_Application') ?>',
+                        text: '<?= __('') ?>',
 
                         filtertype: 'none',
                         columntype: 'button',
                         cellsrenderer: function () {
-                            return "<?= __('View Application Pdf') ?>";
+                            return "<?= __('Applicant_Application') ?>";
                         },
                         buttonclick: function (row) {
                             id = $("#dataTable").jqxGrid('getrowid', row);
                             window.location = "<?php echo $this->request->webroot; ?>ReceiveApplications/pdfViewApplication/" + id;
                         },
-                        width:'15%'
+                        width:'11%'
                     }
                 ]
             });

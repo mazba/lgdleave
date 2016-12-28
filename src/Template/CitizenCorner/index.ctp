@@ -78,21 +78,22 @@ $religions = \Cake\Core\Configure::read('religions');
                                 <h3 class="block"><?= __('Provide your profile details') ?></h3>
 
                                 <?php
-                                echo $this->Form->input('applicant_name_bn', ['required' => 'required', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('applicant_name_en');
-                                echo $this->Form->input('mother_name_bn', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('mother_name_en');
-                                echo $this->Form->input('father_name_bn', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('father_name_en');
-                                echo $this->Form->input('phone', ['type'=>'text','label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('cellphone', ['label' => __('Cellphone')]);
-                                echo $this->Form->input('emergency_contact', ['label' => __('Emergency_contact')]);
-                                echo $this->Form->input('email', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                echo $this->Form->input('nid', ['label' => __('Nid')]);
+                                echo $this->Form->input('applicant_name_bn', ['value'=>$applicant_application_info['applicant_name_bn'],'required' => 'required', 'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('applicant_name_en',['value'=>$applicant_application_info['applicant_name_en']]);
+                                echo $this->Form->input('mother_name_bn', ['value'=>$applicant_application_info['mother_name_bn'],'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('mother_name_en',['value'=>$applicant_application_info['mother_name_en'],]);
+                                echo $this->Form->input('father_name_bn', ['value'=>$applicant_application_info['father_name_bn'],'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('father_name_en',['value'=>$applicant_application_info['father_name_en']]);
+                                echo $this->Form->input('phone', ['value'=>$applicant_application_info['phone'],'type'=>'text','label' => ['escape' => false, 'class' => 'col-sm-3 control-label text-right']]);
+                              
+							  echo $this->Form->input('cellphone', ['value'=>$applicant_application_info['cellphone'],'required' => 'required','label' => [__('Cellphone'),'escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('emergency_contact', ['value'=>$applicant_application_info['emergency_contact'],'label' => __('Emergency_contact')]);
+                                echo $this->Form->input('email', ['value'=>$applicant_application_info['email'],'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+                                echo $this->Form->input('nid', ['value'=>$applicant_application_info['nid'],'label' => __('Nid')]);
                                 //  echo $this->Form->input('brn', ['label' => __('Brn')]);
-                                echo $this->Form->input('religion', ['options' => $religions, 'empty' => __('Select'), 'class' => 'form-control', 'label' => __('Religion')]);
-                                echo $this->Form->input('present_address', ['type' => 'textarea', 'escape' => false, 'label' => __('Present_address')]);
-                                echo $this->Form->input('permanent_address', ['type' => 'textarea', 'escape' => false, 'label' => __('Permanent_address')]);
+                                echo $this->Form->input('religion', ['value'=>$applicant_application_info['religion'],'options' => $religions, 'empty' => __('Select'), 'class' => 'form-control', 'label' => __('Religion')]);
+                                echo $this->Form->input('present_address', ['value'=>$applicant_application_info['present_address'],'type' => 'textarea', 'escape' => false, 'label' => __('Present_address')]);
+                                echo $this->Form->input('permanent_address', ['value'=>$applicant_application_info['permanent_address'],'type' => 'textarea', 'escape' => false, 'label' => __('Permanent_address')]);
                                 ?>
 
                             </div>
@@ -159,8 +160,8 @@ $religions = \Cake\Core\Configure::read('religions');
                             <div class="tab-pane tab4" id="tab4">
 
 
-                                <div class="form-group input file required" aria-required="true">
-                                    <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('To') ?></label>
+                                <div class="form-group input  required" aria-required="true">
+                                    <label for="" class="mandetory col-sm-1 control-label text-right"><?= __('To') ?></label>
                                     <div class="col-sm-9 container_file_label[]">
                                         <textarea class="form-control" name="application_head" rows="2" required>
                                               <p><?= __('To') ?></p>
@@ -173,18 +174,26 @@ $religions = \Cake\Core\Configure::read('religions');
 
                                 </div>
 
-                                <div class="form-group input file required" aria-required="true">
-                                    <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('Subject') ?></label>
+                                <div class="form-group input  required" aria-required="true">
+                                    <label for="" class="mandetory col-sm-1 control-label text-right"><?= __('Subject') ?></label>
                                     <div class="col-sm-9 container_file_label[]">
-                                        <textarea class="form-control" name="application_subject" rows="2" id="application_subject" required></textarea>
+                                        <textarea class="form-control" name="application_subject" rows="2" id="application_subject" required> বহিঃ বাংলাদেশ ভ্রমনের ছুটি অনুমোদন প্রসঙ্গে ৷
+                                        </textarea>
                                     </div>
 
                                 </div>
 
                                 <div class="form-group input file required" aria-required="true">
-                                    <label for="document-file" class="mandetory col-sm-1 control-label text-right"><?= __('Body') ?></label>
+                                    <label for="" class="mandetory col-sm-1 control-label text-right"><?= __('Body') ?></label>
                                     <div class="col-sm-9 container_file_label[]">
-                                        <textarea class="form-control editor1" name="application_body" rows="6" id="" required></textarea>
+                                        <textarea class="form-control editor1" name="application_body" rows="8" id="" required>
+                                                            উপর্যুক্ত বিষয়ের আলোকে তাঁর দৃষ্টি আকর্ষণ পূর্বক জানানো যাচ্ছে যে, আমি প্রশাসক হিসেবে জেলা পরিষদ গোপালগঞ্জ এ কর্মরত রয়েছি।আমার শারীরিক অসুস্ততার চিকিৎসার জন্য ইতোপূর্বে ভারতের ডাক্তারের পরামর্শ এবং ব্যবস্তাপত্র গ্রহণ করা হয়। আমি ভারতের কোলকাতায় টাটা মেডিক্যাল সেন্টারে ডাক্তারের অধীনে চিকিৎসাধীন রয়েছি।আমার পাসপোর্ট নং BB 0338397। উল্লেখ্য যে আমার রক্ত পরিক্ষা করার জন্য নমুনা দাখিলের পর রিপোর্ট প্রাপ্তির জন্য এক সপ্তাহ সময় প্রয়োজন হয়। চিকিৎসার স্বার্থে আমাকে রক্ত দেবার জন্য ০১/১১/২০১৬ ইং তারিখে কোলকাতায় গিয়ে ২/১ দিন পরে ফিরে এসে ডাক্তারের পরামর্শে পুনরায় ০৮/১১।২০১৬ তারিখে কোলকাতায় যাওয়া প্রয়োজন।
+<br/>
+<br/>
+<br/>
+উল্লেখিত অবস্থাধীনে আমাকে আগামী ../../.. তারিখ হতে ../../.. ইং তারিখ পর্যন্ত বহিঃ বাংলাদেশ ভ্রমনের জন্য ছুটি অনুমোদন এবং ০১/১১/২০১৬ ইং তারিখ কর্মস্তল ত্যাগ করার অনুমোদনের প্রয়োজনীয় বাবস্থার জন্য অনুরোধ করা হলো।
+
+                                        </textarea>
                                     </div>
                                 </div>
 
@@ -222,11 +231,13 @@ $religions = \Cake\Core\Configure::read('religions');
                                 </div>
 
 
-                                <div class="form-group">
-                                    <label class="control-label col-md-6"><?= __('Phone') ?>:</label>
+                           
+								
+							   <div class="form-group">
+                                    <label class="control-label col-md-6"><?= __('Cellphone') ?>:</label>
 
                                     <div class="col-md-4">
-                                        <p class="form-control-static" data-display="phone">
+                                        <p class="form-control-static" data-display="cellphone">
                                         </p>
                                     </div>
                                 </div>
@@ -657,6 +668,7 @@ $religions = \Cake\Core\Configure::read('religions');
                 obj.closest('.file_div').remove();
             }
         });
+
 
 
         //valudation relatted

@@ -26,8 +26,8 @@ $religions = \Cake\Core\Configure::read('religions');
             <?= $this->Html->link(__('Applicants'), ['action' => 'index']) ?>
             <i class="fa fa-angle-right"></i>
         </li>
-                    <li><?= __('New Applicant') ?></li>
-        
+                    <li><?= __('Transfer') ?></li>
+
     </ul>
 </div>
 
@@ -38,7 +38,7 @@ $religions = \Cake\Core\Configure::read('religions');
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
-                                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Add New Applicant') ?>
+                                    <i class="fa fa-plus-square-o fa-lg"></i><?= __('Transfer Applicant') ?>
                                 </div>
                 <div class="tools">
                     <?= $this->Html->link(__('Back'), ['action' => 'index'],['class'=>'btn btn-sm btn-success']); ?>
@@ -115,10 +115,7 @@ $religions = \Cake\Core\Configure::read('religions');
                                         echo $this->Form->input('union_ward', ['label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                         ?>
                                     </div>
-									 <?php
-                                    echo $this->Form->input('user.username',['required' => 'required','class'=>'form-control','label'=>[__('Username'),'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    echo $this->Form->input('user.password',['class'=>'form-control','required' => 'required','label'=>[__('Password'),'class' => 'mandetory col-sm-3 control-label text-right']]);
-                                    ?>
+
 
 
                                 </div>

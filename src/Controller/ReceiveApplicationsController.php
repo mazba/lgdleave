@@ -37,6 +37,7 @@ class ReceiveApplicationsController extends AppController
             $userUnits = $collection->extract('office_unit_id');
             $userUnits = $userUnits->toArray();
 
+
             $applicantType = TableRegistry::get('applicant_types_office_units');
             $applicantType = $applicantType->find()
                 ->where(['office_unit_id IN' => $userUnits]);
@@ -75,6 +76,7 @@ class ReceiveApplicationsController extends AppController
         }
     }
 
+
     /**
      * View method
      *
@@ -100,6 +102,9 @@ class ReceiveApplicationsController extends AppController
     public function receive($id)
     {
         $this->loadModel('Applications');
+        $this->loadModel('application_events');
+        $this->loadModel('user_designations');
+
         $application = $this->Applications->get($id, [
             'contain' => [
                 'Applicants',
@@ -108,59 +113,108 @@ class ReceiveApplicationsController extends AppController
             ]
         ]);
 
-        $applications=  $application->toArray();;
+        $applications = $application->toArray();
 
         $Area_division = TableRegistry::get('AreaDivisions')->find();
-        $Area_division->where(['divid'=>$application['applicant']['division_id']]);
+        $Area_division->where(['divid' => $application['applicant']['division_id']]);
 
         $Area_district = TableRegistry::get('AreaDistricts')->find();
-        $Area_district->where(['zillaid'=>$application['applicant']['district_id']]);
+        $Area_district->where(['zillaid' => $application['applicant']['district_id']]);
 
         $Area_upazila = TableRegistry::get('AreaUpazilas')->find();
-        $Area_upazila->where(['zillaid'=>$application['applicant']['district_id'],'upazilaid'=>$application['applicant']['upazila_id']]);
+        $Area_upazila->where(['zillaid' => $application['applicant']['district_id'], 'upazilaid' => $application['applicant']['upazila_id']]);
 
         $Municipal = TableRegistry::get('Municipals')->find();
-        $Municipal->where(['municipalid'=>$application['applicant']['municipal_id'],'zillaid'=>$application['applicant']['district_id']]);
+        $Municipal->where(['municipalid' => $application['applicant']['municipal_id'], 'zillaid' => $application['applicant']['district_id']]);
 
         $City_corporation = TableRegistry::get('CityCorporations')->find();
-        $City_corporation->where(['citycorporationid'=>$application['applicant']['city_corporation_id'],'zillaid'=>$application['applicant']['district_id']]);
+        $City_corporation->where(['citycorporationid' => $application['applicant']['city_corporation_id'], 'zillaid' => $application['applicant']['district_id']]);
 
         $Union = TableRegistry::get('Unions')->find();
-        $Union->where(['rowid'=>$application['applicant']['union_ward']]);
+        $Union->where(['rowid' => $application['applicant']['union_ward']]);
 
 
         $Location_type = TableRegistry::get('LocationTypes')->find();
-        $Location_type->where(['id'=>$application['applicant']['location_type_id']]);
+        $Location_type->where(['id' => $application['applicant']['location_type_id']]);
 
         $Applicant_type = TableRegistry::get('ApplicantTypes')->find();
-        $Applicant_type->where(['id'=>$application['applicant']['applicant_type_id']]);
+        $Applicant_type->where(['id' => $application['applicant']['applicant_type_id']]);
 
 
         //  echo "<pre>";print_r($Applicant_type->toArray());die();
 
 
-        $applications['area_division']= $Area_division->first();
-        $applications['area_district']= $Area_district->first();
-        $applications['area_upazila']= $Area_upazila->first();
-        $applications['municipal']= $Municipal->toArray()? $Municipal->toArray():[];
-        $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
-        $applications['union']= $Union->first()? $Union->first():[];
-        $applications['applicant_type']= $Location_type->first();
-        $applications['location_type']= $Applicant_type->first();
+        $applications['area_division'] = $Area_division->first();
+        $applications['area_district'] = $Area_district->first();
+        $applications['area_upazila'] = $Area_upazila->first();
+        $applications['municipal'] = $Municipal->toArray() ? $Municipal->toArray() : [];
+        $applications['city_corporation'] = $City_corporation->toArray() ? $City_corporation->toArray() : [];
+        $applications['union'] = $Union->toArray() ? $Union->toArray() : [];
+        $applications['applicant_type'] = $Location_type->first();
+        $applications['location_type'] = $Applicant_type->first();
 
         if ($this->request->is('post')) {
+            $auth = $this->Auth->user();
             $inputs = $this->request->data;
+            $data = [];
+            //Backward,,,, make event for applicant
+            if ($inputs['status'] == 1) {
+                $data['recipient_id'] = $application->applicant->user_id;
+            } else {
+                $user_designation = TableRegistry::get('user_designations')->find()
+                    ->where(['user_id' => $auth['id'], 'is_basic' => 1])
+                    ->first();
 
-            $receiveApplication = $this->Applications->patchEntity($application,['status'=>$inputs['status'],'comment'=>$inputs['comment'],'approve_time'=>strtotime($inputs['approve_time'])]);
-            if ($this->Applications->save($receiveApplication)) {
+                $recipient_id = TableRegistry::get('user_designations')->find()
+                    ->where(['designation_id' => $user_designation['designation_id'] - 1, 'is_basic' => 1])
+                    ->first();
+
+                $data['recipient_id'] = $recipient_id->user_id;
+            }
+            $data['comment'] = $inputs['comment'];
+            $data['application_id'] = $id;
+            $data['create_time'] = time();
+            $data['status'] = 1;
+            $data['create_by'] = $auth['id'];
+
+            $application_event = $this->application_events->newEntity();
+
+            $application_event = $this->application_events->patchEntity($application_event, $data);
+            //echo "<pre>";print_r($application_event);die();
+            if ($this->application_events->save($application_event)) {
                 $this->Flash->success(__('The receive application has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The receive application could not be saved. Please, try again.'));
             }
-        }
 
-        $this->set(compact('applications'));
+            //    echo "<pre>";print_r($data);die();
+
+
+            //This part was for update comment row in the application row.......
+
+//            $receiveApplication = $this->Applications->patchEntity($application,['status'=>$inputs['status'],'comment'=>$inputs['comment'],'approve_time'=>strtotime($inputs['approve_time'])]);
+//            if ($this->Applications->save($receiveApplication)) {
+//                $this->Flash->success(__('The receive application has been saved.'));
+//                return $this->redirect(['action' => 'index']);
+//            } else {
+//                $this->Flash->error(__('The receive application could not be saved. Please, try again.'));
+//            }
+        }
+        $application_events = TableRegistry::get('application_events')->find()
+            ->select(['comment' => 'application_events.comment',
+                'create_time' => 'application_events.create_time',
+                'full_name_bn' => 'users.full_name_bn',
+                'designations' => 'designations.name_bn'])
+            ->where(['application_id' => $id])
+            ->leftJoin('users', 'users.id=application_events.create_by')
+            ->leftJoin('user_designations', 'user_designations.user_id=users.id')
+            ->where(['user_designations.is_basic' => 1])
+            ->leftJoin('designations', 'designations.id=user_designations.designation_id')
+            ->toArray();
+        $this->set(compact('applications', 'application_events'));
+
+        //  echo "<pre>";print_r($application_events->toArray());die();
         $this->set('_serialize', ['application']);
     }
 
@@ -178,47 +232,47 @@ class ReceiveApplicationsController extends AppController
             ]
         ]);
 
-        $applications=  $application->toArray();;
+        $applications = $application->toArray();;
 
         $Area_division = TableRegistry::get('AreaDivisions')->find();
-        $Area_division->where(['divid'=>$application['applicant']['division_id']]);
+        $Area_division->where(['divid' => $application['applicant']['division_id']]);
 
         $Area_district = TableRegistry::get('AreaDistricts')->find();
-        $Area_district->where(['zillaid'=>$application['applicant']['district_id']]);
+        $Area_district->where(['zillaid' => $application['applicant']['district_id']]);
 
         $Area_upazila = TableRegistry::get('AreaUpazilas')->find();
-        $Area_upazila->where(['zillaid'=>$application['applicant']['district_id'],'upazilaid'=>$application['applicant']['upazila_id']]);
+        $Area_upazila->where(['zillaid' => $application['applicant']['district_id'], 'upazilaid' => $application['applicant']['upazila_id']]);
 
         $Municipal = TableRegistry::get('Municipals')->find();
-        $Municipal->where(['municipalid'=>$application['applicant']['municipal_id'],'zillaid'=>$application['applicant']['district_id']]);
+        $Municipal->where(['municipalid' => $application['applicant']['municipal_id'], 'zillaid' => $application['applicant']['district_id']]);
 
         $City_corporation = TableRegistry::get('CityCorporations')->find();
-        $City_corporation->where(['citycorporationid'=>$application['applicant']['city_corporation_id'],'zillaid'=>$application['applicant']['district_id']]);
+        $City_corporation->where(['citycorporationid' => $application['applicant']['city_corporation_id'], 'zillaid' => $application['applicant']['district_id']]);
 
         $Union = TableRegistry::get('Unions')->find();
-        $Union->where(['rowid'=>$application['applicant']['union_ward']]);
+        $Union->where(['rowid' => $application['applicant']['union_ward']]);
 
 
         $Applicant_type = TableRegistry::get('ApplicantTypes')->find();
-        $Applicant_type->where(['id'=>$application['applicant']['applicant_type_id']]);
+        $Applicant_type->where(['id' => $application['applicant']['applicant_type_id']]);
 
 
         //  echo "<pre>";print_r($Applicant_type->toArray());die();
 
 
-        $applications['area_division']= $Area_division->first();
-        $applications['area_district']= $Area_district->first();
-        $applications['area_upazila']= $Area_upazila->first();
-        $applications['municipal']= $Municipal->first()? $Municipal->first():[];
-        $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
-        $applications['union']= $Union->first()? $Union->first():[];
-        $applications['applicant_type']= $Applicant_type->first();
+        $applications['area_division'] = $Area_division->first();
+        $applications['area_district'] = $Area_district->first();
+        $applications['area_upazila'] = $Area_upazila->first();
+        $applications['municipal'] = $Municipal->toArray() ? $Municipal->toArray() : [];
+        $applications['city_corporation'] = $City_corporation->toArray() ? $City_corporation->toArray() : [];
+        $applications['union'] = $Union->toArray() ? $Union->toArray() : [];
+        $applications['applicant_type'] = $Applicant_type->first();
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
                 //            'className'=>'CakePdf.Mpdf',
                 'className' => 'CakePdf.WkHtmlToPdf',
-                'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+                'binary' => '/usr/bin/wkhtmltopdf',
                 'options' => [
                     'print-media-type' => false,
                     'outline' => true,
@@ -242,11 +296,81 @@ class ReceiveApplicationsController extends AppController
                 'ApplicationsFiles'
             ]
         ]);
+
+        $applications = $application->toArray();;
+
+        $Location_type = TableRegistry::get('LocationTypes')->find();
+        $Location_type->where(['id' => $application['applicant']['location_type_id']]);
+
+
+        $Area_division = TableRegistry::get('AreaDivisions')->find();
+        $Area_division->where(['divid' => $application['applicant']['division_id']]);
+
+        $Area_district = TableRegistry::get('AreaDistricts')->find();
+        $Area_district->where(['zillaid' => $application['applicant']['district_id']]);
+
+        $Area_upazila = TableRegistry::get('AreaUpazilas')->find();
+        $Area_upazila->where(['zillaid' => $application['applicant']['district_id'], 'upazilaid' => $application['applicant']['upazila_id']]);
+
+        $Municipal = TableRegistry::get('Municipals')->find();
+        $Municipal->where(['municipalid' => $application['applicant']['municipal_id'], 'zillaid' => $application['applicant']['district_id']]);
+
+        $City_corporation = TableRegistry::get('CityCorporations')->find();
+        $City_corporation->where(['citycorporationid' => $application['applicant']['city_corporation_id'], 'zillaid' => $application['applicant']['district_id']]);
+
+        $Union = TableRegistry::get('Unions')->find();
+        $Union->where(['rowid' => $application['applicant']['union_ward']]);
+
+
+        $Applicant_type = TableRegistry::get('ApplicantTypes')->find();
+        $Applicant_type->where(['id' => $application['applicant']['applicant_type_id']]);
+
+
+        //  echo "<pre>";print_r($Applicant_type->toArray());die();
+
+
+        $applications['location_type'] = $Location_type->first();
+        $applications['area_division'] = $Area_division->first();
+        $applications['area_district'] = $Area_district->first();
+        $applications['area_upazila'] = $Area_upazila->first();
+        $applications['municipal'] = $Municipal->first() ? $Municipal->first() : [];
+        $applications['city_corporation'] = $City_corporation->first() ? $City_corporation->first() : [];
+        $applications['union'] = $Union->first() ? $Union->first() : [];
+        $applications['applicant_type'] = $Applicant_type->first();
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
                 'className' => 'CakePdf.WkHtmlToPdf',
-                'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+                'binary' => '/usr/bin/wkhtmltopdf',
+                'options' => [
+                    'print-media-type' => false,
+                    'outline' => true,
+                    'dpi' => 96,
+                ],
+            ]
+        ]);
+        $this->RequestHandler->renderAs($this, 'pdf');
+        $this->request->env('HTTP_ACCEPT', 'application/pdf');
+        $this->set(compact('applications'));
+        $this->set('_serialize', ['application']);
+    }
+    /*
+
+    public function pdfViewApplication($id)
+    {
+        $this->loadModel('Applications');
+        $application = $this->Applications->get($id, [
+            'contain' => [
+                'Applicants',
+                'ApplicationTypes',
+                'ApplicationsFiles'
+            ]
+        ]);
+        //generating the pdf
+        Configure::write('CakePdf', [
+            'engine' => [
+                'className' => 'CakePdf.WkHtmlToPdf',
+               'binary' => '/usr/bin/wkhtmltopdf',
                 'options' => [
                     'print-media-type' => false,
                     'outline' => true,
@@ -259,4 +383,5 @@ class ReceiveApplicationsController extends AppController
         $this->set(compact('application'));
         $this->set('_serialize', ['application']);
     }
+    */
 }

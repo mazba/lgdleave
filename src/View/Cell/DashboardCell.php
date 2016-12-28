@@ -122,6 +122,7 @@ class DashboardCell extends Cell
         $this->loadModel('Users');
         $this->loadModel('Applications');
         $this->loadModel('ApplicationTypes');
+        $this->loadModel('Applicants');
         //find application type
         $usrUnits = TableRegistry::get('user_designations');
         $userUnits = $usrUnits->find()
@@ -139,7 +140,7 @@ class DashboardCell extends Cell
         $applicantTypes = $applicantType->toArray();
 
 //        //count
-        $user_number = $this->Users->find('all')->where(['status' => 1, 'user_group_id !=' => 4])->count();
+        $user_number = $this->Applicants->find('all')->where(['status' => 1,'applicant_type_id IN' => $applicantTypes])->count();
         $application_number = $this->Applications->find('all')
             ->where(['applicants.applicant_type_id IN' => $applicantTypes])
             ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
@@ -230,21 +231,21 @@ class DashboardCell extends Cell
 //
 ////        //count
         $application_number = $this->Applications->find('all')
-            ->where(['applicants.user_id IN' => $user['id']])
-            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->where(['Applications.create_by IN' => $user['id']])
+           // ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
             // ->innerJoin('users', 'users.id=applicants.user_id')
             ->count();
         $pending_application_number = $this->Applications->find('all')
-            ->where(['Applications.status' => $application_status['Pending'], 'applicants.user_id IN' => $user['id']])
-            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->where(['Applications.status' => $application_status['Pending'], 'Applications.create_by IN' => $user['id']])
+          //  ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
             ->count();
         $approve_application_number = $this->Applications->find('all')
-            ->where(['Applications.status' => $application_status['Approve'], 'applicants.user_id IN' => $user['id']])
-            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->where(['Applications.status' => $application_status['Approve'], 'Applications.create_by IN' => $user['id']])
+           // ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
             ->count();
         $reject_application_number = $this->Applications->find('all')
-            ->where(['Applications.status' => $application_status['Reject'], 'applicants.user_id IN' => $user['id']])
-            ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
+            ->where(['Applications.status' => $application_status['Reject'], 'Applications.create_by IN' => $user['id']])
+        //    ->innerJoin('applicants', 'applicants.id=Applications.applicant_id')
             ->count();
 //
 ////        //table data
@@ -295,6 +296,29 @@ class DashboardCell extends Cell
         $new_approved_applications = $new_approved_application->toArray();
 
 
+        $new_reject_application = TableRegistry::get('applications')->find();
+
+        $new_reject_application->select([
+            'applicant_type' => 'applicant_types.title_bn',
+            'applicant_name_bn' => 'applications.applicant_name_bn',
+            'id' => 'applications.id',
+            'temporary_id' => 'applications.temporary_id',
+            'approve_time' => 'applications.submission_time',
+        ]);
+        $new_reject_application->select(['applications.id', 'applications.applicant_id', 'applications.applicant_name_bn', 'applications.phone', 'applications.email', 'applications.application_type_id', 'applications.start_date', 'applications.end_date', 'applications.status']);
+        $new_reject_application->select(['applicants.id', 'applicants.applicant_type_id', 'applicants.location_type_id', 'applicants.division_id', 'applicants.district_id', 'applicants.upazila_id', 'applicants.union_id', 'applicants.union_ward', 'applicants.city_corporation_id', 'applicants.city_corporation_ward_id', 'applicants.municipal_id', 'applicants.municipal_ward_id']);
+        $new_reject_application->where([
+            'applications.status' => Configure::read('application_status.Reject'),
+            'applicants.user_id IN' => $user['id']
+        ]);
+
+        $new_reject_application->leftJoin('applicants', 'applicants.id=applications.applicant_id');
+        $new_reject_application->leftJoin('applicant_types', 'applicant_types.id=applicants.applicant_type_id');
+        $new_reject_application->order(['applications.id' => 'DESC']);
+        $new_reject_application->limit(10);
+        $new_reject_application = $new_reject_application->toArray();
+
+
         $this->set(compact(
             'application_number',
             'user_number',
@@ -303,12 +327,13 @@ class DashboardCell extends Cell
             'reject_application_number',
             'new_approved_applications',
             'new_application',
-            'number_of_application_type'
+            'number_of_application_type',
+            'new_reject_application'
         ));
     }
 
-    public function officeUser()
-    {
-
-    }
+//    public function officeUser()
+//    {
+//
+//    }
 }

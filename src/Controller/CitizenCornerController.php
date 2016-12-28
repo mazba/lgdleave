@@ -45,8 +45,12 @@ class CitizenCornerController extends AppController
 
         $applicant = TableRegistry::get('applicants')->find()
             ->where(['user_id' => $auth['id']]);
-        $applicant_id=$applicant->toArray();
-
+        $applicant_id=$applicant->first();
+		
+      //get old application information for this applicant
+        $applicant_application_info=$this->Applications->find()
+            ->where(['create_by' => $auth['id']])//I know it is not proper way... dont think me khat.
+            ->first();
 
         //  echo "<pre>";print_r($auth);die();
         if ($this->request->is('post')) {
@@ -58,6 +62,7 @@ class CitizenCornerController extends AppController
                 $conn->transactional(function () use ($data, $applications, $time,$auth,$applicant_id) {
                     $data['applicant_id']= $applicant_id['id'];
                     $data['create_time'] = $time;
+					$data['create_by'] = $auth['id'];
                     $data['submission_time'] = $time;
                     $data['temporary_id'] = $this->findMax()+1;
 
@@ -73,8 +78,7 @@ class CitizenCornerController extends AppController
                     unset($data['file_label']);
                     $applications = $this->Applications->patchEntity($applications, $data);
 
-//                    echo"<pre/>";
-//                 print_r($applications); die();
+                  
 
                     if ($this->Applications->save($applications)) {
                         //
@@ -125,7 +129,7 @@ class CitizenCornerController extends AppController
         $locationTypes = $this->LocationTypes->find('list', ['conditions' => ['status' => 1]]);
         $divisions = $this->AreaDivisions->find('list');
 
-        $this->set(compact('locationTypes', 'applicationTypes', 'divisions', 'applications'));
+        $this->set(compact('applicant_application_info','locationTypes', 'applicationTypes', 'divisions', 'applications'));
       //  $this->viewBuilder()->layout('citizen_corner');
         $this->set('_serialize', ['applications']);
     }
@@ -141,7 +145,7 @@ class CitizenCornerController extends AppController
                 'ApplicationsFiles'
             ]
         ]);
-//echo "<pre>";print_r($application);die();
+
     $applications=  $application->toArray();;
 
         $Area_division = TableRegistry::get('AreaDivisions')->find();
@@ -173,9 +177,9 @@ class CitizenCornerController extends AppController
         $applications['area_division']= $Area_division->first();
         $applications['area_district']= $Area_district->first();
         $applications['area_upazila']= $Area_upazila->first();
-        $applications['municipal']= $Municipal->toArray()? $Municipal->toArray():[];
-        $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
-        $applications['union']= $Union->toArray()? $Union->toArray():[];
+        $applications['municipal']= $Municipal->first()? $Municipal->first():[];
+        $applications['city_corporation']= $City_corporation->first()? $City_corporation->first():[];
+        $applications['union']= $Union->first()? $Union->first():[];
         $applications['applicant_type']= $Applicant_type->first();
       //  echo "<pre>";print_r($applications);die();
 
@@ -230,16 +234,16 @@ class CitizenCornerController extends AppController
         $applications['area_division']= $Area_division->first();
         $applications['area_district']= $Area_district->first();
         $applications['area_upazila']= $Area_upazila->first();
-        $applications['municipal']= $Municipal->toArray()? $Municipal->toArray():[];
-        $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
-        $applications['union']= $Union->toArray()? $Union->toArray():[];
+        $applications['municipal']= $Municipal->first()? $Municipal->first():[];
+        $applications['city_corporation']= $City_corporation->first()? $City_corporation->first():[];
+        $applications['union']= $Union->first()? $Union->first():[];
         $applications['applicant_type']= $Applicant_type->first();
 
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
                 'className' => 'CakePdf.WkHtmlToPdf',
-                'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+                'binary' => '/usr/bin/wkhtmltopdf',
                 'options' => [
                     'print-media-type' => false,
                     'outline' => true,
@@ -300,15 +304,15 @@ class CitizenCornerController extends AppController
         $applications['area_division']= $Area_division->first();
         $applications['area_district']= $Area_district->first();
         $applications['area_upazila']= $Area_upazila->first();
-        $applications['municipal']= $Municipal->toArray()? $Municipal->toArray():[];
-        $applications['city_corporation']= $City_corporation->toArray()? $City_corporation->toArray():[];
-        $applications['union']= $Union->toArray()? $Union->toArray():[];
+        $applications['municipal']= $Municipal->first()? $Municipal->first():[];
+        $applications['city_corporation']= $City_corporation->first()? $City_corporation->first():[];
+        $applications['union']= $Union->first()? $Union->first():[];
         $applications['applicant_type']= $Applicant_type->first();
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
                 'className' => 'CakePdf.WkHtmlToPdf',
-                'binary' => 'C:\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+                'binary' => '/usr/bin/wkhtmltopdf',
                 'options' => [
                     'print-media-type' => false,
                     'outline' => true,

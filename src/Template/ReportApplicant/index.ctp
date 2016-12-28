@@ -14,8 +14,8 @@ foreach($status as &$value){
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <?= $this->Html->link(__(' Leave Report'), ['action' => 'index']) ?>
-            <i class="fa fa-angle-right"></i>
+            <?= $this->Html->link(__('Report'), ['action' => 'index']) ?>
+            
         </li>
     </ul>
 </div>
@@ -58,7 +58,7 @@ foreach($status as &$value){
             <div class="portlet box green-seagreen">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-plus-square-o fa-lg"></i><?= __('Report View') ?>
+                        <i class="fa fa-plus-square-o fa-lg"></i><?= __('') ?>
                     </div>
                 </div>
 
@@ -66,7 +66,7 @@ foreach($status as &$value){
 
                     <div id="PrintArea">
                         <div class="row">
-                            <h3 class="text-center">স্থানীয় সরকার পল্লী উন্নয়ন বিভাগ</h3>
+                            <h3 class="text-center">স্থানীয় সরকার বিভাগ</h3>
                         </div>
                         <div class="row">
                             <h4 class="text-center"><?= __('Report') ?></h4>
@@ -78,8 +78,8 @@ foreach($status as &$value){
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr style="border-top: 3px solid #ddd">
-                                        <th><?= __('Sl#') ?></th>
-                                        <th><?= __('Application Code') ?></th>
+                                        <th><?= __('Serial number') ?></th>
+										                                        <th><?= __('Application Code') ?></th>
                                         <th><?= __('Name') ?></th>
                                         <th><?= __('Phone') ?></th>
                                         <th><?= __('Email') ?></th>
@@ -96,7 +96,7 @@ foreach($status as &$value){
                                         <?php foreach($reportData as $key=>$detail):?>
                                             <tr>
                                                 <td><?php echo $this->System->eng_to_bangla_code($key+1) ;?></td>
-                                                <td><?= $detail['temporary_id'];?></td>
+												                                                <td><?= $detail['temporary_id'];?></td>
                                                 <td><?= $detail['applicant_name_bn'];?></td>
                                                 <td><?= $detail['phone'];?></td>
                                                 <td><?= $detail['email'];?></td>

@@ -80,6 +80,11 @@ class ApplicationsTable extends Table
         $this->hasMany('ApplicationsFiles', [
             'foreignKey' => 'application_id'
         ]);
+
+        $this->hasMany('ApplicationEvents', [
+            'foreignKey' => 'application_id'
+        ]);
+
         $this->belongsTo('Applicants', [
             'foreignKey' => 'applicant_id'
         ]);

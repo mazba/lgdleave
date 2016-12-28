@@ -19,10 +19,7 @@
                         <thead>
                             <tr>
                                 <td>User Group</td>
-                                <td>Created by</td>
-                                <td>Created time</td>
-                                <td>Updated by</td>
-                                <td>Updated time</td>
+
                                 <td>Actions</td>
                             </tr>
                         </thead>
@@ -32,10 +29,7 @@
                                 ?>
                                 <tr>
                                     <td><?= $user_group['title_en'] ?></td>
-                                    <td><?= $user_group['created_by']['full_name_bn'] ?></td>
-                                    <td><?= $user_group['created_time'] ?></td>
-                                    <td><?= $user_group['updated_by']['full_name_bn'] ?></td>
-                                    <td><?= $user_group['updated_time'] ?></td>
+
                                     <td>
                                         <?= $this->Html->link(__('Role'), ['action' => 'edit', $user_group['id']],['class'=>'btn-sm btn btn-danger']) ?>
                                     </td>

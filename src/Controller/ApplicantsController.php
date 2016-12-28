@@ -18,27 +18,31 @@ class ApplicantsController extends AppController
      */
     public function index()
     {
-        $applicants = $this->Applicants->find('all', [
-            'conditions' => ['Applicants.status =' => 1],
-            'contain' => [
-                'Users',
-                'ApplicantTypes',
-                'LocationTypes',
-                'AreaDivisions',
-                'AreaDistricts',
-                'AreaUpazilas',
-                'Unions',
-                'CityCorporations',
-                'CityCorporationWards',
-                'Municipals',
-                'MunicipalWards'
-            ]
-        ]);
-        //    echo "<pre>";print_r($applicants);die();
+        if ($this->request->is('ajax')) {
+            $applicants = $this->Applicants->find('all', [
+                'conditions' => ['Applicants.status =' => 1],
+                'contain' => [
+                    'Users',
+                    'ApplicantTypes',
+                    'LocationTypes',
+                    'AreaDivisions',
+                    'AreaDistricts',
+                    'AreaUpazilas',
+                ]
+            ]);
 
-        $this->set('applicants', $this->paginate($applicants));
-        $this->set('_serialize', ['applicants']);
+            $applicants->select([
+                'id' => 'Applicants.id',
+                'location_type' => 'LocationTypes.title_bn',
+                'area_district' => 'AreaDistricts.zillaname',
+                'area_division' => 'AreaDivisions.divname',
+                'applicant_type' => 'ApplicantTypes.title_bn',
+            ]);
 
+            //   echo "<pre>";print_r($applicants->toArray());die();
+            $this->response->body(json_encode($applicants->toArray()));
+            return $this->response;
+        }
     }
 
     /**
@@ -83,30 +87,43 @@ class ApplicantsController extends AppController
         if ($this->request->is('post')) {
             $time = time();
             $data = $this->request->data;
+            if (!array_key_exists("upazila_id", $data)) {
+                $data['upazila_id'] = '';
+            }
+            if (!array_key_exists("city_corporation_id", $data)) {
+                $data['city_corporation_id'] = '';
+            }
+
             //    echo "<pre>";print_r($data);die();
 
-            $userEntity = $Users->newEntity();
-            $userEntity->username = $data['user']['username'];
-            $userEntity->password = $data['user']['password'];
-            $userEntity->user_group_id = 4;
-            $userEntity->office_id = 0;
-            $userEntity->status = 1;
-            $userEntity->create_by = $auth['id'];
-            $userEntity->create_date = $time;
-
-            $user_id = $Users->save($userEntity);
-            unset($data['user']);
-            $data['create_time'] = $time;
-            $data['status'] = 1;
-            $data['user_id'] = $user_id['id'];
-
-            $applicant = $this->Applicants->patchEntity($applicant, $data);
-            //     echo "<pre>";print_r($applicant);die();
-            if ($this->Applicants->save($applicant)) {
-                $this->Flash->success(__('The applicant has been saved.'));
-                return $this->redirect(['action' => 'index']);
+            //  echo "<pre>";print_r($checkApplicant->first());die();
+            if ($this->checkApplicant($data)) {
+                $this->Flash->error(__('Sorry a applicant already exists in your given location. Please, try again.'));
             } else {
-                $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
+                $userEntity = $Users->newEntity();
+                $userEntity->username = $data['user']['username'];
+                $userEntity->password = $data['user']['password'];
+                $userEntity->user_group_id = 4;
+                $userEntity->office_id = 0;
+                $userEntity->status = 1;
+                $userEntity->create_by = $auth['id'];
+                $userEntity->create_date = $time;
+
+                $user_id = $Users->save($userEntity);
+                unset($data['user']);
+                $data['create_time'] = $time;
+                $data['create_by'] = $auth['id'];
+                $data['status'] = 1;
+                $data['user_id'] = $user_id['id'];
+
+                $applicant = $this->Applicants->patchEntity($applicant, $data);
+                //     echo "<pre>";print_r($applicant);die();
+                if ($this->Applicants->save($applicant)) {
+                    $this->Flash->success(__('The applicant has been saved.'));
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                    $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
+                }
             }
         }
         $applicantTypes = $this->Applicants->ApplicantTypes->find('list', ['limit' => 200]);
@@ -146,8 +163,11 @@ class ApplicantsController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->data;
+            //  echo "<pre>";print_r($data);die();
+
             $data['update_by'] = $auth['id'];
             $data['update_date'] = $time;
+            $data['user_group_id'] = 5;
 
             if ($data['new_password']) {
                 $data['password'] = $data['new_password'];
@@ -158,13 +178,19 @@ class ApplicantsController extends AppController
             $user = $this->Users->patchEntity($user, $data);
 
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The applicant has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
+                $applicant_data['status'] = 99;
+                $applicant_data['update_time'] = $time;
+                $applicant_data['update_by'] = $auth['id'];
+
+                    $applicant = $this->Applicants->patchEntity($applicant, $applicant_data);
+                    if ($this->Applicants->save($applicant)) {
+                        $this->Flash->success(__('The applicant has been saved.'));
+                        return $this->redirect(['action' => 'index']);
+                    } else {
+                        $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
+                    }
             }
         }
-
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
@@ -186,6 +212,93 @@ class ApplicantsController extends AppController
             $this->Flash->error(__('The applicant could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+
+    public function transfer($id = null)
+    {
+
+        $applicant = $this->Applicants->newEntity();
+        $auth = $this->Auth->user();
+
+        $applicant_old = $this->Applicants->get($id);
+        $applicant_user_id = $applicant_old['user_id'];
+
+        if ($this->request->is('post')) {
+            $time = time();
+            $data = $this->request->data;
+
+            if (!array_key_exists("upazila_id", $data)) {
+                $data['upazila_id'] = '';
+            }
+            if (!array_key_exists("city_corporation_id", $data)) {
+                $data['city_corporation_id'] = '';
+            }
+
+
+            if ($this->checkApplicant($data)) {
+                $this->Flash->error(__('Sorry a applicant already exists in your given location. Please, try again.'));
+            } else {
+
+                $old_data['status'] = 99;
+                $old_data['update_time'] = $time;
+                $old_data['update_by'] = $auth['id'];
+                $applicant_old = $this->Applicants->patchEntity($applicant_old, $old_data);
+
+                if ($this->Applicants->save($applicant_old)) {
+
+                    unset($data['status']);
+                    unset($data['update_time']);
+                    unset($data['update_by']);
+
+
+                    $data['user_id'] = $applicant_user_id;
+                    $data['status'] = 1;
+                    $data['create_by'] = $auth['id'];
+                    $data['create_time'] = $time;
+
+                    $applicant = $this->Applicants->patchEntity($applicant, $data);
+                    if ($this->Applicants->save($applicant)) {
+                        $this->Flash->success(__('The applicant has been transferred.'));
+                        return $this->redirect(['action' => 'index']);
+                    } else {
+                        $this->Flash->error(__('The applicant could not be transfer. Please, try again.'));
+                    }
+                }
+            }
+
+        }
+        $applicantTypes = $this->Applicants->ApplicantTypes->find('list', ['limit' => 200]);
+        $locationTypes = $this->Applicants->LocationTypes->find('list', ['limit' => 200, 'conditions' => ['status' => 1]]);
+        $divisions = $this->Applicants->AreaDivisions->find('list', ['limit' => 200]);
+        $districts = $this->Applicants->AreaDistricts->find('list', ['limit' => 200]);
+        $upazilas = $this->Applicants->AreaUpazilas->find('list', ['limit' => 200]);
+        $unions = $this->Applicants->Unions->find('list', ['limit' => 200]);
+        $cityCorporations = $this->Applicants->CityCorporations->find('list', ['limit' => 200]);
+        $cityCorporationWards = $this->Applicants->CityCorporationWards->find('list', ['limit' => 200]);
+        $municipals = $this->Applicants->Municipals->find('list', ['limit' => 200]);
+        $municipalWards = $this->Applicants->MunicipalWards->find('list', ['limit' => 200]);
+        $this->set(compact('applicant', 'applicantTypes', 'locationTypes', 'divisions', 'districts', 'upazilas', 'unions', 'cityCorporations', 'cityCorporationWards', 'municipals', 'municipalWards'));
+        $this->set('_serialize', ['applicant']);
+    }
+
+    public function checkApplicant($data)
+    {
+        $checkApplicant = $this->Applicants->find()
+            ->where([
+                'location_type_id' => $data['location_type_id'],
+                'applicant_type_id' => $data['applicant_type_id'],
+                'division_id' => $data['division_id'],
+                'district_id' => $data['district_id'],
+                'upazila_id' => $data['upazila_id'],
+                'city_corporation_id' => $data['city_corporation_id'],
+                'status' => 1
+            ]);
+        if ($checkApplicant->first()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function ajax($action = null)

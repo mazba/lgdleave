@@ -37,14 +37,14 @@ class UserGroupsTable extends Table
             'foreignKey' => 'user_group_id'
         ]);
 
-        $this->belongsTo('CreatedBy', [
-            'className'=>'Users',
-            'foreignKey' => 'created_by'
-        ]);
-        $this->belongsTo('UpdatedBy', [
-            'className'=>'Users',
-            'foreignKey' => 'updated_by'
-        ]);
+//        $this->belongsTo('CreatedBy', [
+//            'className'=>'Users',
+//            'foreignKey' => 'created_by'
+//        ]);
+//        $this->belongsTo('UpdatedBy', [
+//            'className'=>'Users',
+//            'foreignKey' => 'updated_by'
+//        ]);
     }
 
     /**

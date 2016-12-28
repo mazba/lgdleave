@@ -60,7 +60,8 @@ $religions = Configure::read('religions');
                 <div class="sincerely" style="text-align: center">
                     <p>  <?php echo  __('Sincerely') ?><br/><br/><br/><br/><br/></p>
                     <p>  <?php echo  $applications['applicant_name_bn']; ?></p>
-                    <p>  <?php echo  $applications['applicant_type']['title_bn'].','.$applications['location_type']['title_bn']; ?></p>
+                    <p>  <?php echo  $applications['applicant_type']['title_bn']; ?></p>
+					<p>  <?php echo  $applications['location_type']['title_bn']; ?></p>
 
 
                     <p>

@@ -33,28 +33,7 @@ $religions = \Cake\Core\Configure::read('religions');
     <h3 style="text-align: center;margin-top: 5px;padding-top: 5px"><?= 'Application' ?></h3>
     <hr style="border-color:#1adbd1"/>
     <br/>
-    <table class="table table-bordered table-responsive">
-        <tbody>
-        <tr style="background-color: #d0c7cf"><th colspan="2"><?=__('Account Setup')?></th></tr>
-        <tr><th><?= __('Divisions') ?></th><td><?php echo $applications['area_division']['divname']; ?></td></tr>
-        <?php if($applications['area_district']): ?>
-            <tr><th><?= __('Districts') ?></th><td><?php echo $applications['area_district']['zillaname']; ?></td></tr>
-        <?php endif ?>
-        <?php if($applications['municipal']): ?>
-            <tr><th><?= __('Municipal') ?></th><td><?php echo $applications['municipal']['municipalname']; ?></td></tr>
-        <?php endif ?>
-        <?php if($applications['city_corporation']): ?>
-            <tr><th><?= __('City_corporations') ?></th><td><?php echo $applications['city_corporation']['citycorporationname']; ?></td></tr>
-        <?php endif ?>
-        <?php if($applications['area_upazila']): ?>
-            <tr><th><?= __('Upazilas') ?></th><td><?php echo $applications['area_upazila']['upazilaname']; ?></td></tr>
-        <?php endif ?>
-        <?php if($applications['union']): ?>
-            <tr><th><?= __('Unions') ?></th><td><?php echo $applications['union']['unionname']; ?></td></tr>
-        <?php endif ?>
-        <tr><th><?= __('Applicant Type') ?></th><td><?php echo $applications['applicant_type']['title_bn']; ?></td></tr>
-        </tbody>
-    </table>
+
     <table class="table table-bordered table-responsive">
         <tbody>
         <tr style="background-color: #d0c7cf"><th colspan="2"><?=__('Profile_Setup')?></th></tr>

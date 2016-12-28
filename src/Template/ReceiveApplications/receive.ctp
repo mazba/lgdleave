@@ -1,6 +1,6 @@
 <?php
 use Cake\Core\Configure;
-$status = array_flip(Configure::read('application_status'));
+$status = array_flip(Configure::read('application_event_status'));
 foreach($status as &$value){
     $value=__($value);
 }
@@ -94,19 +94,51 @@ $religions = Configure::read('religions');
                     <div class="col-md-6 col-md-offset-3">
                         <h3><?= __('To View Pdf') ?></h3>
                         <a href="<?=$this->Url->build(('/ReceiveApplications/pdf_view/'.$applications['id']), true)?>" target="_blank" class="btn green-haze btn-circle btn-sm todo-projects-config">
-                            <i class="fa fa-file-pdf-o"></i> PDF
+                            <i class="fa fa-file-pdf-o"></i> <?= __('Applicant_info')?>
                         </a>
                         <a href="<?=$this->Url->build(('/ReceiveApplications/pdfViewApplication/'.$applications['id']), true)?>" target="_blank" class="btn green-haze btn-circle btn-sm todo-projects-config">
-                            <i class="fa fa-file-pdf-o"></i> PDF_APPLICATION
+                            <i class="fa fa-file-pdf-o"></i> <?= __('Applicant_Application')?>
                         </a>
                     </div>
+
+
+                    <?php if(!empty($application_events)){?>
+
+                        <div class="col-md-12 ">
+                            <br/><br/>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <td>SL:</td>
+                                    <td><?=__('Name_bn')?></td>
+                                    <td><?=__('Designation')?></td>
+                                    <td><?=__('Comment')?></td>
+                                    <td><?=__('Approved Time')?></td>
+                                </tr>
+                                <?php foreach($application_events as $key=>$row):?>
+                                    <?php $key+=1?>
+                                    <tr>
+                                        <td><?= $key?></td>
+                                        <td><?= $row['full_name_bn']?></td>
+                                        <td><?= $row['designations']?></td>
+                                        <td><?= $row['comment']?></td>
+                                        <td><?= date('d-M-Y',$row['create_time'])?></td>
+                                    </tr>
+                                <?php endforeach;?>
+                                </thead>
+                            </table>
+                        </div>
+
+                    <?php };?>
+
+
                     <div class="col-md-9 col-md-offset-1" style="margin-top: 50px">
                         <?php
                         echo $this->Form->input('status', ['label'=>__('Action'),'options' => $status]);
                        // echo $this->Form->input('registration_number');
 
                         echo $this->Form->input('comment', ['type' => 'textarea']);
-                        echo $this->Form->input('approve_time', ['type' => 'text', 'class' => 'form-control datepicker']);
+                     //   echo $this->Form->input('approve_time', ['type' => 'text', 'class' => 'form-control datepicker']);
 
                         ?>
                         <?= $this->Form->button(__('Submit'),['class'=>'btn blue pull-right','style'=>'margin-top:20px']) ?>

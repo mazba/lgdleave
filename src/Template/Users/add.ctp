@@ -213,7 +213,6 @@ $religions = \Cake\Core\Configure::read('religions');
         $(document).on('change','.office_unit_id',function()
         {
 
-
             var obj = $(this);
             obj.closest('.single_list_designation').find('.office_unit_designation_id').html('<option><?php echo __('Select');?></option>');
             obj.closest('.single_list_designation').find('.designation_id').html('<option><?php echo __('Select');?></option>');

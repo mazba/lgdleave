@@ -29,7 +29,7 @@
                         <?php echo $this->System->eng_to_bangla_code($pending_application_number); ?>
                     </div>
                     <div class="desc">
-                        <?= __('Pending') ?>
+                        <?= __('Pending po') ?>
                     </div>
                 </div>
                 <?php
@@ -65,7 +65,7 @@
                         <?php echo $this->System->eng_to_bangla_code($reject_application_number); ?>
                     </div>
                     <div class="desc">
-                        <?= __(' Rejected') ?>
+                        <?= __('Rejected') ?>
                     </div>
                 </div>
                 <?php
@@ -148,8 +148,55 @@
                                 if($new_approved_applications):
                                 foreach($new_approved_applications as $application):?>
                                     <tr>
-                                        <td><?=  $this->Html->link($application['temporary_id'], ['controller' => 'CitizenCorner', 'action' => 'success', $application['id']]) ?> </td>
-                                        <th><?php echo $application['temporary_id'] ?></th>
+                                    <td><?=  $this->Html->link($application['temporary_id'], ['controller' => 'CitizenCorner', 'action' => 'success', $application['id']]) ?> </td>
+                                        <td><?php echo $application['applicant_name_bn'] ?></td>
+                                        <td><?php echo $application ['applicant_type']; ?></td>
+                                        <td><?php echo date('d-M-Y',$application['approve_time']) ; ?></td>
+                                    </tr>
+                                <?php
+                                endforeach;
+                                else:
+                                ?>
+                                <tr>
+                                    <td colspan="4" style="text-align: center"><?= __('No Data Found') ?></td>
+                                </tr>
+                                <?php
+                                endif;
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 col-md-offset-3 col-sm-12">
+        <div class="portlet green-haze box">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-bank"></i><?= __('Recently Reject Application') ?>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-responsive">
+                    <div class="scroller" style="height: 155px;" data-always-visible="1" data-rail-visible="0">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th><?= __('Application Code') ?></th>
+                                    <th><?= __('Applicant') ?></th>
+                                    <th><?= __('Applicant Type') ?></th>
+                                    <th><?= __('Application Time') ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if($new_reject_application):
+                                foreach($new_reject_application as $application):?>
+                                    <tr>
+                                    <td><?=  $this->Html->link($application['temporary_id'], ['controller' => 'CitizenCorner', 'action' => 'success', $application['id']]) ?> </td>
                                         <td><?php echo $application['applicant_name_bn'] ?></td>
                                         <td><?php echo $application ['applicant_type']; ?></td>
                                         <td><?php echo date('d-M-Y',$application['approve_time']) ; ?></td>

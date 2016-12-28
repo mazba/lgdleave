@@ -10,7 +10,7 @@
                         <?php echo $this->System->eng_to_bangla_code($user_number); ?>
                     </div>
                     <div class="desc">
-                        <?= __('Total User') ?>
+                        <?= __('Total Applicants') ?>
                     </div>
                 </div>
                 <?php
