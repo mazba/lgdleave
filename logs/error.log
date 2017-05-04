@@ -13415,3 +13415,273 @@ Stack Trace:
 #22 {main}
 
 
+2017-05-04 05:06:54 Error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table "applications"
+Request URL: /leave/citizen-corner/success/favicon.ico
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(1187): Cake\ORM\Query->firstOrFail()
+#1 F:\XAMPP\htdocs\leave\src\Controller\CitizenCornerController.php(149): Cake\ORM\Table->get('favicon.ico', Array)
+#2 [internal function]: App\Controller\CitizenCornerController->success('favicon.ico')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\CitizenCornerController))
+#6 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#7 {main}
+
+
+2017-05-04 05:07:23 Error: Fatal Error (256): [Cake\View\Exception\MissingTemplateException] Template file "Error\pdf\error500.ctp" is missing.
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\View.php(575): Cake\View\View->_getViewFileName('error500')
+#1 F:\XAMPP\htdocs\leave\vendor\friendsofcake\cakepdf\src\View\PdfView.php(103): Cake\View\View->render('error500', 'error')
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): CakePdf\View\PdfView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(309): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(Cake\Core\Exception\Exception))
+#7 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(Cake\Core\Exception\Exception))
+#8 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 05:07:33 Error: Fatal Error (256): [Cake\View\Exception\MissingTemplateException] Template file "Error\pdf\error500.ctp" is missing.
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\View.php(575): Cake\View\View->_getViewFileName('error500')
+#1 F:\XAMPP\htdocs\leave\vendor\friendsofcake\cakepdf\src\View\PdfView.php(103): Cake\View\View->render('error500', 'error')
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): CakePdf\View\PdfView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(309): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(Cake\Core\Exception\Exception))
+#7 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(Cake\Core\Exception\Exception))
+#8 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 05:27:58 Error: Fatal Error (1): Call to a member function get() on boolean in [F:\XAMPP\htdocs\leave\src\Controller\CitizenCornerController.php, line 138]
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 191
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 90
+[main] - [internal], line ??
+
+
+
+2017-05-04 05:27:58 Error: [Cake\Error\FatalErrorException] Call to a member function get() on boolean
+Request URL: /leave/citizen-corner/success/8
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(90): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'F:\\XAMPP\\htdocs...', 138)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-05-04 05:40:33 Error: Fatal Error (256): [Cake\View\Exception\MissingTemplateException] Template file "Error\pdf\error500.ctp" is missing.
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\View.php(575): Cake\View\View->_getViewFileName('error500')
+#1 F:\XAMPP\htdocs\leave\vendor\friendsofcake\cakepdf\src\View\PdfView.php(103): Cake\View\View->render('error500', 'error')
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): CakePdf\View\PdfView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(309): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(Cake\Core\Exception\Exception))
+#7 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(Cake\Core\Exception\Exception))
+#8 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 05:41:10 Error: Fatal Error (256): [Cake\View\Exception\MissingTemplateException] Template file "Error\pdf\error500.ctp" is missing.
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\View.php(575): Cake\View\View->_getViewFileName('error500')
+#1 F:\XAMPP\htdocs\leave\vendor\friendsofcake\cakepdf\src\View\PdfView.php(103): Cake\View\View->render('error500', 'error')
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): CakePdf\View\PdfView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(309): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(Cake\Core\Exception\Exception))
+#7 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(Cake\Core\Exception\Exception))
+#8 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 05:42:15 Error: Fatal Error (256): [Cake\View\Exception\MissingTemplateException] Template file "Error\pdf\error500.ctp" is missing.
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\View.php(575): Cake\View\View->_getViewFileName('error500')
+#1 F:\XAMPP\htdocs\leave\vendor\friendsofcake\cakepdf\src\View\PdfView.php(103): Cake\View\View->render('error500', 'error')
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): CakePdf\View\PdfView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(309): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(Cake\Core\Exception\Exception))
+#7 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(Cake\Core\Exception\Exception))
+#8 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 05:52:05 Error: Fatal Error (256): [Cake\View\Exception\MissingTemplateException] Template file "Error\pdf\error500.ctp" is missing.
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\View.php(575): Cake\View\View->_getViewFileName('error500')
+#1 F:\XAMPP\htdocs\leave\vendor\friendsofcake\cakepdf\src\View\PdfView.php(103): Cake\View\View->render('error500', 'error')
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): CakePdf\View\PdfView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(309): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(Cake\Core\Exception\Exception))
+#7 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(Cake\Core\Exception\Exception))
+#8 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 05:53:41 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/CitizenCorner/pdf_view/9
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:54:04 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/CitizenCorner/pdfViewApplication/9
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:54:52 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/CitizenCorner/
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:55:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/CitizenCorner/pdf_view/9
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:55:18 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/CitizenCorner/pdfViewApplication/9
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:56:57 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/citizen-corner/success/9
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:58:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/citizen-corner/success/9
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:58:20 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/citizen-corner/success/9
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:58:31 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:58:38 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:59:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:59:19 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 05:59:41 Error: [Cake\Routing\Exception\MissingControllerException] Controller class CitizenCorner could not be found.
+Exception Attributes: array (
+  'class' => 'CitizenCorner',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+

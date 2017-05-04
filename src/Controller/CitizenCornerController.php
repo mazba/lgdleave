@@ -1,6 +1,6 @@
 <?php
 namespace App\Controller;
-
+//namespace App\View\Helper;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Core\Exception\Exception;
@@ -36,9 +36,7 @@ class CitizenCornerController extends AppController
         $this->loadModel('Applications');
         $this->loadModel('ApplicationTypes');
         $this->loadModel('ApplicationsFiles');
-
         $time = time();
-
         $applications = $this->Applications->newEntity();
         $applcationFile = $this->ApplicationsFiles->newEntity();
         $auth = $this->Auth->user();
@@ -46,27 +44,23 @@ class CitizenCornerController extends AppController
         $applicant = TableRegistry::get('applicants')->find()
             ->where(['user_id' => $auth['id']]);
         $applicant_id=$applicant->first();
-		
-      //get old application information for this applicant
+
+        //get old application information for this applicant
         $applicant_application_info=$this->Applications->find()
-            ->where(['create_by' => $auth['id']])//I know it is not proper way... dont think me khat.
+            ->where(['create_by' => $auth['id']])//I know it is not proper way... don't think me that.
             ->first();
 
         //  echo "<pre>";print_r($auth);die();
         if ($this->request->is('post')) {
-
             try {
-
                 $data = $this->request->data;
                 $conn = ConnectionManager::get('default');
                 $conn->transactional(function () use ($data, $applications, $time,$auth,$applicant_id) {
                     $data['applicant_id']= $applicant_id['id'];
                     $data['create_time'] = $time;
-					$data['create_by'] = $auth['id'];
+                    $data['create_by'] = $auth['id'];
                     $data['submission_time'] = $time;
                     $data['temporary_id'] = $this->findMax()+1;
-
-
                     $data['status'] = Configure::read('application_status.Pending');
                     $data['start_date'] = strtotime($data['start_date']);
                     $data['end_date'] = strtotime($data['end_date']);
@@ -78,12 +72,9 @@ class CitizenCornerController extends AppController
                     unset($data['file_label']);
                     $applications = $this->Applications->patchEntity($applications, $data);
 
-                  
-
                     if ($this->Applications->save($applications)) {
                         //
                         $fileTable = TableRegistry::get('applications_files');
-
                         if (is_array($files)) {
                             $i = 0;
                             foreach ($files as $file) {
@@ -123,14 +114,13 @@ class CitizenCornerController extends AppController
             }
         }
 
-
         // $applicantTypes = $this->ApplicantTypes->find('list', ['conditions' => ['status' => 1]]);
         $applicationTypes = $this->ApplicationTypes->find('list', ['conditions' => ['status' => 1]]);
         $locationTypes = $this->LocationTypes->find('list', ['conditions' => ['status' => 1]]);
         $divisions = $this->AreaDivisions->find('list');
 
         $this->set(compact('applicant_application_info','locationTypes', 'applicationTypes', 'divisions', 'applications'));
-      //  $this->viewBuilder()->layout('citizen_corner');
+        //  $this->viewBuilder()->layout('citizen_corner');
         $this->set('_serialize', ['applications']);
     }
 
@@ -140,13 +130,11 @@ class CitizenCornerController extends AppController
         $this->loadModel('Applications');
         $application = $this->Applications->get($id, [
             'contain' => [
-               'Applicants',
+                'Applicants',
                 'ApplicationTypes',
                 'ApplicationsFiles'
             ]
         ]);
-
-    $applications=  $application->toArray();;
 
         $Area_division = TableRegistry::get('AreaDivisions')->find();
         $Area_division->where(['divid'=>$application['applicant']['division_id']]);
@@ -166,13 +154,8 @@ class CitizenCornerController extends AppController
         $Union = TableRegistry::get('Unions')->find();
         $Union->where(['rowid'=>$application['applicant']['union_ward']]);
 
-
         $Applicant_type = TableRegistry::get('ApplicantTypes')->find();
         $Applicant_type->where(['id'=>$application['applicant']['applicant_type_id']]);
-
-
-         //  echo "<pre>";print_r($Applicant_type->toArray());die();
-
 
         $applications['area_division']= $Area_division->first();
         $applications['area_district']= $Area_district->first();
@@ -181,17 +164,12 @@ class CitizenCornerController extends AppController
         $applications['city_corporation']= $City_corporation->first()? $City_corporation->first():[];
         $applications['union']= $Union->first()? $Union->first():[];
         $applications['applicant_type']= $Applicant_type->first();
-      //  echo "<pre>";print_r($applications);die();
-
-        $this->set(compact('applications'));
-      //  $this->viewBuilder()->layout('citizen_corner');
-
-        //  $this->set('_serialize', ['application']);
+        $this->set(compact('application'));
     }
 
     /*
-        * pdf view
-        */
+    * pdf view
+    */
     public function pdfView($id)
     {
         $this->loadModel('Applications');
@@ -202,7 +180,6 @@ class CitizenCornerController extends AppController
                 'ApplicationsFiles'
             ]
         ]);
-
         $applications=  $application->toArray();;
 
         $Area_division = TableRegistry::get('AreaDivisions')->find();
@@ -308,6 +285,7 @@ class CitizenCornerController extends AppController
         $applications['city_corporation']= $City_corporation->first()? $City_corporation->first():[];
         $applications['union']= $Union->first()? $Union->first():[];
         $applications['applicant_type']= $Applicant_type->first();
+
         //generating the pdf
         Configure::write('CakePdf', [
             'engine' => [
@@ -325,6 +303,7 @@ class CitizenCornerController extends AppController
         $this->set(compact('applications'));
         $this->set('_serialize', ['application']);
     }
+
 
     public function ajax($action = null)
     {
@@ -411,6 +390,7 @@ class CitizenCornerController extends AppController
             return $this->response;
         }
     }
+
     public function findMax(){
         $this->loadModel('Applications');
 
@@ -425,6 +405,6 @@ class CitizenCornerController extends AppController
         if($max ==0){
             $max=1000;
         }
-       return $max;
+        return $max;
     }
 }
