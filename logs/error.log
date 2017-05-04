@@ -12950,3 +12950,468 @@ Stack Trace:
 #1 {main}
 
 
+2017-05-04 04:33:07 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/simple-line-icons/simple-line-icons.min.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/pages/css/login-soft.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/font-awesome/css/font-awesome.min.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/bootstrap/css/bootstrap.min.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/css/components.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/uniform/css/uniform.default.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/css/plugins.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/css/layout.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/css/themes/darkblue.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/css/custom.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery-migrate.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/bootstrap/js/bootstrap.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery.blockui.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:08 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/uniform/jquery.uniform.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:09 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery.cokie.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:09 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery-validation/js/jquery.validate.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:09 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/backstretch/jquery.backstretch.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:09 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/scripts/metronic.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:09 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/scripts/layout.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:09 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/scripts/demo.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:09 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/pages/scripts/login-soft.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:11 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/pages/css/login-soft.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:11 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/simple-line-icons/simple-line-icons.min.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:11 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/uniform/css/uniform.default.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:11 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/font-awesome/css/font-awesome.min.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:11 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/css/components.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:11 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/bootstrap/css/bootstrap.min.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/css/plugins.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/css/layout.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/css/themes/darkblue.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/css/custom.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery-migrate.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/bootstrap/js/bootstrap.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery.blockui.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/uniform/jquery.uniform.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery.cokie.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery-validation/js/jquery.validate.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/backstretch/jquery.backstretch.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/scripts/metronic.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/scripts/layout.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/layout/scripts/demo.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/admin/pages/scripts/login-soft.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:54 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/uniform/css/uniform.default.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:54 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/simple-line-icons/simple-line-icons.min.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:54 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/font-awesome/css/font-awesome.min.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:54 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/uniform/jquery.uniform.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:55 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/jquery-validation/js/jquery.validate.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:55 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/scripts/metronic.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:59 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/simple-line-icons/simple-line-icons.min.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:59 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/uniform/jquery.uniform.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:59 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/scripts/metronic.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:59 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/uniform/css/uniform.default.css
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:33:59 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Assets could not be found.
+Request URL: /leave/assets/global/plugins/uniform/jquery.uniform.min.js
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 04:35:03 Error: [PDOException] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+Request URL: /leave/
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php(48): PDO->__construct('mysql:host=127....', 'root', 'vertrigo', Array)
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php(90): Cake\Database\Driver\Mysql->_connect('mysql:host=127....', Array)
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Schema\BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Dialect\MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(43): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Connection.php(315): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(422): Cake\Database\Connection->schemaCollection()
+#8 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Query.php(173): Cake\ORM\Table->schema()
+#9 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Query.php(131): Cake\ORM\Query->addDefaultTypes(Object(App\Model\Table\ApplicantsTable))
+#10 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(1228): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(App\Model\Table\ApplicantsTable))
+#11 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(931): Cake\ORM\Table->query()
+#12 F:\XAMPP\htdocs\leave\src\Controller\CitizenCornerController.php(46): Cake\ORM\Table->find()
+#13 [internal function]: App\Controller\CitizenCornerController->index()
+#14 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#15 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#16 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\CitizenCornerController))
+#17 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#18 {main}
+
+
+2017-05-04 04:35:19 Error: [PDOException] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+Request URL: /leave/login
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php(48): PDO->__construct('mysql:host=127....', 'root', 'vertrigo', Array)
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php(90): Cake\Database\Driver\Mysql->_connect('mysql:host=127....', Array)
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Schema\BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Dialect\MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(43): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Connection.php(315): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(422): Cake\Database\Connection->schemaCollection()
+#8 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Query.php(173): Cake\ORM\Table->schema()
+#9 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Query.php(131): Cake\ORM\Query->addDefaultTypes(Object(App\Model\Table\UsersTable))
+#10 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(1228): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(App\Model\Table\UsersTable))
+#11 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(931): Cake\ORM\Table->query()
+#12 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Auth\BaseAuthenticate.php(147): Cake\ORM\Table->find('all', Array)
+#13 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Auth\BaseAuthenticate.php(105): Cake\Auth\BaseAuthenticate->_query('mazba')
+#14 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Auth\FormAuthenticate.php(77): Cake\Auth\BaseAuthenticate->_findUser('mazba', 'mazba')
+#15 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Controller\Component\AuthComponent.php(764): Cake\Auth\FormAuthenticate->authenticate(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#16 F:\XAMPP\htdocs\leave\src\Controller\DashboardController.php(28): Cake\Controller\Component\AuthComponent->identify()
+#17 [internal function]: App\Controller\DashboardController->login()
+#18 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#19 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#20 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\DashboardController))
+#21 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#22 {main}
+
+
+2017-05-04 04:35:35 Error: [PDOException] SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+Request URL: /leave/login
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php(48): PDO->__construct('mysql:host=127....', 'root', 'vertrigo', Array)
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php(90): Cake\Database\Driver\Mysql->_connect('mysql:host=127....', Array)
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Schema\BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Dialect\MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(43): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Database\Connection.php(315): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(422): Cake\Database\Connection->schemaCollection()
+#8 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Query.php(173): Cake\ORM\Table->schema()
+#9 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Query.php(131): Cake\ORM\Query->addDefaultTypes(Object(App\Model\Table\UsersTable))
+#10 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(1228): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(App\Model\Table\UsersTable))
+#11 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(931): Cake\ORM\Table->query()
+#12 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Auth\BaseAuthenticate.php(147): Cake\ORM\Table->find('all', Array)
+#13 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Auth\BaseAuthenticate.php(105): Cake\Auth\BaseAuthenticate->_query('mazba')
+#14 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Auth\FormAuthenticate.php(77): Cake\Auth\BaseAuthenticate->_findUser('mazba', 'mazba')
+#15 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Controller\Component\AuthComponent.php(764): Cake\Auth\FormAuthenticate->authenticate(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#16 F:\XAMPP\htdocs\leave\src\Controller\DashboardController.php(28): Cake\Controller\Component\AuthComponent->identify()
+#17 [internal function]: App\Controller\DashboardController->login()
+#18 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#19 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#20 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\DashboardController))
+#21 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#22 {main}
+
+

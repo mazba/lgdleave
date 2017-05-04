@@ -9,7 +9,7 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-    'debug' => false,
+    'debug' => true,
 
     /**
      * Configure basic information about the application.
@@ -222,8 +222,8 @@ return [
              */
             //'port' => 'nonstandard_port_number',
             'username' => 'root',
-            'password' => 'vertrigo',
-            'database' => 'leave_management',
+            'password' => '',
+            'database' => 'lgdleave',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
