@@ -13685,3 +13685,197 @@ Stack Trace:
 #1 {main}
 
 
+2017-05-04 06:20:42 Error: Fatal Error (256): [Cake\View\Exception\MissingTemplateException] Template file "Error\pdf\error500.ctp" is missing.
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\View.php(575): Cake\View\View->_getViewFileName('error500')
+#1 F:\XAMPP\htdocs\leave\vendor\friendsofcake\cakepdf\src\View\PdfView.php(103): Cake\View\View->render('error500', 'error')
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): CakePdf\View\PdfView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(309): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(Cake\Core\Exception\Exception))
+#7 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(Cake\Core\Exception\Exception))
+#8 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 06:23:55 Error: Fatal Error (256): [Cake\View\Exception\MissingTemplateException] Template file "Error\pdf\error500.ctp" is missing.
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\View.php(575): Cake\View\View->_getViewFileName('error500')
+#1 F:\XAMPP\htdocs\leave\vendor\friendsofcake\cakepdf\src\View\PdfView.php(103): Cake\View\View->render('error500', 'error')
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): CakePdf\View\PdfView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(309): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(Cake\Core\Exception\Exception))
+#7 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(Cake\Core\Exception\Exception))
+#8 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 07:53:51 Error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table "applications"
+Request URL: /leave/citizen-corner/success/favicon.ico
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(1187): Cake\ORM\Query->firstOrFail()
+#1 F:\XAMPP\htdocs\leave\src\Controller\CitizenCornerController.php(137): Cake\ORM\Table->get('favicon.ico', Array)
+#2 [internal function]: App\Controller\CitizenCornerController->success('favicon.ico')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\CitizenCornerController))
+#6 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#7 {main}
+
+
+2017-05-04 08:55:59 Error: Fatal Error (256): [Exception] Failed calling Cake\ORM\Query::jsonSerialize()
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(0): json_encode()
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\SerializedView.php(87): Cake\View\JsonView->_serialize(Array)
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(110): Cake\View\SerializedView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): Cake\View\JsonView->render('error500', 'error')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(319): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('pdo_error')
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#7 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(PDOException))
+#8 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(PDOException))
+#9 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 08:55:59 Error: [Cake\Error\FatalErrorException] [Exception] Failed calling Cake\ORM\Query::jsonSerialize()
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(0): json_encode()
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\SerializedView.php(87): Cake\View\JsonView->_serialize(Array)
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(110): Cake\View\SerializedView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): Cake\View\JsonView->render('error500', 'error')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(319): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('pdo_error')
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#7 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(PDOException))
+#8 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(PDOException))
+#9 {main}
+Request URL: /leave/ReceiveApplications?filterscount=0&groupscount=0&pagenum=0&pagesize=15&recordstartindex=0&recordendindex=15&_=1493887839610
+2017-05-04 08:55:59 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'location_types.title_bn' in 'field list'
+Request URL: /leave/ReceiveApplications?filterscount=0&groupscount=0&pagenum=0&pagesize=15&recordstartindex=0&recordendindex=15&_=1493887839610
+2017-05-04 09:02:38 Error: Fatal Error (256): [Exception] Failed calling Cake\ORM\Query::jsonSerialize()
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(0): json_encode()
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\SerializedView.php(87): Cake\View\JsonView->_serialize(Array)
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(110): Cake\View\SerializedView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): Cake\View\JsonView->render('error500', 'error')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(319): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('pdo_error')
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#7 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(PDOException))
+#8 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(PDOException))
+#9 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 09:02:38 Error: [Cake\Error\FatalErrorException] [Exception] Failed calling Cake\ORM\Query::jsonSerialize()
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(0): json_encode()
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\SerializedView.php(87): Cake\View\JsonView->_serialize(Array)
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(110): Cake\View\SerializedView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): Cake\View\JsonView->render('error500', 'error')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(319): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('pdo_error')
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#7 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(PDOException))
+#8 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(PDOException))
+#9 {main}
+Request URL: /leave/ReceiveApplications?filterscount=0&groupscount=0&pagenum=0&pagesize=15&recordstartindex=0&recordendindex=15&_=1493888420869
+2017-05-04 09:02:38 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'location_types.title_bn' in 'field list'
+Request URL: /leave/ReceiveApplications?filterscount=0&groupscount=0&pagenum=0&pagesize=15&recordstartindex=0&recordendindex=15&_=1493888420869
+2017-05-04 09:04:31 Error: Fatal Error (256): [Exception] Failed calling Cake\ORM\Query::jsonSerialize()
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(0): json_encode()
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\SerializedView.php(87): Cake\View\JsonView->_serialize(Array)
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(110): Cake\View\SerializedView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): Cake\View\JsonView->render('error500', 'error')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(319): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('pdo_error')
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#7 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(PDOException))
+#8 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(PDOException))
+#9 {main} in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php, line 156]
+
+
+2017-05-04 09:04:32 Error: [Cake\Error\FatalErrorException] [Exception] Failed calling Cake\ORM\Query::jsonSerialize()
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(0): json_encode()
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\SerializedView.php(87): Cake\View\JsonView->_serialize(Array)
+#2 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\View\JsonView.php(110): Cake\View\SerializedView->render('error500', 'error')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(340): Cake\View\JsonView->render('error500', 'error')
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(319): Cake\Error\ExceptionRenderer->_outputMessageSafe('error500')
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ExceptionRenderer.php(180): Cake\Error\ExceptionRenderer->_outputMessage('pdo_error')
+#6 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\ErrorHandler.php(144): Cake\Error\ExceptionRenderer->render()
+#7 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(155): Cake\Error\ErrorHandler->_displayException(Object(PDOException))
+#8 [internal function]: Cake\Error\BaseErrorHandler->handleException(Object(PDOException))
+#9 {main}
+Request URL: /leave/ReceiveApplications?filterscount=0&groupscount=0&pagenum=0&pagesize=15&recordstartindex=0&recordendindex=15&_=1493888420869
+2017-05-04 09:04:32 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'location_types.title_bn' in 'field list'
+Request URL: /leave/ReceiveApplications?filterscount=0&groupscount=0&pagenum=0&pagesize=15&recordstartindex=0&recordendindex=15&_=1493888420869
+2017-05-04 09:46:00 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Applicant could not be found.
+Exception Attributes: array (
+  'class' => 'Applicant',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /leave/applicant
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2017-05-04 09:46:23 Error: [Cake\Controller\Exception\MissingActionException] Action ApplicantsController::favicon.ico() could not be found, or is not accessible.
+Exception Attributes: array (
+  'controller' => 'ApplicantsController',
+  'action' => 'favicon.ico',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Request URL: /leave/applicants/favicon.ico
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#1 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\ApplicantsController))
+#2 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#3 {main}
+
+
+2017-05-04 09:47:07 Error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table "applicants"
+Request URL: /leave/Applicants/edit/favicon.ico
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(1187): Cake\ORM\Query->firstOrFail()
+#1 F:\XAMPP\htdocs\leave\src\Controller\ApplicantsController.php(155): Cake\ORM\Table->get('favicon.ico', Array)
+#2 [internal function]: App\Controller\ApplicantsController->edit('favicon.ico')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\ApplicantsController))
+#6 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#7 {main}
+
+
+2017-05-04 10:10:44 Error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table "applications"
+Request URL: /leave/citizen-corner/success/favicon.ico
+Stack Trace:
+#0 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\ORM\Table.php(1187): Cake\ORM\Query->firstOrFail()
+#1 F:\XAMPP\htdocs\leave\src\Controller\CitizenCornerController.php(135): Cake\ORM\Table->get('favicon.ico', Array)
+#2 [internal function]: App\Controller\CitizenCornerController->success('favicon.ico')
+#3 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#4 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#5 F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\CitizenCornerController))
+#6 F:\XAMPP\htdocs\leave\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#7 {main}
+
+
+2017-05-07 03:08:56 Warning: Warning (2): session_destroy(): Session object destruction failed in [F:\XAMPP\htdocs\leave\vendor\cakephp\cakephp\src\Network\Session.php, line 517]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+session_destroy - [internal], line ??
+Cake\Network\Session::destroy() - CORE\src\Network\Session.php, line 517
+Cake\Network\Session::start() - CORE\src\Network\Session.php, line 331
+Cake\Network\Session::read() - CORE\src\Network\Session.php, line 385
+Cake\Auth\Storage\SessionStorage::read() - CORE\src\Auth\Storage\SessionStorage.php, line 85
+Cake\Controller\Component\AuthComponent::user() - CORE\src\Controller\Component\AuthComponent.php, line 665
+Cake\Controller\Component\AuthComponent::_getUser() - CORE\src\Controller\Component\AuthComponent.php, line 687
+Cake\Controller\Component\AuthComponent::authCheck() - CORE\src\Controller\Component\AuthComponent.php, line 292
+Cake\Controller\Component\AuthComponent::startup() - CORE\src\Controller\Component\AuthComponent.php, line 258
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 385
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 355
+Cake\Controller\Controller::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 78
+Cake\Controller\Controller::startupProcess() - CORE\src\Controller\Controller.php, line 495
+Cake\Routing\Dispatcher::_invoke() - CORE\src\Routing\Dispatcher.php, line 109
+Cake\Routing\Dispatcher::dispatch() - CORE\src\Routing\Dispatcher.php, line 87
+[main] - ROOT\webroot\index.php, line 37
+
+
+

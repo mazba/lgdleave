@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1eee5361f29306cc0ac5127eb137512c",
+    "hash": "914a11915f39b7c09202b70e82cee0fd",
+    "content-hash": "03aebf299fec9a0576f400d8304fbbca",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -426,16 +427,16 @@
         },
         {
             "name": "mpdf/mpdf",
-            "version": "dev-master",
+            "version": "v6.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mpdf/mpdf.git",
-                "reference": "667df725b46986e0bceb78f4446cc407e380018a"
+                "reference": "7f138bf7508eac895ac2c13d2509b056ac7e7e97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/667df725b46986e0bceb78f4446cc407e380018a",
-                "reference": "667df725b46986e0bceb78f4446cc407e380018a",
+                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/7f138bf7508eac895ac2c13d2509b056ac7e7e97",
+                "reference": "7f138bf7508eac895ac2c13d2509b056ac7e7e97",
                 "shasum": ""
             },
             "require": {
@@ -473,7 +474,7 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2016-05-04 09:53:00"
+            "time": "2016-12-12 10:42:18"
         },
         {
             "name": "nesbot/carbon",
@@ -569,7 +570,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/4e7fee7792f4bf3dbf55ee29001850ba26c86a88",
+                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/43313ad89c0ad1851aeefafc164e2822e49867e3",
                 "reference": "43313ad89c0ad1851aeefafc164e2822e49867e3",
                 "shasum": ""
             },
@@ -680,7 +681,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/524bc2ef778f99df0ba09f8985b23a379c668879",
+                "url": "https://api.github.com/repos/symfony/config/zipball/831f88908b51b9ce945f5e6f402931d1ac544423",
                 "reference": "831f88908b51b9ce945f5e6f402931d1ac544423",
                 "shasum": ""
             },
@@ -1369,7 +1370,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "friendsofcake/cakepdf": 20,
-        "mpdf/mpdf": 20,
         "psy/psysh": 0
     },
     "prefer-stable": true,

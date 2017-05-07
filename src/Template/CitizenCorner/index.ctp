@@ -85,8 +85,8 @@ $religions = \Cake\Core\Configure::read('religions');
                                 echo $this->Form->input('father_name_bn', ['value'=>$applicant_application_info['father_name_bn'],'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('father_name_en',['value'=>$applicant_application_info['father_name_en']]);
                                 echo $this->Form->input('phone', ['value'=>$applicant_application_info['phone'],'type'=>'text','label' => ['escape' => false, 'class' => 'col-sm-3 control-label text-right']]);
-                              
-							  echo $this->Form->input('cellphone', ['value'=>$applicant_application_info['cellphone'],'required' => 'required','label' => [__('Cellphone'),'escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
+
+                                echo $this->Form->input('cellphone', ['value'=>$applicant_application_info['cellphone'],'required' => 'required','label' => [__('Cellphone'),'escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('emergency_contact', ['value'=>$applicant_application_info['emergency_contact'],'label' => __('Emergency_contact')]);
                                 echo $this->Form->input('email', ['value'=>$applicant_application_info['email'],'label' => ['escape' => false, 'class' => 'mandetory col-sm-3 control-label text-right']]);
                                 echo $this->Form->input('nid', ['value'=>$applicant_application_info['nid'],'label' => __('Nid')]);
@@ -231,9 +231,9 @@ $religions = \Cake\Core\Configure::read('religions');
                                 </div>
 
 
-                           
-								
-							   <div class="form-group">
+
+
+                                <div class="form-group">
                                     <label class="control-label col-md-6"><?= __('Cellphone') ?>:</label>
 
                                     <div class="col-md-4">
@@ -678,6 +678,7 @@ $religions = \Cake\Core\Configure::read('religions');
         $("#start-date").datepicker({
             defaultDate: "+1w",
             changeMonth: true,
+            changeYear: true,
             numberOfMonths: 1,
             onClose: function (selectedDate) {
                 $("#end-date").datepicker("option", "minDate", selectedDate);
@@ -686,6 +687,7 @@ $religions = \Cake\Core\Configure::read('religions');
         $("#end-date").datepicker({
             defaultDate: "+1w",
             changeMonth: true,
+            changeYear: true,
             numberOfMonths: 1,
             onClose: function (selectedDate) {
                 $("#start-date").datepicker("option", "maxDate", selectedDate);
@@ -849,3 +851,8 @@ $religions = \Cake\Core\Configure::read('religions');
         return response;
     }
 </script>
+<style>
+    .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+        color: #000;
+    }
+</style>

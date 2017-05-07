@@ -40,11 +40,9 @@ class CitizenCornerController extends AppController
         $applications = $this->Applications->newEntity();
         $applcationFile = $this->ApplicationsFiles->newEntity();
         $auth = $this->Auth->user();
-
         $applicant = TableRegistry::get('applicants')->find()
             ->where(['user_id' => $auth['id']]);
         $applicant_id=$applicant->first();
-
         //get old application information for this applicant
         $applicant_application_info=$this->Applications->find()
             ->where(['create_by' => $auth['id']])//I know it is not proper way... don't think me that.
