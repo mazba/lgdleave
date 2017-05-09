@@ -13,7 +13,7 @@ $religions = \Cake\Core\Configure::read('religions');
     .error{
         color:red;
     }
-
+    
     .padding {
         padding-left: 50px;
     }

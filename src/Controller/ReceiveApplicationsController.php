@@ -27,6 +27,7 @@ class ReceiveApplicationsController extends AppController
     public function index()
     {
         if ($this->request->is('ajax')) {
+
             $user = $this->Auth->user();
             $usrUnits = TableRegistry::get('user_designations');
             $userUnits = $usrUnits->find()
@@ -36,13 +37,16 @@ class ReceiveApplicationsController extends AppController
             $userUnits = $collection->extract('office_unit_id');
             $userUnits = $userUnits->toArray();
 
+
             $applicantType = TableRegistry::get('applicant_types_office_units');
             $applicantType = $applicantType->find()
                 ->where(['office_unit_id IN' => $userUnits]);
             $collection = new Collection($applicantType);
             $applicantType = $collection->extract('applicant_type_id');
             $applicantTypes = $applicantType->toArray();
+
             $new_applications = TableRegistry::get('applications')->find();
+
             $new_applications->select(['location_type' => 'location_types.title_bn',
                 'area_district' => 'zillas.zillaname',
                 'area_division' => 'divisions.divname',
