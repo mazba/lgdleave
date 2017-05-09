@@ -10,7 +10,8 @@ return [
         'super_admin' => 1,
         'office_admin' => 2,
         'office_user' => 3,
-        'applicant_user' => 4
+        'applicant_user' => 4,
+        'deactivate_applicant_user' => 5
     ],
     'blood_groups'=>[
         'A+'=>'A+','A-'=>'A-','B+'=>'B+','B-'=>'B-','AB+'=>'AB+','AB-'=>'AB-','O+'=>'O+','O-'=>'O-'
@@ -38,5 +39,18 @@ return [
         'Approve'=>1,
         'Reject'=>2,
         'On Process'=>3
+    ],
+
+    'application_event_status'=>[
+        'Forward'=>0,
+        'Backward'=>1
+    ],
+    'user_status'=>[
+        1=>'Active',
+        99=>'Deactivate'
+    ],
+    'applicant_status'=>[
+        1=>'Active',
+        99=>'Deactivate'
     ]
 ];

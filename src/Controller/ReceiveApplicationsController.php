@@ -42,7 +42,6 @@ class ReceiveApplicationsController extends AppController
             $collection = new Collection($applicantType);
             $applicantType = $collection->extract('applicant_type_id');
             $applicantTypes = $applicantType->toArray();
-
             $new_applications = TableRegistry::get('applications')->find();
             $new_applications->select(['location_type' => 'location_types.title_bn',
                 'area_district' => 'zillas.zillaname',

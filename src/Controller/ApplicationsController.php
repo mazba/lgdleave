@@ -23,16 +23,6 @@ class ApplicationsController extends AppController
     {
         $user = $this->Auth->user();
 
-//        $this->paginate = [
-//            'contain' => ['ApplicationTypes','Applicants', 'Applicants.ApplicantTypes','Applicants.LocationTypes','Applicants.AreaDivisions','Applicants.AreaDistricts','ApplicationEvents'=>function (\Cake\ORM\Query $query) {
-//                return $query ->where(['recipient_id' => 53]);
-//            }]
-//        ];
-        // $applications = $this->paginate($this->Applications);
-
-        //    echo "<pre>";print_r($applications);die();
-
-
         $new_applications = TableRegistry::get('application_events')->find();
 
         $new_applications->select(['location_type' => 'location_types.title_bn',

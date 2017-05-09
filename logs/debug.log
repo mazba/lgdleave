@@ -7323,3 +7323,6 @@ Cake\Routing\Dispatcher::dispatch() - CORE\src\Routing\Dispatcher.php, line 87
 
 
 
+2017-05-09 09:45:40 Notice: #mazbas_cake# permission_error: actionUrl-receiveapplications/pdfview time:1494323140
+2017-05-09 09:45:54 Notice: #mazbas_cake# permission_error: actionUrl-receiveapplications/index time:1494323154
+2017-05-09 09:55:27 Notice: #mazbas_cake# permission_error: actionUrl-citizencorner/index time:1494323727

@@ -10,6 +10,9 @@ $religions = \Cake\Core\Configure::read('religions');
         color: red;
         display: inline;
     }
+    .error{
+        color:red;
+    }
 
     .padding {
         padding-left: 50px;
@@ -672,6 +675,35 @@ $religions = \Cake\Core\Configure::read('religions');
 
 
         //valudation relatted
+//        $.validator.setDefaults({
+//////        debug: true,
+////            success: "valid",
+//            ignore: [],
+//        });
+        $( "#submit_form" ).validate({
+//            ignore: [],
+            rules: {
+                'document_file[]': {
+                    required: true,
+                    extension: "jpg|jpeg|png|doc|pdf|xls|xlsx"
+                }
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+        $('[name^="cellphone').rules('add', {
+            regex: "^(?:\\+?88)?01[15-9]\\d{8}$"
+        });
+        //adding new regex method to jquery validator
+        $.validator.addMethod(
+            "regex",
+            function(value, element, regexp) {
+                var re = new RegExp(regexp);
+                return this.optional(element) || re.test(value);
+            },
+            "Please enter a valid mobile number"
+        );
     });
 
     $(function () {
@@ -856,3 +888,34 @@ $religions = \Cake\Core\Configure::read('religions');
         color: #000;
     }
 </style>
+<!--<script>-->
+<!---->
+<!--    $.validator.setDefaults({-->
+<!--//        debug: true,-->
+<!--        success: "valid",-->
+<!--        ignore: [],-->
+<!--    });-->
+<!--    $( "#submit_form" ).validate({-->
+<!--        rules: {-->
+<!--            'file_label[]': {-->
+<!--                required: true,-->
+<!--                extension: "jpg|jpeg|png|doc|pdf|xls|xlsx"-->
+<!--            }-->
+<!--        },-->
+<!--        submitHandler: function(form) {-->
+<!--            form.submit();-->
+<!--        }-->
+<!--    });-->
+<!--    $('[name^="cellphone').rules('add', {-->
+<!--        regex: "^(?:\\+?88)?01[15-9]\\d{8}$"-->
+<!--    });-->
+<!--    //adding new regex method to jquery validator-->
+<!--    $.validator.addMethod(-->
+<!--        "regex",-->
+<!--        function(value, element, regexp) {-->
+<!--            var re = new RegExp(regexp);-->
+<!--            return this.optional(element) || re.test(value);-->
+<!--        },-->
+<!--        "Please enter a valid mobile number"-->
+<!--    );-->
+<!--</script>-->
