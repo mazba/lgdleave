@@ -258,7 +258,7 @@ $religions = Configure::read('religions');
                         </div>
 
                         <?php
-                        echo $this->Form->input('comment', ['type' => 'textarea']);
+                        echo $this->Form->input('comment', ['type' => 'textarea', 'required' => 'required']);
                         echo $this->Form->button(__('Submit'), ['class' => 'btn blue pull-right', 'style' => 'margin-top:20px'])
                         ?>
                     </div>

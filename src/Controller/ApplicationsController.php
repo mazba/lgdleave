@@ -60,7 +60,7 @@ class ApplicationsController extends AppController
             ->where(['applications.status' => Configure::read('application_status.Pending')]);
 
 
-        //   echo "<pre>";print_r($new_applications->toArray());die();
+//           echo "<pre>";print_r($new_applications->toArray());die();
 
         $this->set(compact('new_applications'));
         $this->set('_serialize', ['new_applications']);
@@ -138,9 +138,6 @@ class ApplicationsController extends AppController
         $applications['union'] = $Union->toArray() ? $Union->toArray() : [];
         $applications['applicant_type'] = $Location_type->first();
         $applications['location_type'] = $Applicant_type->first();
-//        echo "<pre>";
-//        print_r($application);
-//        die();
 
         if ($this->request->is('post')) {
             $inputs = $this->request->data;

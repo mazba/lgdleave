@@ -1,4 +1,8 @@
-/vendor/*
-.idea
 /tmp/*
-composer.lock
+/logs/*
+/tests/*
+/.idea/*
+.idea/vcs.xml 
+Thumbs.db
+/database/*
+/vendor/*

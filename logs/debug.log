@@ -7326,3 +7326,15 @@ Cake\Routing\Dispatcher::dispatch() - CORE\src\Routing\Dispatcher.php, line 87
 2017-05-09 09:45:40 Notice: #mazbas_cake# permission_error: actionUrl-receiveapplications/pdfview time:1494323140
 2017-05-09 09:45:54 Notice: #mazbas_cake# permission_error: actionUrl-receiveapplications/index time:1494323154
 2017-05-09 09:55:27 Notice: #mazbas_cake# permission_error: actionUrl-citizencorner/index time:1494323727
+2017-05-25 11:01:07 Notice: #mazbas_cake# permission_error: actionUrl-citizencorner/index time:1495710067
+2017-05-28 04:58:37 Notice: Notice (8): Undefined variable: userCheck in [F:\XAMPP\htdocs\leave\src\Controller\ReceiveApplicationsController.php, line 66]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 138
+App\Controller\ReceiveApplicationsController::index() - APP/Controller\ReceiveApplicationsController.php, line 66
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 429
+Cake\Routing\Dispatcher::_invoke() - CORE\src\Routing\Dispatcher.php, line 114
+Cake\Routing\Dispatcher::dispatch() - CORE\src\Routing\Dispatcher.php, line 87
+[main] - ROOT\webroot\index.php, line 37
+
+
+

@@ -137,7 +137,7 @@ $religions = Configure::read('religions');
                         echo $this->Form->input('status', ['label'=>__('Action'),'options' => $status]);
                        // echo $this->Form->input('registration_number');
 
-                        echo $this->Form->input('comment', ['type' => 'textarea']);
+                        echo $this->Form->input('comment', ['type' => 'textarea', 'required' => 'required']);
                      //   echo $this->Form->input('approve_time', ['type' => 'text', 'class' => 'form-control datepicker']);
 
                         ?>

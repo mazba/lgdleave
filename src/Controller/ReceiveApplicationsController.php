@@ -29,7 +29,9 @@ class ReceiveApplicationsController extends AppController
         if ($this->request->is('ajax')) {
 
             $user = $this->Auth->user();
+            $userCheck = $user['id'] - 1;
             $usrUnits = TableRegistry::get('user_designations');
+
             $userUnits = $usrUnits->find()
                 ->select(['office_unit_id'])
                 ->where(['user_id' => $user['id'], 'is_basic IS' => null]);
@@ -47,6 +49,9 @@ class ReceiveApplicationsController extends AppController
 
             $new_applications = TableRegistry::get('applications')->find();
 
+            $application_events = TableRegistry::get('application_events');
+            $application_events = $application_events->find()->select(['application_id'])->where(['recipient_id'=> $userCheck]);
+
             $new_applications->select(['location_type' => 'location_types.title_bn',
                 'area_district' => 'zillas.zillaname',
                 'area_division' => 'divisions.divname',
@@ -63,6 +68,7 @@ class ReceiveApplicationsController extends AppController
             $new_applications->select(['application_types.id', 'application_types.title_bn']);
             $new_applications->where(['applications.status' => Configure::read('application_status.Pending')]);
             $new_applications->where(['applicants.applicant_type_id IN' => $applicantTypes]);
+            $new_applications->where(['applications.id not in' => $application_events ]);
 
             $new_applications->leftJoin('applicants', 'applicants.id=applications.applicant_id');
             $new_applications->leftJoin('location_types', 'location_types.id=applicants.location_type_id');
@@ -70,7 +76,7 @@ class ReceiveApplicationsController extends AppController
             $new_applications->leftJoin('divisions', 'divisions.divid=applicants.division_id');
             $new_applications->leftJoin('zillas', 'zillas.zillaid=applicants.district_id');
             $new_applications->leftJoin('applicant_types', 'applicant_types.id=applicants.applicant_type_id');
-
+            $new_applications->leftJoin('application_events', 'application_events.application_id = applications.id');
             $this->response->body(json_encode($new_applications->toArray()));
             return $this->response;
         }
