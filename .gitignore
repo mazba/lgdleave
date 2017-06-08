@@ -1,7 +1,7 @@
 /tmp/*
 /logs/*
 /tests/*
-/.idea/*
+.idea
 .idea/vcs.xml 
 Thumbs.db
 /database/*
